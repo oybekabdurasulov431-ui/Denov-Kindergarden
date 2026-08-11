@@ -1,0 +1,8 @@
+[{
+      "relation": ["delegate_permission/common.handle_all_urls"],
+      "target": {
+        "namespace": "android_app",
+        "package_name": "uz.denov.kindergarden",
+        "sha256_cert_fingerprints": ["E9:99:0F:D5:AD:07:EC:C3:A5:DF:F3:DC:53:4E:B2:DC:3B:B2:B8:B6:79:01:3C:B6:72:09:C3:A2:F3:D7:2F:B1"]
+      }
+    }]

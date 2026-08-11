@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Denov Kindergarden — Maktabgacha ta'lim tizimi</title>
+  <meta name="description" content="Denov Kindergarden — maktabgacha ta'lim boshqaruv tizimi">
+<meta name="theme-color" content="#6366f1">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="Denov Kindergarden">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ===== LOGIN ===== -->
+<div id="loginScreen" class="login-wrap">
+  <div class="login-card">
+    <div class="login-logo">
+      <div class="logo-mark"><img src="/logo/image.png" alt="Logo"></div>
+      <div class="login-brand">
+        <h1 id="loginSiteName">Denov Kindergarden</h1>
+        <p>Maktabgacha ta'lim boshqaruv tizimi</p>
+      </div>
+    </div>
+    <form id="loginForm" autocomplete="off">
+      <label class="field">
+        <span>Login</span>
+        <input type="text" id="loginUser" placeholder="admin" required>
+      </label>
+      <label class="field">
+        <span>Parol</span>
+        <div class="input-wrap">
+          <input type="password" id="loginPass" placeholder="••••••••" required>
+          <button type="button" class="eye-btn" data-eye="loginPass">👁</button>
+        </div>
+      </label>
+      <div id="loginError" class="login-error"></div>
+      <button type="submit" class="btn btn-primary btn-block" id="loginBtn">Kirish</button>
+    </form>
+    <p class="login-hint"><span style="font-size:11px;opacity:.7">Kirish ma'lumotlari bog'cha administratori tomonidan beriladi</span></p>
+    <button class="btn btn-outline btn-sm btn-block" id="installBtnLogin" style="margin-top:14px">📲 Ilovani o'rnatish</button>
+    <a class="btn btn-outline btn-sm btn-block" href="/apk/Denov-Kindergarden.apk" download style="margin-top:8px;text-decoration:none">📱 Android ilova (APK) yuklab olish</a>
+  </div>
+</div>
+
+<!-- ===== APP SHELL ===== -->
+<div id="appShell" class="app hidden">
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <div class="logo-mark"><img src="/logo/image.png" alt="Logo"></div>
+      <div>
+        <div class="sidebar-title" id="sidebarSiteName">Denov Kindergarden</div>
+        <div class="sidebar-sub">Boshqaruv paneli</div>
+      </div>
+      <button class="icon-btn sidebar-close" id="sidebarClose" title="Yopish">✕</button>
+    </div>
+    <nav class="nav" id="nav"></nav>
+    <div class="sidebar-foot">
+      <div class="user-chip">
+        <div class="avatar" id="meAvatar">A</div>
+        <div class="user-meta">
+          <b id="meName">—</b>
+          <span id="meRole">—</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+  <main class="main">
+    <header class="topbar">
+      <button class="icon-btn" id="sidebarToggle" title="Menyu">☰</button>
+      <div class="topbar-title" id="pageTitle">Bosh sahifa</div>
+      <div class="topbar-actions">
+        <div class="date-chip" id="todayChip"></div>
+        <button class="icon-btn" id="themeToggle" title="Tungi rejim">🌙</button>
+        <button class="btn btn-outline btn-sm" id="installBtn" hidden>📲 O'rnatish</button>
+        <button class="btn btn-outline btn-sm" id="logoutBtn">Chiqish</button>
+      </div>
+    </header>
+
+    <div class="content" id="content"></div>
+  </main>
+</div>
+
+<!-- ===== MODAL ===== -->
+<div class="modal-overlay hidden" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-head">
+      <h3 id="modalTitle">Modal</h3>
+      <button class="icon-btn" id="modalClose">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script src="app.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(() => {});
+}
+</script>
+<script>
+/* PWA o'rnatish: beforeinstallprompt'ni darhol ushlab olish (app.js dan oldin) */
+if (window.__bipEvent === undefined) window.__bipEvent = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  window.__bipEvent = e;
+  window.dispatchEvent(new CustomEvent('app-install-ready'));
+});
+window.addEventListener('appinstalled', () => {
+  window.__bipEvent = null;
+  window.dispatchEvent(new CustomEvent('app-installed'));
+});
+</script>
+</body>
+</html>

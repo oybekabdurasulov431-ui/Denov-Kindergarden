@@ -1,0 +1,34 @@
+{
+  "name": "bogcham",
+  "version": "1.0.0",
+  "description": "Maktabgacha ta'lim muassasasini boshqarish tizimi — bolalar, ota-onalar, guruhlar, davomat va to'lovlar",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test:api": "node test-api.js",
+    "test:ui": "node test-ui.js",
+    "test:mobile": "node test-mobile.js"
+  },
+  "keywords": [
+    "bogcha",
+    "kindergarten",
+    "maktabgacha",
+    "boshqaruv",
+    "crm"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=22.5"
+  },
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "express": "^5.2.1",
+    "express-session": "^1.19.0",
+    "node-telegram-bot-api": "^1.2.0"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.4.0"
+  }
+}

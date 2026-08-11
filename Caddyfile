@@ -1,0 +1,14 @@
+﻿oybek-kindergarten.duckdns.org {
+	encode zstd gzip
+	reverse_proxy app:3000
+}
+
+mexriddin.online {
+	encode zstd gzip
+	reverse_proxy app:3000
+}
+
+www.mexriddin.online {
+	encode zstd gzip
+	redir https://mexriddin.online{uri} permanent
+}
