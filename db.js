@@ -170,6 +170,123 @@ function initSchema() {
       sess TEXT NOT NULL,
       expire INTEGER NOT NULL
     );
+
+    CREATE TABLE IF NOT EXISTS schedules (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      teacher_id INTEGER NOT NULL REFERENCES teachers(id) ON DELETE CASCADE,
+      day_of_week INTEGER NOT NULL,
+      start_time TEXT NOT NULL DEFAULT '08:00',
+      end_time TEXT NOT NULL DEFAULT '17:00',
+      subject TEXT DEFAULT '',
+      notes TEXT DEFAULT '',
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+
+    CREATE TABLE IF NOT EXISTS sms_log (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      phone TEXT NOT NULL,
+      message TEXT NOT NULL,
+      status TEXT DEFAULT 'yuborildi',
+      provider TEXT DEFAULT 'eskiz',
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+    CREATE TABLE IF NOT EXISTS month_archives (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      month TEXT NOT NULL UNIQUE,
+      total_children INTEGER DEFAULT 0,
+      total_fee REAL DEFAULT 0,
+      total_paid REAL DEFAULT 0,
+      total_expense REAL DEFAULT 0,
+      total_salary REAL DEFAULT 0,
+      total_debt REAL DEFAULT 0,
+      collection_rate INTEGER DEFAULT 0,
+      att_rate INTEGER DEFAULT 0,
+      snapshot_json TEXT NOT NULL,
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+
+    CREATE TABLE IF NOT EXISTS ratings (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      parent_id INTEGER NOT NULL,
+      parent_name TEXT DEFAULT '',
+      stars INTEGER NOT NULL DEFAULT 5,
+      category TEXT DEFAULT 'umumiy',
+      comment TEXT DEFAULT '',
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+
+    CREATE TABLE IF NOT EXISTS chat_messages (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      parent_id INTEGER NOT NULL,
+      parent_name TEXT DEFAULT '',
+      chat_id INTEGER NOT NULL,
+      message TEXT NOT NULL,
+      from_admin INTEGER DEFAULT 0,
+      read INTEGER DEFAULT 0,
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+
+    CREATE TABLE IF NOT EXISTS bot_reminders (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      parent_id INTEGER NOT NULL,
+      chat_id INTEGER NOT NULL,
+      remind_type TEXT NOT NULL DEFAULT 'payment',
+      remind_text TEXT DEFAULT '',
+      remind_date TEXT NOT NULL,
+      sent INTEGER DEFAULT 0,
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+
+    CREATE TABLE IF NOT EXISTS day_journal (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      group_id INTEGER REFERENCES groups(id) ON DELETE SET NULL,
+      journal_date TEXT NOT NULL,
+      title TEXT NOT NULL,
+      activities TEXT DEFAULT '',
+      summary TEXT DEFAULT '',
+      created_by TEXT DEFAULT '',
+      created_at TEXT NOT NULL DEFAULT (datetime('now')),
+      UNIQUE(group_id, journal_date)
+    );
+
+    CREATE TABLE IF NOT EXISTS gallery (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      group_id INTEGER REFERENCES groups(id) ON DELETE SET NULL,
+      title TEXT DEFAULT '',
+      image TEXT NOT NULL,
+      created_by TEXT DEFAULT '',
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+
+    CREATE TABLE IF NOT EXISTS courses (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL,
+      description TEXT DEFAULT '',
+      price REAL DEFAULT 0,
+      duration TEXT DEFAULT '',
+      icon TEXT DEFAULT '🎨',
+      sort INTEGER DEFAULT 0,
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+
+    CREATE TABLE IF NOT EXISTS landing_leads (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      child_name TEXT DEFAULT '',
+      parent_name TEXT NOT NULL,
+      phone TEXT NOT NULL,
+      message TEXT DEFAULT '',
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
+
+    CREATE TABLE IF NOT EXISTS parent_notifications (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      parent_id INTEGER NOT NULL,
+      type TEXT DEFAULT 'xabar',
+      title TEXT DEFAULT '',
+      message TEXT DEFAULT '',
+      read INTEGER DEFAULT 0,
+      created_at TEXT NOT NULL DEFAULT (datetime('now'))
+    );
   `);
 
   const userCols = db.prepare("PRAGMA table_info(users)").all().map(c => c.name);
@@ -192,6 +309,9 @@ function initSchema() {
   if (!reqCols.includes('amount')) {
     db.exec('ALTER TABLE parent_requests ADD COLUMN amount REAL DEFAULT 0');
   }
+  if (!reqCols.includes('month')) {
+    db.exec("ALTER TABLE parent_requests ADD COLUMN month TEXT DEFAULT ''");
+  }
 
   const chCols = db.prepare("PRAGMA table_info(children)").all().map(c => c.name);
   if (!chCols.includes('photo')) {
@@ -201,6 +321,11 @@ function initSchema() {
   const tCols = db.prepare("PRAGMA table_info(teachers)").all().map(c => c.name);
   if (!tCols.includes('birth_date')) {
     db.exec("ALTER TABLE teachers ADD COLUMN birth_date TEXT DEFAULT ''");
+  }
+
+  const expCols = db.prepare("PRAGMA table_info(expenses)").all().map(c => c.name);
+  if (!expCols.includes('method')) {
+    db.exec("ALTER TABLE expenses ADD COLUMN method TEXT DEFAULT 'naqd'");
   }
 }
 

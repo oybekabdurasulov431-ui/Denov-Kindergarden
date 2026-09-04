@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Denov Kindergarden — Bola bog'cha</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root { --p: #6366f1; --p-soft: #eef0ff; --ink: #111827; --muted: #6b7280; --bg: #f8fafc; }
+  body { font-family: -apple-system, "Segoe UI", system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.6; }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
+
+  header.top { position: fixed; inset: 0 0 auto; background: rgba(255,255,255,.9); backdrop-filter: blur(10px); border-bottom: 1px solid #eef2f7; z-index: 50; }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
+  .logo { font-size: 19px; font-weight: 800; display: flex; align-items: center; gap: 8px; }
+  .logo .dot { width: 34px; height: 34px; border-radius: 9px; background: linear-gradient(135deg, #6366f1, #8b5cf6); display: grid; place-items: center; color: #fff; font-size: 17px; }
+  .nav a { text-decoration: none; color: var(--ink); font-weight: 600; margin-left: 18px; font-size: 14px; }
+  .nav a.btn { background: var(--p); color: #fff; padding: 9px 18px; border-radius: 9px; }
+  .nav a.btn:hover { filter: brightness(1.08); }
+  @media (max-width: 640px) { .nav .hide-sm { display: none; } }
+
+  .hero { padding: 130px 0 70px; text-align: center; }
+  .hero h1 { font-size: clamp(30px, 5vw, 46px); font-weight: 900; line-height: 1.15; letter-spacing: -.5px; }
+  .hero h1 .grad { background: linear-gradient(90deg, #6366f1, #a855f7); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--muted); max-width: 620px; margin: 18px auto 0; font-size: 17px; }
+  .hero .cta { margin-top: 28px; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: 13px 26px; border-radius: 12px; font-weight: 700; font-size: 15px; text-decoration: none; border: none; cursor: pointer; }
+  .btn-primary { background: var(--p); color: #fff; box-shadow: 0 6px 18px rgba(99,102,241,.3); }
+  .btn-primary:hover { filter: brightness(1.07); }
+  .btn-ghost { background: #fff; color: var(--ink); border: 1.5px solid #e5e7eb; }
+  .btn-ghost:hover { border-color: var(--p); color: var(--p); }
+  .hero .stats { margin-top: 40px; display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+  .stat { background: #fff; border: 1px solid #eef2f7; border-radius: 14px; padding: 16px 26px; box-shadow: 0 4px 14px rgba(15,23,42,.04); }
+  .stat b { font-size: 24px; display: block; color: var(--p); }
+  .stat span { font-size: 12.5px; color: var(--muted); }
+
+  section { padding: 60px 0; }
+  section h2 { font-size: 27px; font-weight: 800; text-align: center; }
+  section .sub { text-align: center; color: var(--muted); margin: 8px 0 34px; }
+  .feats { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .feat { background: #fff; border-radius: 16px; padding: 22px; border: 1px solid #eef2f7; }
+  .feat .ic { width: 46px; height: 46px; border-radius: 12px; display: grid; place-items: center; font-size: 22px; background: var(--p-soft); margin-bottom: 12px; }
+  .feat h3 { font-size: 15.5px; margin-bottom: 6px; }
+  .feat p { font-size: 13.5px; color: var(--muted); }
+
+  .courses { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
+  .course { background: #fff; border: 1px solid #eef2f7; border-radius: 16px; padding: 24px; display: flex; flex-direction: column; gap: 10px; transition: transform .15s, box-shadow .15s; }
+  .course:hover { transform: translateY(-3px); box-shadow: 0 10px 26px rgba(15,23,42,.08); }
+  .course .ci { font-size: 30px; }
+  .course h3 { font-size: 16px; }
+  .course p { font-size: 13.5px; color: var(--muted); flex: 1; }
+  .course .price { font-weight: 800; font-size: 17px; color: var(--p); }
+  .course .dur { font-size: 12px; color: var(--muted); }
+
+  .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+  .gitem { border-radius: 14px; overflow: hidden; aspect-ratio: 4/3; background: #eef2f7; }
+  .gitem img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .contact-card { background: linear-gradient(135deg, #6366f1, #8b5cf6); color: #fff; border-radius: 20px; padding: 40px; text-align: center; }
+  .contact-card h2 { color: #fff; }
+  .contact-card .sub { color: rgba(255,255,255,.85); }
+  .form { max-width: 460px; margin: 24px auto 0; display: flex; flex-direction: column; gap: 12px; text-align: left; }
+  .form input, .form textarea { width: 100%; padding: 13px 15px; border-radius: 10px; border: 1px solid #e5e7eb; font-size: 14.5px; }
+  .form .msg { display: none; padding: 11px; border-radius: 10px; font-size: 14px; background: rgba(255,255,255,.18); }
+  .form .msg.ok { display: block; }
+  .how { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-top: 30px; }
+  .how .step { background: #fff; border-radius: 14px; padding: 20px; text-align: center; border: 1px solid #eef2f7; }
+  .how .step b { color: var(--p); font-size: 22px; display: block; margin-bottom: 6px; }
+
+  footer.bottom { border-top: 1px solid #eef2f7; padding: 26px 0; text-align: center; color: var(--muted); font-size: 13.5px; background: #fff; }
+  @media (max-width: 640px) { .hero { padding-top: 110px; } section { padding: 44px 0; } }
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap nav">
+    <div class="logo"><span class="dot">🌈</span><span id="siteName">Denov Kindergarden</span></div>
+    <div>
+      <a href="#about" class="hide-sm">Kurslar</a>
+      <a href="#gallery" class="hide-sm">Galereya</a>
+      <a href="#contact" class="btn">Ariza qoldiring</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="hero wrap">
+    <h1>Bolangiz uchun eng yaxshi <span class="grad">bog'cha davrini</span> boshlang</h1>
+    <p id="heroText">Denov Kindergarden — malakali tarbiyachilar, xavfsiz muhit va har tomonlama rivojlantiruvchi dasturlar. Har bir bolaga alohida e'tibor.</p>
+    <div class="cta">
+      <a href="#contact" class="btn btn-primary">Ariza qoldirish</a>
+      <a href="#courses" class="btn btn-ghost">Kurslar bilan tanishing</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b><span id="sGroups">0</span></b><span>guruhlar</span></div>
+      <div class="stat"><b><span id="sChildren">0</span></b><span>bolalar</span></div>
+      <div class="stat"><b><span id="sTeachers">0</span></b><span>tarbiyachilar</span></div>
+      <div class="stat"><b><span id="sCourses">0</span></b><span>to'garaklar</span></div>
+    </div>
+  </div>
+
+  <section id="about" class="wrap">
+    <h2>Nima uchun biz?</h2>
+    <p class="sub">Farzandingizning birinchi qadamlari ishonchli qo'llarda</p>
+    <div class="feats">
+      <div class="feat"><div class="ic">🛡️</div><h3>Xavfsiz muhit</h3><p>24/7 videokuzatuv, ikki qavatli kirish nazorati va malakali xodimlar.</p></div>
+      <div class="feat"><div class="ic">👩‍🏫</div><h3>Malakali tarbiyachilar</h3><p>Har bir guruhda shaxsiy tarbiyachi va yordamchi pedagoglar.</p></div>
+      <div class="feat"><div class="ic">🥗</div><h3>Sog'lom taomlanish</h3><p>Kuniga 3 mahal muvozanatli va ekologik toza taomlar.</p></div>
+      <div class="feat"><div class="ic">📱</div><h3>Ota-ona nazorati</h3><p>Maxsus ilova orqali bolangizning davomati va faoliyatini kuzating.</p></div>
+      <div class="feat"><div class="ic">🎨</div><h3>Ijodiy darslar</h3><p>Rasm, musiqa, raqs va rivojlantiruvchi o'yinlar.</p></div>
+      <div class="feat"><div class="ic">🧠</div><h3>Maktabga tayyorlash</h3><p>O'qish, yozish va mantiqiy fikrlash asoslari.</p></div>
+    </div>
+  </section>
+
+  <section id="courses" class="wrap">
+    <h2>Qo'shimcha to'garaklar</h2>
+    <p class="sub">Bola qiziqishiga qarab qo'shimcha mashg'ulotlari</p>
+    <div class="courses" id="coursesBox"></div>
+  </section>
+
+  <section id="gallery" class="wrap">
+    <h2>Fotogalereya</h2>
+    <p class="sub">Bizning kundalik hayotimizdan lahazalar</p>
+    <div class="gallery" id="galleryBox"></div>
+  </section>
+
+  <section id="contact" class="wrap">
+    <div class="contact-card">
+      <h2>Qabul telefoniga murojaat qiling</h2>
+      <p class="sub">Yoki formani to'ldiring — siz bilan tez orada bog'lanamiz</p>
+      <div class="form">
+        <input id="f_parent" type="text" placeholder="Ota-onaning ismi *" required>
+        <input id="f_phone" type="tel" placeholder="Telefon raqami *" required>
+        <input id="f_child" type="text" placeholder="Bolaning ismi">
+        <textarea id="f_msg" rows="2" placeholder="Savol yoki izoh"></textarea>
+        <button class="btn btn-primary" id="f_send">Yuborish</button>
+        <div class="msg" id="f_msgbox"></div>
+      </div>
+      <p style="margin-top:20px;font-size:14px;opacity:.9" id="contactInfo"></p>
+    </div>
+  </section>
+</main>
+
+<footer class="bottom">
+  <div class="wrap">© <span id="yr"></span> <span id="siteNameF">Denov Kindergarden</span> — Barcha huquqlar himoyalangan</div>
+</footer>
+
+<script>
+  const q = s => document.querySelector(s);
+  let DATA = { site: {}, courses: [], gallery: [] };
+
+  const applySite = () => {
+    const s = DATA.site || {};
+    if (s.name) { q('#siteName').textContent = s.name; q('#siteNameF').textContent = s.name; }
+    if (s.work_hours || s.address || s.phone) {
+      q('#contactInfo').textContent = [s.address, s.phone, s.email, s.work_hours].filter(Boolean).join(' &nbsp;•&nbsp; ');
+      q('#contactInfo').style.display = 'block';
+    }
+    if (s.login_top_text) q('#heroText').textContent = s.login_top_text;
+    const st = DATA.stats || {};
+    q('#sGroups').textContent = st.groups || 0;
+    q('#sChildren').textContent = st.children || 0;
+    q('#sTeachers').textContent = st.teachers || 0;
+    q('#sCourses').textContent = (DATA.courses || []).length;
+  };
+
+  const renderCourses = () => {
+    const b = q('#coursesBox');
+    if (!DATA.courses.length) { b.innerHTML = '<p class="sub">Kurslar vaqti tez orada</p>'; return; }
+    b.innerHTML = DATA.courses.map(c => `
+      <div class="course">
+        <div class="ci">${c.icon || '🎨'}</div>
+        <h3>${esc(c.name)}</h3>
+        <p>${esc(c.description || '')}</p>
+        <div class="price">${fmt(c.price)} so'm${c.duration ? ' <span class="dur">/ ' + esc(c.duration) + '</span>' : ''}</div>
+      </div>`).join('');
+  };
+
+  const renderGallery = () => {
+    const b = q('#galleryBox');
+    if (!DATA.gallery.length) { b.innerHTML = '<p class="sub">Rasmlar tez orada qo\'shiladi</p>'; return; }
+    b.innerHTML = DATA.gallery.map(g => {
+      const src = /^(https?:|data:)/.test(g.image) ? g.image : ('/uploads/' + g.image);
+      return `<div class="gitem"><img src="${esc(src)}" alt="${esc(g.title || '')}"></div>`;
+    }).join('');
+  };
+
+  const esc = s => String(s || '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  const fmt = n => Number(n || 0).toLocaleString('uz-UZ');
+
+  q('#f_send').addEventListener('click', async () => {
+    const body = {
+      parent_name: q('#f_parent').value.trim(),
+      phone: q('#f_phone').value.trim(),
+      child_name: q('#f_child').value.trim(),
+      message: q('#f_msg').value.trim()
+    };
+    if (!body.parent_name || !body.phone) { q('#f_msgbox').textContent = 'Ism va telefonni kiriting'; q('#f_msgbox').className = 'msg'; return; }
+    try {
+      const r = await fetch('/api/landing/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      if (!r.ok) throw new Error('Xatolik');
+      q('#f_parent').value = q('#f_phone').value = q('#f_child').value = q('#f_msg').value = '';
+      q('#f_msgbox').textContent = '✅ Arizangiz qabul qilindi! Tez orada bog\'lanamiz.';
+      q('#f_msgbox').className = 'msg ok';
+    } catch (e) {
+      q('#f_msgbox').textContent = 'Yuborishda xatolik. Telefon orqali bog\'laning.';
+      q('#f_msgbox').className = 'msg';
+    }
+  });
+
+  (async () => {
+    try {
+      DATA = await (await fetch('/api/landing/data')).json();
+    } catch (e) {}
+    applySite(); renderCourses(); renderGallery();
+    q('#yr').textContent = new Date().getFullYear();
+  })();
+</script>
+</body>
+</html>

@@ -16,13 +16,14 @@
 <link rel="apple-touch-icon" href="icons/icon-192.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=20260904a">
 </head>
 <body>
 
 <!-- ===== LOGIN ===== -->
 <div id="loginScreen" class="login-wrap">
   <div class="login-card">
+    <div class="login-top-text" id="loginTopText"></div>
     <div class="login-logo">
       <div class="logo-mark"><img src="/logo/image.png" alt="Logo"></div>
       <div class="login-brand">
@@ -47,7 +48,15 @@
     </form>
     <p class="login-hint"><span style="font-size:11px;opacity:.7">Kirish ma'lumotlari bog'cha administratori tomonidan beriladi</span></p>
     <button class="btn btn-outline btn-sm btn-block" id="installBtnLogin" style="margin-top:14px">📲 Ilovani o'rnatish</button>
-    <a class="btn btn-outline btn-sm btn-block" href="/apk/Denov-Kindergarden.apk" download style="margin-top:8px;text-decoration:none">📱 Android ilova (APK) yuklab olish</a>
+    <a class="apk-download-btn" href="/apk/Denov-Kindergarden.apk" download>
+      <span class="apk-icon">📱</span>
+      <span class="apk-text">
+        <b>Android ilova (APK) yuklab olish</b>
+        <small>Tez yuklab oling — bitta bosish bilan</small>
+      </span>
+      <span class="apk-arrow">⬇</span>
+    </a>
+    <div class="login-bottom-text" id="loginBottomText" style="text-align:center;margin-top:12px;font-size:11px;color:var(--muted)"></div>
   </div>
 </div>
 
@@ -81,6 +90,7 @@
       <div class="topbar-title" id="pageTitle">Bosh sahifa</div>
       <div class="topbar-actions">
         <div class="date-chip" id="todayChip"></div>
+        <button class="topbar-bell icon-btn" id="topbarBell" title="Xabarnomalar">🔔</button>
         <button class="icon-btn" id="themeToggle" title="Tungi rejim">🌙</button>
         <button class="btn btn-outline btn-sm" id="installBtn" hidden>📲 O'rnatish</button>
         <button class="btn btn-outline btn-sm" id="logoutBtn">Chiqish</button>
@@ -104,7 +114,8 @@
 
 <div class="toast-wrap" id="toastWrap"></div>
 
-<script src="app.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+<script src="app.js?v=20260904d"></script>
 <script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('sw.js').catch(() => {});

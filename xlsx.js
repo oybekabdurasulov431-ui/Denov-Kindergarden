@@ -34,24 +34,56 @@ function colName(n) {
   return s;
 }
 
-function sheetXml(rows) {
+function sheetXml(rows, opts) {
+  const colWidths = (opts && opts.colWidths) || [];
+  let colsXml = '';
+  if (colWidths.length) {
+    colsXml = '<cols>';
+    colWidths.forEach((w, i) => {
+      colsXml += `<col min="${i+1}" max="${i+1}" width="${w}" customWidth="1"/>`;
+    });
+    colsXml += '</cols>';
+  }
+
+  const mergeCells = (opts && opts.merges) || [];
+  let mergeXml = '';
+  if (mergeCells.length) {
+    mergeXml = '<mergeCells count="' + mergeCells.length + '">';
+    mergeCells.forEach(m => { mergeXml += `<mergeCell ref="${m}"/>`; });
+    mergeXml += '</mergeCells>';
+  }
+
   let body = '';
   rows.forEach((r, ri) => {
     let cells = '';
     r.forEach((v, ci) => {
       if (v === null || v === undefined || v === '') return;
       const ref = colName(ci + 1) + (ri + 1);
-      const s = ri === 0 ? ' s="1"' : '';
-      if (typeof v === 'number' && isFinite(v)) {
-        cells += `<c r="${ref}"${s}><v>${v}</v></c>`;
+      let sAttr = '';
+
+      if (opts && opts.styles && opts.styles[ri]) {
+        sAttr = ` s="${opts.styles[ri]}"`;
+      } else if (ri === 0) {
+        sAttr = ' s="1"';
+      }
+
+      if (typeof v === 'object' && v !== null && v._num !== undefined) {
+        cells += `<c r="${ref}"${sAttr} t="n"><v>${v._num}</v></c>`;
+      } else if (typeof v === 'number' && isFinite(v)) {
+        cells += `<c r="${ref}"${sAttr}><v>${v}</v></c>`;
       } else {
-        cells += `<c r="${ref}"${s} t="inlineStr"><is><t xml:space="preserve">${esc(v)}</t></is></c>`;
+        cells += `<c r="${ref}"${sAttr} t="inlineStr"><is><t xml:space="preserve">${esc(v)}</t></is></c>`;
       }
     });
     body += `<row r="${ri + 1}">${cells}</row>`;
   });
   return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><sheetData>${body}</sheetData></worksheet>`;
+<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
+<sheetFormatPr defaultRowHeight="15"/>
+${colsXml}
+<sheetData>${body}</sheetData>
+${mergeXml}
+</worksheet>`;
 }
 
 function contentTypesXml(sheets) {
@@ -100,11 +132,50 @@ function workbookXml(sheets) {
 function stylesXml() {
   return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <styleSheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main">
-<fonts count="2"><font><sz val="11"/><name val="Calibri"/></font><font><b/><sz val="11"/><name val="Calibri"/></font></fonts>
-<fills count="2"><fill><patternFill patternType="none"/></fill><fill><patternFill patternType="gray125"/></fill></fills>
-<borders count="1"><border><left/><right/><top/><bottom/><diagonal/></border></border>
+<fonts count="5">
+  <font><sz val="11"/><name val="Calibri"/></font>
+  <font><b/><sz val="11"/><name val="Calibri"/></font>
+  <font><b/><sz val="14"/><color rgb="FFFFFFFF"/><name val="Calibri"/></font>
+  <font><b/><sz val="11"/><color rgb="FF6366F1"/><name val="Calibri"/></font>
+  <font><b/><sz val="10"/><color rgb="FFFFFFFF"/><name val="Calibri"/></font>
+</fonts>
+<fills count="8">
+  <fill><patternFill patternType="none"/></fill>
+  <fill><patternFill patternType="gray125"/></fill>
+  <fill><patternFill patternType="solid"><fgColor rgb="FF6366F1"/></patternFill></fill>
+  <fill><patternFill patternType="solid"><fgColor rgb="FF10B981"/></patternFill></fill>
+  <fill><patternFill patternType="solid"><fgColor rgb="FFEF4444"/></patternFill></fill>
+  <fill><patternFill patternType="solid"><fgColor rgb="FFF3F4F6"/></patternFill></fill>
+  <fill><patternFill patternType="solid"><fgColor rgb="FFEEF2FF"/></patternFill></fill>
+  <fill><patternFill patternType="solid"><fgColor rgb="FFFEF3C7"/></patternFill></fill>
+</fonts>
+<borders count="3">
+  <border><left/><right/><top/><bottom/><diagonal/></border>
+  <border>
+    <left style="thin"><color rgb="FFE5E7EB"/></left>
+    <right style="thin"><color rgb="FFE5E7EB"/></right>
+    <top style="thin"><color rgb="FFE5E7EB"/></top>
+    <bottom style="thin"><color rgb="FFE5E7EB"/></bottom>
+    <diagonal/>
+  </border>
+  <border>
+    <bottom style="medium"><color rgb="FF6366F1"/></bottom>
+    <diagonal/>
+  </border>
+</borders>
 <cellStyleXfs count="1"><xf numFmtId="0" fontId="0" fillId="0" borderId="0"/></cellStyleXfs>
-<cellXfs count="2"><xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/><xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/></cellXfs>
+<cellXfs count="10">
+  <xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0"/>
+  <xf numFmtId="0" fontId="1" fillId="0" borderId="0" xfId="0" applyFont="1"/>
+  <xf numFmtId="0" fontId="2" fillId="2" borderId="0" xfId="0" applyFont="1" applyFill="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
+  <xf numFmtId="0" fontId="4" fillId="2" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
+  <xf numFmtId="0" fontId="0" fillId="0" borderId="1" xfId="0" applyBorder="1" applyAlignment="1"><alignment vertical="center"/></xf>
+  <xf numFmtId="0" fontId="1" fillId="6" borderId="1" xfId="0" applyFont="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment vertical="center"/></xf>
+  <xf numFmtId="#,##0" fontId="0" fillId="5" borderId="1" xfId="0" applyNumberFormat="1" applyFill="1" applyBorder="1" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
+  <xf numFmtId="#,##0" fontId="1" fillId="0" borderId="1" xfId="0" applyNumberFormat="1" applyFont="1" applyBorder="1" applyAlignment="1"><alignment horizontal="right" vertical="center"/></xf>
+  <xf numFmtId="0" fontId="3" fillId="0" borderId="2" xfId="0" applyFont="1" applyBorder="2" xfId="0"/>
+  <xf numFmtId="0" fontId="0" fillId="0" borderId="0" xfId="0" applyAlignment="1"><alignment horizontal="center" vertical="center"/></xf>
+</cellXfs>
 </styleSheet>`;
 }
 
@@ -139,7 +210,7 @@ function zip(files) {
     ch.writeUInt16LE(0x0800, 8);
     ch.writeUInt16LE(8, 10);
     ch.writeUInt16LE(0, 12);
-    ch.writeUInt16LE(0, 14);
+    ch.writeUInt32LE(0, 14);
     ch.writeUInt32LE(crc, 16);
     ch.writeUInt32LE(comp.length, 20);
     ch.writeUInt32LE(data.length, 24);
@@ -173,7 +244,7 @@ function buildXlsx(sheets) {
   files.push({ name: 'xl/_rels/workbook.xml.rels', data: Buffer.from(workbookRelsXml(sheets), 'utf8') });
   files.push({ name: 'xl/styles.xml', data: Buffer.from(stylesXml(), 'utf8') });
   sheets.forEach((s, i) => {
-    files.push({ name: `xl/worksheets/sheet${i + 1}.xml`, data: Buffer.from(sheetXml(s.rows), 'utf8') });
+    files.push({ name: `xl/worksheets/sheet${i + 1}.xml`, data: Buffer.from(sheetXml(s.rows, s), 'utf8') });
   });
   return zip(files);
 }

@@ -1,9 +1,98 @@
 'use strict';
 
+/* ================= SO'ZLAR ================= */
+const UZ = {
+  dashboard: 'Bosh sahifa', children: 'Bolalar', parents: 'Ota-onalar', teachers: 'Tarbiyachilar',
+  groups: 'Guruhlar', attendance: 'Davomat', payments: 'To\'lovlar', expenses: 'Xarajatlar',
+  meals: 'Taomlar', reports: 'Hisobotlar', birthdays: 'Tug\'ilgan kunlar', schedules: 'Dars jadvali',
+  salary: 'Ish haqi', monitoring: 'Monitoring', notify: 'Xabarnoma', sms: 'SMS',
+  eklon: 'E\'lonlar', requests: 'Arizalar', backup: 'Zaxira', audit: 'Jurnal',
+  xabarlar: 'Xabarlar',
+  journal: 'Kun jurnali', gallery: 'Fotogalereya', landing: 'Taklif sahifasi',
+  users: 'Foydalanuvchilar', settings: 'Sozlamalar', logout: 'Chiqish', install: 'O\'rnatish',
+  search: 'Qidirish...', add: 'Qo\'shish', save: 'Saqlash', edit: 'Tahrirlash',
+  delete: 'O\'chirish', cancel: 'Bekor qilish', confirm: 'Tasdiqlash', yes: 'Ha', no: 'Yo\'q',
+  name: 'Ism', phone: 'Telefon', email: 'Email', address: 'Manzil', date: 'Sana',
+  status: 'Holat', amount: 'Summa', notes: 'Izoh', actions: 'Amallar',
+  present: 'Keldi', absent: 'Kelmadi', late: 'Kechikdi', active: 'Faol', inactive: 'Nofaol',
+  total: 'Jami', paid: 'To\'langan', debt: 'Qarz', balance: 'Balans',
+  teacher: 'Tarbiyachi', group: 'Guruh', child: 'Bola', parent: 'Ota-ona',
+  print: 'Chop etish', export: 'Export', refresh: 'Yangilash', loading: 'Yuklanmoqda...',
+  welcome: 'Xush kelibsiz', siteDesc: 'Maktabgacha ta\'lim boshqaruv tizimi',
+  loginTitle: 'Kirish', loginHint: 'Kirish ma\'lumotlari bog\'cha administratori tomonidan beriladi',
+  loginError: 'Login va parolni kiriting', loginBtn: 'Kirish', loginLoading: 'Kirish...',
+  sessionExpired: 'Sessiya tugagan', noData: 'Ma\'lumot yo\'q',
+  dashboardTitle: 'Bosh sahifa', childrenTitle: 'Bolalar ro\'yxati',
+  parentsTitle: 'Ota-onalar ro\'yxati', teachersTitle: 'Tarbiyachilar ro\'yxati',
+  groupsTitle: 'Guruhlar', attendanceTitle: 'Davomat',
+  sendMessage: 'Xabar yuborish', sendSms: 'SMS yuborish', smsHistory: 'SMS tarixi',
+  smsSettings: 'SMS sozlamalari', phone: 'Telefon raqami', message: 'Xabar matni',
+  male: 'Erkak', female: 'Ayol', birthDate: 'Tug\'ilgan sana', enrolled: 'Qabul qilingan',
+  fee: 'To\'lov miqdori', month: 'Oy', year: 'Yil', from: 'Dan', to: 'Gacha',
+  unpaid: 'To\'lanmagan', paidFull: 'To\'liq to\'langan', partial: 'Qisman to\'langan',
+  all: 'Hammasi', selected: 'Tanlangan', none: 'Hech qanday',
+  chart: 'Grafik', table: 'Jadval', list: 'Ro\'yxat',
+  expenseCategories: 'Xarajat turlari', cashbook: 'Kassa kitobi', trend: 'Trend',
+  salaryReport: 'Ish haqi hisoboti', exportExcel: 'Excel export',
+  tgNotify: 'Telegram xabarnoma', smsNotify: 'SMS xabarnoma', manualNotify: 'Qo\'lda xabar',
+  paymentDebt: 'To\'lov qarzi', absentChildren: 'Davomatsiz bolalar',
+  announcements: 'E\'lonlar', newAnnouncement: 'Yangi e\'lon',
+  backupData: 'Ma\'lumotlarni zaxiralash', restoreData: 'Ma\'lumotlarni tiklash',
+  auditLog: 'Amallar jurnali', allUsers: 'Barcha foydalanuvchilar',
+  addUser: 'Foydalanuvchi qo\'shish', admin: 'Administrator', operatorRole: 'Operator',
+  parentRole: 'Ota-ona', teacherRole: 'Tarbiyachi',
+  insertPassword: 'Parolni kiriting', newPassword: 'Yangi parol',
+  noChildren: 'Bolalar yo\'q', noParents: 'Ota-onalar yo\'q',
+  noTeachers: 'Tarbiyachilar yo\'q', noGroups: 'Guruhlar yo\'q',
+  confirmDelete: 'O\'chirilsinmi?', actionCannotUndo: 'Amal qaytarib bo\'lmaydi',
+  business: 'Biznes', businessTitle: 'Biznes hisoboti',
+  archives: 'Arxivlar', archivesTitle: 'Oylik arxivlar',
+  archiveThisMonth: 'Joriy oy arxivini yaratish', archived: 'Arxivlandi',
+  totalIncome: 'Jami daromad', totalExpense: 'Jami xarajat', netProfit: 'Sof foyda',
+  collectionRate: 'Yig\'im darajasi', paidKids: 'To\'langan', unpaidKids: 'To\'lanmagan',
+  mealsMenu: 'Haftalik ovqat menyu', addMeal: 'Taom qo\'shish', photo: 'Rasm', uploadPhoto: 'Rasm yuklash',
+  smsReminder: 'SMS eslatma', sendReminder: 'Elatma yuborish', parentPortal: 'Ota-ona portali',
+  reportPrint: 'Hisobotni chop etish', weeklyMenu: 'Haftalik menyu',
+  sendReminders: 'Eslatmalarni yuborish', reminderSent: 'Eslatma yuborildi',
+  childPhoto: 'Bola rasmi', changePhoto: 'Rasmni o\'zgartirish', noPhoto: 'Rasm yo\'q',
+  mealsPlanned: 'Menyu rejalashtirilgan', mealsUnplanned: 'Menyu rejalanmagan',
+  opDailyReport: 'Kunlik hisobot', opDebtors: 'Qarzdorlar', opReminders: 'Avtomatik ogohlantirish',
+  todayAttendance: 'Bugungi davomat', todayIncome: 'Bugun tushgan', monthIncomeOylik: 'Oylik daromad',
+  monthExpenseOylik: 'Oylik xarajat', totalKidsCount: 'Jami bolalar', totalParentsCount: 'Jami ota-onalar',
+  totalTeachersCount: 'Jami tarbiyachilar', pendingRequestsCount: 'Kutilayotgan arizalar',
+  attendanceToday: 'Bugun: kelgan', absentToday: 'Bugun: kelganlar', lateToday: 'Bugun: kechikkanlar',
+  debtorName: 'Bola', debtorGroup: 'Guruh', debtorParent: 'Ota-ona', debtorFee: 'To\'lov',
+  debtorPaid: 'To\'langan', debtorDue: 'Qarz', debtorMonths: 'Oylar', totalDebt: 'Jami qarz',
+  noDebtors: 'Qarzdorlar yo\'q — barcha to\'lovlar bajarilgan!',
+  reminderType: 'Turi', reminderText: 'Matn', reminderDate: 'Sana', reminderStatus: 'Holat',
+  sent: 'Yuborilgan', pending: 'Kutilmoqda', noReminders: 'Eslatmalar yo\'q',
+  autoDebtWarn: 'Avtomatik qarz ogohlantirishi', autoDebtDesc: '2+ oy qarz bo\'lsa Telegram orqali xabar beriladi',
+  autoPayRemind: 'Oy oxiri to\'lov eslatmasi', autoPayDesc: 'Oy oxirida barcha ota-onalarga eslatma yuboriladi',
+  remindAfterMonth: 'Oy oxiridan keyin eslatish', remindDays: 'Kunlar soni',
+};
+const MONTHS = ['Yanvar','Fevral','Mart','Aprel','May','Iyun','Iyul','Avgust','Sentabr','Oktabr','Noyabr','Dekabr'];
+const WEEKDAYS = ['Yakshanba','Dushanba','Seshanba','Chorshanba','Payshanba','Juma','Shanba'];
+
+function getLang() { return 'uz'; }
+function t(key) { return UZ[key] || key; }
+function tMonth(m) {
+  const [y, mm] = m.split('-');
+  return `${MONTHS[Number(mm) - 1]} ${y}`;
+}
+
 /* ================= HELPERS ================= */
 
 const $ = (s, el = document) => el.querySelector(s);
 const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+
+function downloadFile(filename, content, mimeType) {
+  const blob = new Blob([content], { type: mimeType || 'text/plain;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  document.body.removeChild(a); URL.revokeObjectURL(url);
+}
 
 function esc(v) {
   return String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -21,8 +110,18 @@ const fmtDate = (d) => {
   return `${day}.${m}.${y}`;
 };
 
-const MONTHS = ['Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun', 'Iyul', 'Avgust', 'Sentabr', 'Oktabr', 'Noyabr', 'Dekabr'];
 const monthName = (m) => { const [y, mm] = m.split('-'); return `${MONTHS[Number(mm) - 1]} ${y}`; };
+
+function lastTwoMonthOpts(selected) {
+  const opts = [];
+  for (let i = 0; i < 2; i++) {
+    const d = new Date();
+    d.setMonth(d.getMonth() - i);
+    const val = d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0');
+    opts.push(`<option value="${val}" ${String(selected) === val ? 'selected' : ''}>${monthName(val)}</option>`);
+  }
+  return opts.join('');
+}
 
 const METHOD_LABELS = { karta: '💳 Karta', click: '🟩 Click', payme: '🔵 Payme', paynet: '🟣 Paynet', naqd: '💵 Naqd', bank: '🏦 Bank' };
 const methodLabel = (m) => METHOD_LABELS[m] || esc(m) || '—';
@@ -88,19 +187,20 @@ function toast(msg, type = 'success') {
 }
 
 async function api(path, options = {}) {
+  const isRaw = options.raw;
   const res = await fetch(path, {
-    headers: { 'Content-Type': 'application/json', ...(options.headers || {}) },
+    headers: isRaw ? (options.headers || {}) : { 'Content-Type': 'application/json', ...(options.headers || {}) },
     ...options,
-    body: options.body ? JSON.stringify(options.body) : undefined
+    body: options.body ? (isRaw ? options.body : JSON.stringify(options.body)) : undefined
   });
-  if (res.status === 401) { showLogin(); throw new Error('Sessiya tugagan'); }
+  if (res.status === 401 && path !== '/api/login') { showLogin(); throw new Error('Sessiya tugagan'); }
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(data.error || 'Xatolik yuz berdi');
   return data;
 }
 
-function loading(html = '<div class="empty-state"><span class="emoji">⏳</span>Yuklanmoqda...</div>') {
-  return `<div class="empty-state"><span class="emoji">⏳</span>Yuklanmoqda...</div>`;
+function loading() {
+  return `<div class="empty-state"><span class="emoji">⏳</span>${t('loading')}</div>`;
 }
 
 /* ================= STATE ================= */
@@ -111,46 +211,104 @@ const state = {
   page: 'dashboard'
 };
 
+/* Bosh sahifa yil va oy tanlash state (butun tizimga ulangan) */
+const savedMonth = localStorage.getItem('bogcha-month') || '';
+const dashState = {
+  year: savedMonth ? parseInt(savedMonth.slice(0, 4), 10) : new Date().getFullYear(),
+  month: savedMonth
+};
+
+const DASH_MONTHS = ['Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun', 'Iyul', 'Avgust', 'Sentabr', 'Oktabr', 'Noyabr', 'Dekabr'];
+
+const fmtTodayFull = () => {
+  const d = new Date();
+  return `${WEEKDAYS[d.getDay()]}, ${d.getDate()}-${DASH_MONTHS[d.getMonth()]}, ${d.getFullYear()}`;
+};
+
+const fmtTodayShort = () => {
+  const d = new Date();
+  return `${d.getDate()}-${DASH_MONTHS[d.getMonth()]}`;
+};
+
+window.setDashMonth = (m) => {
+  dashState.month = m;
+  if (m) {
+    dashState.year = parseInt(m.slice(0, 4), 10);
+    localStorage.setItem('bogcha-month', m);
+  } else {
+    localStorage.removeItem('bogcha-month');
+  }
+  renderDashboard();
+};
+
+const DASH_MAX_YEAR = new Date().getFullYear() + 5;
+const DASH_MIN_YEAR = new Date().getFullYear() - 10;
+
+window.setDashYear = (y) => {
+  const ny = parseInt(y, 10);
+  if (!ny) return;
+  if (ny > DASH_MAX_YEAR || ny < DASH_MIN_YEAR) return;
+  const newMonth = dashState.month && dashState.month.startsWith(ny + '-')
+    ? dashState.month
+    : ny + '-' + String(new Date().getMonth() + 1).padStart(2, '0');
+  dashState.year = ny;
+  dashState.month = newMonth;
+  localStorage.setItem('bogcha-month', newMonth);
+  renderDashboard();
+};
+
 const isAdmin = () => state.user && state.user.role === 'admin';
 const isOperator = () => state.user && state.user.role === 'operator';
 
 const NAV = [
-  { id: 'dashboard', label: 'Bosh sahifa', icon: 'home' },
-  { id: 'children', label: 'Bolalar', icon: 'kids' },
-  { id: 'parents', label: 'Ota-onalar', icon: 'users' },
-  { id: 'groups', label: 'Guruhlar', icon: 'group' },
-  { id: 'attendance', label: 'Davomat', icon: 'check' },
-  { id: 'payments', label: 'To\'lovlar', icon: 'cash' },
-  { id: 'expenses', label: 'Xarajatlar', icon: 'coin' },
-  { id: 'meals', label: 'Menyu', icon: 'meal' },
-  { id: 'reports', label: 'Hisobot', icon: 'chart' },
-  { id: 'birthdays', label: 'Tug\'ilgan kunlar', icon: 'cake' },
-  { id: 'teachers', label: 'Tarbiyachilar', icon: 'teacher', admin: true },
-  { id: 'notify', label: 'Xabarnoma', icon: 'bell', admin: true },
-  { id: 'eklon', label: 'E\'lonlar', icon: 'bell', admin: true },
-  { id: 'requests', label: 'Arizalar', icon: 'request', admin: true },
-  { id: 'backup', label: 'Zaxira', icon: 'download', admin: true },
-  { id: 'audit', label: 'Jurnal', icon: 'list', admin: true },
-  { id: 'users', label: 'Foydalanuvchilar', icon: 'lock', admin: true },
-  { id: 'settings', label: 'Sozlamalar', icon: 'gear', admin: true }
+  { id: 'dashboard', key: 'dashboard', icon: 'home' },
+  { id: 'children', key: 'children', icon: 'kids' },
+  { id: 'parents', key: 'parents', icon: 'users' },
+  { id: 'groups', key: 'groups', icon: 'group' },
+  { id: 'attendance', key: 'attendance', icon: 'check' },
+  { id: 'payments', key: 'payments', icon: 'cash' },
+  { id: 'expenses', key: 'expenses', icon: 'coin' },
+  { id: 'meals', key: 'meals', icon: 'meal' },
+  { id: 'reports', key: 'reports', icon: 'chart' },
+  { id: 'birthdays', key: 'birthdays', icon: 'cake' },
+  { id: 'teachers', key: 'teachers', icon: 'teacher', admin: true },
+  { id: 'schedules', key: 'schedules', icon: 'calendar', admin: true },
+  { id: 'salary', key: 'salary', icon: 'cash', admin: true },
+  { id: 'monitoring', key: 'monitoring', icon: 'monitor', admin: true },
+  { id: 'business', key: 'business', icon: 'chart', admin: true },
+  { id: 'archives', key: 'archives', icon: 'calendar', admin: true },
+  { id: 'notify', key: 'notify', icon: 'bell', operator: true },
+  { id: 'sms', key: 'sms', icon: 'sms', operator: true },
+  { id: 'eklon', key: 'eklon', icon: 'bell', admin: true },
+  { id: 'requests', key: 'requests', icon: 'request', operator: true },
+  { id: 'journal', key: 'journal', icon: 'journal', operator: true },
+  { id: 'gallery', key: 'gallery', icon: 'camera', operator: true },
+  { id: 'backup', key: 'backup', icon: 'download', admin: true },
+  { id: 'audit', key: 'audit', icon: 'list', admin: true },
+  { id: 'users', key: 'users', icon: 'lock', admin: true },
+  { id: 'op_daily', key: 'opDailyReport', icon: 'chart', operator: true },
+  { id: 'op_debtors', key: 'opDebtors', icon: 'coin', operator: true },
+  { id: 'op_reminders', key: 'opReminders', icon: 'bell', operator: true },
+  { id: 'settings', key: 'settings', icon: 'gear', admin: true, operator: true },
+  { id: 'landing', key: 'landing', icon: 'camera', admin: true }
 ];
 
 const TEACHER_NAV = [
-  { id: 't_dashboard', label: 'Bosh sahifa', icon: 'home' },
-  { id: 't_attendance', label: 'Davomat', icon: 'check' },
-  { id: 't_children', label: 'Guruhim', icon: 'family' },
-  { id: 'settings', label: 'Sozlamalar', icon: 'gear' }
+  { id: 't_dashboard', key: 'dashboard', icon: 'home' },
+  { id: 't_attendance', key: 'attendance', icon: 'check' }
 ];
 
 const PARENT_NAV = [
-  { id: 'p_dashboard', label: 'Bosh sahifa', icon: 'home' },
-  { id: 'p_children', label: 'Bolalarim', icon: 'kids' },
-  { id: 'p_attendance', label: 'Davomat', icon: 'check' },
-  { id: 'p_payments', label: 'To\'lovlarim', icon: 'cash' },
-  { id: 'p_ann', label: 'E\'lonlar', icon: 'bell' },
-  { id: 'p_request', label: 'To\'lov so\'rash', icon: 'request' },
-  { id: 'p_requests', label: 'Arizalarim', icon: 'list' },
-  { id: 'settings', label: 'Sozlamalar', icon: 'gear' }
+  { id: 'p_dashboard', key: 'dashboard', icon: 'home' },
+  { id: 'p_children', key: 'children', icon: 'kids' },
+  { id: 'p_attendance', key: 'attendance', icon: 'check' },
+  { id: 'p_payments', key: 'payments', icon: 'cash' },
+  { id: 'p_journal', key: 'journal', icon: 'journal' },
+  { id: 'p_notif', key: 'xabarlar', icon: 'bell' },
+  { id: 'p_ann', key: 'eklon', icon: 'megaphone' },
+  { id: 'p_gallery', key: 'gallery', icon: 'camera' },
+  { id: 'p_requests', key: 'requests', icon: 'list' },
+  { id: 'settings', key: 'settings', icon: 'gear' }
 ];
 
 const REQ_TYPES = {
@@ -178,10 +336,33 @@ const ICONS = {
   list: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>',
   family: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>',
   request: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>',
-  cake: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 1 2.5 1 .5-1 2-1 2.5 1 2.5 1 .5-1 2-1 2.5 1 2.5 1 .5-1 2-1 2.5 1 2.5 1"/><path d="M2 21h20"/><path d="M7 8v3"/><path d="M12 8v3"/><path d="M17 8v3"/><path d="M7 4h.01"/><path d="M12 4h.01"/><path d="M17 4h.01"/></svg>'
+  cake: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-8a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v8"/><path d="M4 16s.5-1 2-1 2.5 1 2.5 1 .5-1 2-1 2.5 1 2.5 1 .5-1 2-1 2.5 1 2.5 1 .5-1 2-1 2.5 1 2.5 1"/><path d="M2 21h20"/><path d="M7 8v3"/><path d="M12 8v3"/><path d="M17 8v3"/><path d="M7 4h.01"/><path d="M12 4h.01"/><path d="M17 4h.01"/></svg>',
+  calendar: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>',
+  monitor: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>',
+  sms: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>',
+  journal: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>',
+  camera: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>',
+  megaphone: '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>'
 };
 
 /* ================= LOGIN ================= */
+
+function applyLoginDesign(s) {
+  if (!s) return;
+  const lc = document.querySelector('.login-card');
+  if (lc && s.login_bg) lc.style.background = s.login_bg;
+  const wrap = document.querySelector('.login-wrap');
+  if (wrap && s.login_bg_image) wrap.style.backgroundImage = `url(${s.login_bg_image})`;
+  if (wrap && s.login_bg_image) wrap.style.backgroundSize = 'cover';
+  const brand = document.querySelector('.login-brand h1');
+  if (brand && s.site_name) brand.textContent = s.site_name;
+  const greet = document.querySelector('.login-brand p');
+  if (greet && s.login_greeting) greet.textContent = s.login_greeting;
+  const topT = document.querySelector('.login-top-text');
+  if (topT && s.login_top_text) topT.textContent = s.login_top_text;
+  const botT = document.querySelector('.login-bottom-text');
+  if (botT && s.login_bottom_text) botT.textContent = s.login_bottom_text;
+}
 
 function showLogin() {
   $('#loginScreen').classList.remove('hidden');
@@ -199,6 +380,7 @@ async function loadSession() {
     const { user } = await api('/api/me');
     state.user = user;
     state.settings = await api('/api/settings');
+    applyLoginDesign(state.settings);
     return true;
   } catch {
     return false;
@@ -209,22 +391,147 @@ async function loadSession() {
 
 function roleNav() {
   const role = state.user && state.user.role;
-  if (role === 'teacher') return TEACHER_NAV;
-  if (role === 'parent') return PARENT_NAV;
-  return NAV;
+  const base = role === 'teacher' ? TEACHER_NAV : role === 'parent' ? PARENT_NAV : NAV;
+  return base.map(n => ({ ...n, label: t(n.key || n.id) }));
 }
 
-function renderNav() {
+let navBadges = {};
+async function fetchBadges() {
+  try { navBadges = await api('/api/badges'); } catch { navBadges = {}; }
+}
+function getBadge(id) {
+  const b = navBadges;
+  if (id === 'requests') return 0;
+  if (id === 'notify') return 0;
+  if (id === 'payments') return 0;
+  if (id === 'chat') return 0;
+  if (id === 'sms') return 0;
+  if (id === 'expenses') return 0;
+  if (id === 'attendance') return 0;
+  if (id === 'children') return 0;
+  if (id === 'dashboard') return 0;
+  if (id === 'p_notif') return b.parentNotifs || 0;
+  return 0;
+}
+async function renderNav() {
+  await fetchBadges();
+  updateBellBadge();
   const nav = $('#nav');
   const base = roleNav();
-  const items = base.filter(n => !n.admin || isAdmin());
-  nav.innerHTML = items.map(n => `
+  const items = base.filter(n => n.operator ? (isAdmin() || isOperator()) : !n.admin || isAdmin());
+  nav.innerHTML = items.map(n => {
+    const badge = getBadge(n.id);
+    const badgeHtml = badge > 0 ? `<span class="nav-badge">${badge}</span>` : '';
+    return `
     <button class="nav-item ${state.page === n.id ? 'active' : ''}" data-page="${n.id}">
       ${ICONS[n.icon]}
       <span>${n.label}</span>
-    </button>
-  `).join('');
+      ${badgeHtml}
+    </button>`;
+  }).join('');
   $$('.nav-item', nav).forEach(b => b.addEventListener('click', () => go(b.dataset.page)));
+}
+
+function updateBellBadge() {
+  const bell = $('#topbarBell');
+  if (!bell) return;
+  const b = navBadges || {};
+  const total = (b.unreadNotify || 0) + (b.pendingRequests || 0) + (b.chatMessages || 0) + (b.smsPending || 0) + (b.expensesToday || 0);
+  let dot = bell.querySelector('.bell-dot');
+  if (!dot) { dot = document.createElement('span'); dot.className = 'bell-dot'; bell.appendChild(dot); }
+  dot.hidden = total === 0;
+  dot.textContent = total > 99 ? '99+' : total;
+  if (total === 0) bell.title = 'Xabarnoma yo\'q';
+  else bell.title = total + ' ta xabarnoma';
+}
+
+let _bellOpen = false;
+async function toggleBellPanel() {
+  _bellOpen = !_bellOpen;
+  if (_bellOpen) {
+    const bell = $('#topbarBell');
+    if (bell) bell.classList.add('active');
+    renderBellPanel();
+    setTimeout(() => document.addEventListener('click', closeBellOnOutside), 0);
+  } else {
+    const bell = $('#topbarBell');
+    if (bell) bell.classList.remove('active');
+    const p = $('#bellPanel');
+    if (p) p.remove();
+    document.removeEventListener('click', closeBellOnOutside);
+  }
+}
+
+const BELL_KIND_LABEL = {
+  request: 'Ariza', chat: 'Xabar', sms: 'SMS', expense: 'Kassa',
+  birthday: 'Tug\'ilgan kun', child: 'Yangi bola', parent: 'Yangi ota-ona',
+  announcement: 'E\'lon', absent: 'Davomatsiz', notification: 'Xabarnoma'
+};
+
+async function renderBellPanel() {
+  const old = $('#bellPanel');
+  if (old) old.remove();
+  const wrap = document.createElement('div');
+  wrap.className = 'bell-panel';
+  wrap.id = 'bellPanel';
+  wrap.innerHTML = `
+    <div class="bell-header">
+      <div class="bell-header-top">
+        <div class="bell-header-title"><b>🔔 Xabarnomalar</b></div>
+        <button class="bell-x" onclick="closeBellPanel()" title="Yopish">✕</button>
+      </div>
+      <button class="bell-markall" onclick="markAllBell()">✓ Hammasini O'qildi</button>
+    </div>
+    <div id="bellBody" class="bell-body"><div style="text-align:center;padding:28px;color:var(--muted)">Yuklanmoqda...</div></div>`;
+  document.querySelector('.main').appendChild(wrap);
+  try {
+    const d = await api('/api/bell');
+    const items = d.items || [];
+    const body = $('#bellBody');
+    if (!body) return;
+    if (!items.length) {
+      body.innerHTML = '<div class="bell-empty"><div class="em">🔕</div><div class="et">Xabarlar yo\'q</div><div class="ed">Yangi xabar yoki yangilik kelganda shu yerda chiqadi</div></div>';
+      return;
+    }
+    body.innerHTML = items.map(it => `
+      <div class="bell-item ${it.priority === 'high' ? 'priority-high' : ''}" onclick="bellGo('${it.go}')">
+        <div class="bell-ico" style="background:${it.color || '#6366f1'}">${it.icon}</div>
+        <div class="bell-meta">
+          <div class="bell-kind" style="color:${it.color || '#6366f1'}">${BELL_KIND_LABEL[it.kind] || 'Xabar'}</div>
+          <div class="bell-name">${esc(it.text || '')}</div>
+          <div class="bell-desc">${esc(it.name || '')}${it.desc ? ' · ' + esc(it.desc) : ''}</div>
+          <div class="bell-time">🕐 ${fmtDateTime(it.time) || ''}</div>
+        </div>
+        <span class="bell-go">›</span>
+      </div>`).join('');
+  } catch (e) {
+    const body = $('#bellBody');
+    if (body) body.innerHTML = '<div class="bell-empty"><div class="ed">Xabar yuklashda xato yuz berdi</div></div>';
+  }
+}
+
+window.closeBellPanel = () => { _bellOpen = false; const el = $('#topbarBell'); if (el) el.classList.remove('active'); const p = $('#bellPanel'); if (p) p.remove(); document.removeEventListener('click', closeBellOnOutside); };
+
+window.bellGo = async (page) => {
+  closeBellPanel();
+  try { await api('/api/badges/mark-read', { method: 'POST', body: { all: true } }); } catch (e) {}
+  navBadges = await api('/api/badges').catch(() => ({}));
+  updateBellBadge();
+  if (state.page === page) renderNav(); else go(page);
+};
+
+window.markAllBell = async () => {
+  try { await api('/api/badges/mark-read', { method: 'POST', body: { all: true } }); } catch (e) {}
+  navBadges = await api('/api/badges').catch(() => ({}));
+  updateBellBadge();
+  renderNav();
+  const body = $('#bellBody');
+  if (body) body.innerHTML = '<div class="bell-empty"><div class="em">✅</div><div class="et">Barchasi o\'qildi</div><div class="ed">Xabarlar tozalandi. Yangi xabar kelganda shu yerda chiqadi.</div></div>';
+};
+
+function closeBellOnOutside(e) {
+  if (!e.target.closest) return;
+  if (!e.target.closest('.bell-panel') && !e.target.closest('#topbarBell')) closeBellPanel();
 }
 
 function setPageTitle() {
@@ -233,22 +540,34 @@ function setPageTitle() {
   $('#pageTitle').textContent = item ? item.label : 'Bosh sahifa';
 }
 
+let _navLock = false;
 async function go(page) {
+  if (_navLock) return;
+  _navLock = true;
+  setTimeout(() => { _navLock = false; }, 300);
   const base = roleNav();
   const item = base.find(n => n.id === page) || base[0];
   const allowed = new Set(base.map(n => n.id));
-  if (!allowed.has(page) || (item.admin && !isAdmin())) page = base[0].id;
+  if (!allowed.has(page) || (item.admin && !isAdmin() && !(item.operator && isOperator()))) page = base[0].id;
   if (state.page === 'attendance' && attState.date) attState = { date: attState.date };
+  const selMo = dashState.month || monthStr();
+  if (page === 'payments') payState.month = selMo;
+  if (page === 'expenses') expState.month = selMo;
+  if (page === 'reports') repState.month = selMo;
+  if (page === 'attendance' && dashState.month) {
+    const ld = dashState.month + '-' + String(Math.min(new Date().getDate(), 28)).padStart(2, '0');
+    attState = { date: ld, map: {}, loaded: false };
+  }
   state.page = page;
+  localStorage.setItem('bogcha-page', page);
   renderNav();
   setPageTitle();
-  $('#sidebar').classList.remove('open');
-  $('#sidebarOverlay').classList.remove('show');
+  closeSidebar();
   $('#content').innerHTML = loading();
   try {
     await RENDER[page]();
   } catch (e) {
-    $('#content').innerHTML = `<div class="empty-state"><span class="emoji">😕</span>${esc(e.message)}</div>`;
+    $('#content').innerHTML = `<div class="empty-state"><span class="emoji">�?�</span>${esc(e.message)}</div>`;
   }
   window.scrollTo({ top: 0 });
 }
@@ -266,6 +585,10 @@ function openModal(title, bodyHtml) {
 function closeModal() {
   $('#modalOverlay').classList.add('hidden');
   $('#modalBody').innerHTML = '';
+}
+function closeSidebar() {
+  $('#sidebar').classList.remove('open');
+  $('#sidebarOverlay').classList.remove('show');
 }
 
 function confirmDelete(msg, action) {
@@ -311,27 +634,42 @@ window.resetConfirm = (what, label) => {
 /* ================= DASHBOARD ================= */
 
 async function renderDashboard() {
-  const [d, bd] = await Promise.all([api('/api/dashboard'), api('/api/birthdays').catch(() => null)]);
+  const monthQ = dashState.month ? '?month=' + dashState.month : '';
+  if (isAdmin()) {
+    try { await api('/api/badges/mark-read', { method: 'POST', body: { all: true } }); navBadges = await api('/api/badges'); renderNav(); } catch (e) {}
+  }
+  const [d, bd, trend] = await Promise.all([api('/api/dashboard' + monthQ), api('/api/birthdays').catch(() => null), api('/api/reports/trend').catch(() => [])]);
   const st = state.settings;
-  const today = new Date().toLocaleDateString('uz-UZ', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' });
+  const today = fmtTodayFull();
+
+  const monthsSet = new Set(d.availableMonths || []);
+  const yearsSet = new Set((d.availableMonths || []).map(m => parseInt(m.slice(0, 4), 10)));
+  yearsSet.add(new Date().getFullYear());
+  yearsSet.add(Math.min(dashState.year, DASH_MAX_YEAR));
+  yearsSet.add(Math.max(dashState.year, DASH_MIN_YEAR));
+  const yearsList = Array.from(yearsSet).filter(y => y >= DASH_MIN_YEAR && y <= DASH_MAX_YEAR).sort((a, b) => a - b);
+  const selYear = Math.min(Math.max(dashState.year, DASH_MIN_YEAR), DASH_MAX_YEAR);
+  const monthChips = DASH_MONTHS.map((mn, i) => {
+    const mm = String(i + 1).padStart(2, '0');
+    const key = String(selYear) + '-' + mm;
+    const active = d.month === key;
+    const hasData = monthsSet.has(key);
+    return `
+      <button class="month-chip${active ? ' active' : ''}${hasData ? ' has-data' : ''}" data-month="${key}" title="${mn} ${selYear}" onclick="setDashMonth('${key}')">${mn}${hasData && !active ? '<i class="dot"></i>' : ''}</button>
+    `;
+  }).join('');
 
   const presence = d.todayPresent;
-  const attendancePct = d.totalChildren ? Math.round(presence / d.totalChildren * 100) : 0;
 
-  const maxDay = Math.max(1, ...d.last8.map(x => x.present));
-  const bars = d.last8.map(x => {
+  const attData = (d.attDays && d.attDays.length) ? d.attDays : [];
+  const maxDay = Math.max(1, ...attData.map(x => x.present));
+  const bars = attData.map(x => {
     const lbl = x.date.slice(5).replace('-', '.');
     const h = Math.max(3, Math.round(x.present / maxDay * 100));
     return `<div class="bar-col"><div class="bar" style="height:${h}%"><span class="bar-val">${x.present}</span></div><span class="bar-lbl">${lbl}</span></div>`;
   }).join('');
+  const barsEmpty = !attData.length ? '<div class="empty-state">Bu oyda davomat belgilanmagan</div>' : '';
 
-  const total = d.groups.reduce((s, g) => s + g.cnt, 0) || 1;
-  let acc = 0;
-  const segs = d.groups.map(g => {
-    const from = acc / total * 100;
-    acc += g.cnt;
-    return `${from}% ${acc / total * 100}%`;
-  }).join(',');
   const colors = d.groups.map(g => g.color || '#6366f1').join(',');
 
   const legend = d.groups.map(g => `
@@ -345,7 +683,12 @@ async function renderDashboard() {
       <td class="money plus">${fmtMoney(p.amount)}</td>
       <td>${fmtDate(p.paid_date)}</td>
       <td><span class="badge gray">${methodLabel(p.method)}</span></td>
-    </tr>`).join('') : `<tr><td colspan="5"><div class="empty-state">Hozircha to'lovlar yo'q</div></td></tr>`;
+    </tr>`).join('') : `<tr><td colspan="5"><div class="empty-state">Bu oy uchun to'lovlar yo'q</div></td></tr>`;
+
+  /* Dashboard widget boshqaruvi */
+  const dw = state.settings || {};
+  const W = k => { const v = dw['dash_' + k]; return v === undefined || v === null ? true : String(v) !== '0'; };
+  const wStats = W('stats'), wAtt = W('att_chart'), wGroups = W('groups_chart'), wTrend = W('trend'), wBirthday = W('birthday'), wPayments = W('activity');
 
   const bdCard = bd ? (() => {
     const items = bd.today.concat(bd.upcoming.filter(x => x.in_days > 0));
@@ -377,34 +720,48 @@ async function renderDashboard() {
       </div>`;
   })() : '';
 
-  $('#content').innerHTML = `
+$('#content').innerHTML = `
+    <div class="month-panel">
+      <div class="month-panel-top">
+        <span class="month-panel-title">${d.month === monthStr() ? 'Joriy oy' : monthName(d.month)}</span>
+        <div class="year-nav">
+          <button class="btn btn-soft btn-sm" onclick="setDashYear(${selYear - 1})">&larr;</button>
+          <select class="year-select" onchange="setDashYear(this.value)">
+            ${yearsList.map(y => `<option value="${y}" ${y === selYear ? 'selected' : ''}>${y} yil</option>`).join('')}
+          </select>
+          <button class="btn btn-soft btn-sm" onclick="setDashYear(${selYear + 1})">&rarr;</button>
+        </div>
+        ${d.month !== monthStr() ? `<button class="btn btn-soft btn-sm" onclick="setDashMonth('')">&#8632; Joriy oyga qaytish</button>` : ''}
+      </div>
+      <div class="month-chips">${monthChips}</div>
+    </div>
+
     <div class="kpi-banner">
       <div>
         <h2>Xush kelibsiz, ${esc(state.user.full_name)}! 👋</h2>
         <p>${esc(today)}</p>
       </div>
       <div class="kpi-right">
+        <div class="kpi-item"><b>${fmtMoney(d.profitMonth)}</b><span>Sof foyda (${monthName(d.month)})</span></div>
         <div class="kpi-item"><b>${presence}/${d.totalChildren}</b><span>Bugun kelgan</span></div>
-        <div class="kpi-item"><b>${attendancePct}%</b><span>Davomat</span></div>
-        <div class="kpi-item"><b>${fmtMoney(d.profitMonth)}</b><span>Sof foyda (oy)</span></div>
       </div>
     </div>
 
-    <div class="grid stats">
+    ${wStats ? `<div class="grid stats">
       <div class="stat-card"><div class="stat-icon" style="background:var(--info-soft)">🧒</div><div class="stat-meta"><div class="stat-label">Jami bolalar</div><div class="stat-value">${d.totalChildren}</div><div class="stat-sub">${d.totalGroups} ta guruh</div></div></div>
       <div class="stat-card"><div class="stat-icon" style="background:var(--success-soft)">👩‍🏫</div><div class="stat-meta"><div class="stat-label">Tarbiyachilar</div><div class="stat-value">${d.totalTeachers}</div><div class="stat-sub">Kollektiv</div></div></div>
-      <div class="stat-card"><div class="stat-icon" style="background:var(--warning-soft)">✅</div><div class="stat-meta"><div class="stat-label">Bugun davomat</div><div class="stat-value">${d.todayPresent}</div><div class="stat-sub">kelgan bolalar</div></div></div>
-      <div class="stat-card"><div class="stat-icon" style="background:var(--primary-soft)">💰</div><div class="stat-meta"><div class="stat-label">Bu oy daromad</div><div class="stat-value">${fmtMoney(d.incomeMonth)}</div><div class="stat-sub">to'lovlar</div></div></div>
-      <div class="stat-card"><div class="stat-icon" style="background:var(--warning-soft)">📤</div><div class="stat-meta"><div class="stat-label">Bu oy xarajat</div><div class="stat-value">${fmtMoney(d.expenseMonth)}</div><div class="stat-sub">${fmtMoney(d.profitMonth)} foyda</div></div></div>
-      <div class="stat-card"><div class="stat-icon" style="background:var(--danger-soft)">📋</div><div class="stat-meta"><div class="stat-label">Qarzlar</div><div class="stat-value">${fmtMoney(d.dueTotal)}</div><div class="stat-sub">to'lanishi kerak</div></div></div>
-    </div>
+      <div class="stat-card"><div class="stat-icon" style="background:${d.month === monthStr() ? 'var(--warning-soft)' : 'var(--info-soft)'}">💰</div><div class="stat-meta"><div class="stat-label">${monthName(d.month)} daromad</div><div class="stat-value">${fmtMoney(d.incomeMonth)}</div><div class="stat-sub">to'lovlar</div></div></div>
+      <div class="stat-card"><div class="stat-icon" style="background:var(--warning-soft)">📤</div><div class="stat-meta"><div class="stat-label">${monthName(d.month)} xarajat</div><div class="stat-value">${fmtMoney(d.expenseMonth)}</div><div class="stat-sub">${fmtMoney(d.profitMonth)} foyda</div></div></div>
+      <div class="stat-card"><div class="stat-icon" style="background:var(--primary-soft)">✅</div><div class="stat-meta"><div class="stat-label">${d.month === monthStr() ? 'Bugun davomat' : monthName(d.month) + ' davomat'}</div><div class="stat-value">${d.month === monthStr() ? d.todayPresent : (d.monthAtt.present || 0)}</div><div class="stat-sub">${d.month === monthStr() ? 'kelgan bolalar' : 'oyda keldi'}</div></div></div>
+      <div class="stat-card"><div class="stat-icon" style="background:var(--danger-soft)">📋</div><div class="stat-meta"><div class="stat-label">${monthName(d.month)} qarzlari</div><div class="stat-value">${fmtMoney(d.dueTotal)}</div><div class="stat-sub">to'lanishi kerak</div></div></div>
+    </div>` : ''}
 
-    <div class="card-grid">
-      <div class="card">
-        <div class="card-head"><h3>So'nggi 8 kun davomati</h3><span class="spacer"></span><span class="badge green">${d.monthAtt.present || 0} keldi</span></div>
-        <div class="bars">${bars}</div>
-      </div>
-      <div class="card">
+    ${wAtt || wGroups ? `<div class="card-grid">
+      ${wAtt ? `<div class="card">
+        <div class="card-head"><h3>${d.month === monthStr() ? 'So\'nggi 8 kun davomati' : monthName(d.month) + ' — kunlar bo\'yicha davomat'}</h3><span class="spacer"></span><span class="badge green">${d.monthAtt.present || 0} keldi</span></div>
+        <div class="bars">${bars}</div>${barsEmpty}
+      </div>` : ''}
+      ${wGroups ? `<div class="card">
         <div class="card-head"><h3>Guruhlar bo'yicha taqsimot</h3></div>
         <div class="donut-row">
           <div class="donut" style="background:conic-gradient(${colors})">
@@ -412,12 +769,17 @@ async function renderDashboard() {
           </div>
           <div class="legend">${legend}</div>
         </div>
-      </div>
-    </div>
+      </div>` : ''}
+    </div>` : ''}
 
-    <div class="card">
+    ${wTrend ? `<div class="card" style="margin-top:16px">
+      <div class="card-head"><h3>📈 Oylik daromad/xarajat trendi (6 oy)</h3></div>
+      <canvas id="trendChart" height="200"></canvas>
+    </div>` : ''}
+
+    ${wPayments ? `<div class="card">
       <div class="card-head">
-        <h3>Oxirgi to'lovlar</h3>
+        <h3>${monthName(d.month)} — to'lovlar</h3>
         <span class="spacer"></span>
         <button class="btn btn-soft btn-sm" onclick="go('payments')">Barchasi →</button>
       </div>
@@ -425,10 +787,28 @@ async function renderDashboard() {
         <thead><tr><th>Bola</th><th>Oy</th><th>Summa</th><th>Sana</th><th>Usul</th></tr></thead>
         <tbody>${payRows}</tbody>
       </table></div>
-    </div>
+    </div>` : ''}
 
-    ${bdCard}
+    ${wBirthday ? bdCard : ''}
   `;
+
+  if (typeof Chart !== 'undefined' && trend && trend.length) {
+    const ctx = document.getElementById('trendChart');
+    if (ctx) {
+      new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: trend.map(t => t.month),
+          datasets: [
+            { label: 'Daromad', data: trend.map(t => t.income), borderColor: '#10b981', backgroundColor: 'rgba(16,185,129,0.1)', fill: true, tension: 0.3 },
+            { label: 'Xarajat', data: trend.map(t => t.expense), borderColor: '#ef4444', backgroundColor: 'rgba(239,68,68,0.1)', fill: true, tension: 0.3 },
+            { label: 'Sof foyda', data: trend.map(t => t.profit), borderColor: '#6366f1', borderDash: [5,5], tension: 0.3 }
+          ]
+        },
+        options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { y: { beginAtZero: true } } }
+      });
+    }
+  }
 }
 
 /* ================= BIRTHDAYS ================= */
@@ -726,7 +1106,6 @@ async function renderParents() {
     <tr>
       <td><div class="cell-user"><div class="avatar" style="background:${avatarColor(p.full_name)}">${esc(initials(p.full_name))}</div><div class="cell-name">${esc(p.full_name)}</div></div></td>
       <td>${esc(p.phone || '—')}</td>
-      <td>${esc(p.email || '—')}</td>
       <td>${esc(p.address || '—')}</td>
       <td><span class="badge purple">${p.child_count} bola</span></td>
       <td>${loginCell}</td>
@@ -748,8 +1127,8 @@ async function renderParents() {
       </div>
       <p style="color:var(--muted);font-size:12.5px;margin:0 0 10px">🔐 tugmasi orqali ota-onaga <b>sayt paneliga kirish login/paroli</b> berasiz. U saytga kirib o\'z bolalari, davomati va to\'lovlarini ko\'radi.</p>
       <div class="table-wrap"><table>
-        <thead><tr><th>Ota-ona</th><th>Telefon</th><th>Email</th><th>Manzil</th><th>Bolalar</th><th>Panel</th><th></th></tr></thead>
-        <tbody>${rows || '<tr><td colspan="7"><div class="empty-state"><span class="emoji">👥</span>Ma\'lumot yo\'q</div></td></tr>'}</tbody>
+        <thead><tr><th>Ota-ona</th><th>Telefon</th><th>Manzil</th><th>Bolalar</th><th>Panel</th><th></th></tr></thead>
+        <tbody>${rows || '<tr><td colspan="6"><div class="empty-state"><span class="emoji">👥</span>Ma\'lumot yo\'q</div></td></tr>'}</tbody>
       </table></div>
     </div>`;
 
@@ -804,10 +1183,9 @@ window.copyText = (t) => {
 function parentForm(p = null) {
   const p2 = p || {};
   openModal(p ? 'Ota-onani tahrirlash' : 'Yangi ota-ona', `
-    <div class="field"><span>Ism familiya *</span><input id="p_name" value="${esc(p2.full_name || '')}"></div>
-    <div class="field"><span>Telefon</span><input id="p_phone" value="${esc(p2.phone || '')}" placeholder="+998 90 000 00 00"></div>
-    <div class="field"><span>Email</span><input id="p_email" value="${esc(p2.email || '')}"></div>
-    <div class="field"><span>Manzil</span><input id="p_address" value="${esc(p2.address || '')}"></div>
+    <div class="field"><span>Ism familiya *</span><input id="p_name" value="${esc(p2.full_name || '')}" placeholder="To'liq ism"></div>
+    <div class="field"><span>Telefon raqami *</span><input id="p_phone" value="${esc(p2.phone || '')}" placeholder="+998 90 000 00 00" type="tel" required></div>
+    <div class="field"><span>Manzil *</span><input id="p_address" value="${esc(p2.address || '')}" placeholder="Tuman, ko'cha, uy"></div>
     <div class="modal-actions">
       <button class="btn btn-outline" onclick="closeModal()">Bekor</button>
       <button class="btn btn-primary" id="saveParentBtn">${p ? 'Saqlash' : 'Qo\'shish'}</button>
@@ -817,10 +1195,11 @@ function parentForm(p = null) {
     const body = {
       full_name: $('#p_name').value.trim(),
       phone: $('#p_phone').value.trim(),
-      email: $('#p_email').value.trim(),
       address: $('#p_address').value.trim()
     };
     if (!body.full_name) return toast('Ismni kiriting', 'error');
+    if (!body.phone) return toast('Telefon raqamini kiriting', 'error');
+    if (!body.address) return toast('Manzilni kiriting', 'error');
     try {
       if (p) await api('/api/parents/' + p.id, { method: 'PUT', body });
       else await api('/api/parents', { method: 'POST', body });
@@ -1160,7 +1539,7 @@ async function renderPayments() {
     $('#content').innerHTML = `
       <div class="card">
         <div class="toolbar">
-          <input type="month" id="payMonth" value="${month}">
+          <select id="payMonth" class="select-filter" onchange="setPayMonth(this.value)">${lastTwoMonthOpts(month)}</select>
           <div class="tabs">
             <button class="tab active" data-tab="status">Status</button>
             <button class="tab" data-tab="history">To'lovlar tarixi</button>
@@ -1204,7 +1583,7 @@ async function renderPayments() {
     $('#content').innerHTML = `
       <div class="card">
         <div class="toolbar">
-          <input type="month" id="payMonth" value="${month}">
+          <select id="payMonth" class="select-filter" onchange="setPayMonth(this.value)">${lastTwoMonthOpts(month)}</select>
           <div class="tabs">
             <button class="tab" data-tab="status">Status</button>
             <button class="tab active" data-tab="history">To'lovlar tarixi</button>
@@ -1228,6 +1607,9 @@ async function renderPayments() {
   window._groupList = groups;
 }
 
+window.setPayMonth = (v) => { payState.month = v; renderPayments(); };
+window.setParentPayMonth = (v) => { state.ppayMonth = v; renderParentPayments(); };
+
 async function payForm(child_id = null, month = payState.month, childName = null, fee = 0) {
   let children = [];
   if (!child_id) {
@@ -1246,7 +1628,7 @@ async function payForm(child_id = null, month = payState.month, childName = null
       : `<div class="field"><span>Bolani tanlang *</span><select id="pay_child">${childOptions || '<option value="">Bola yo\'q</option>'}</select></div>`}
     <div class="form-row">
       <div class="field"><span>Summa *</span><input id="pay_amount" type="number" min="0" value="${fee}"></div>
-      <div class="field"><span>Oy</span><input id="pay_month" type="month" value="${month}"></div>
+      <div class="field"><span>Oy *</span><select id="pay_month">${lastTwoMonthOpts(month)}</select></div>
       <div class="field"><span>To'langan sana</span><input id="pay_date" type="date" value="${todayStr()}"></div>
       <div class="field"><span>Usul</span>
         <select id="pay_method"><option value="naqd">Naqd</option><option value="karta">Karta</option><option value="bank">Bank</option></select>
@@ -1360,129 +1742,469 @@ window.delUser = (id) => confirmDelete('Bu foydalanuvchini o\'chirasizmi?', asyn
 /* ================= SETTINGS ================= */
 
 async function renderSettings() {
+  try { state.settings = await api('/api/settings'); } catch (e) {}
   const s = state.settings;
-  const siteCard = isAdmin() ? `
-    <div class="card">
-      <div class="card-head"><h3>Bog'cha ma'lumotlari</h3></div>
-      <div class="field"><span>Muassasa nomi</span><input id="s_name" value="${esc(s.site_name || '')}"></div>
-      <div class="field"><span>Pul birligi</span><input id="s_currency" value="${esc(s.currency || 'so\'m')}"></div>
-      <div class="field"><span>Manzil</span><input id="s_address" value="${esc(s.address || '')}"></div>
-      <div class="form-row">
-        <div class="field"><span>Telefon</span><input id="s_phone" value="${esc(s.phone || '')}"></div>
-        <div class="field"><span>Email</span><input id="s_email" value="${esc(s.email || '')}"></div>
-      </div>
-      <div class="modal-actions">
-        <button class="btn btn-primary" id="saveSettingsBtn">Saqlash</button>
-      </div>
-    </div>` : '';
+  const sw = (id, key) => `<label class="toggle"><input type="checkbox" id="${id}" ${s[key] === '0' ? '' : 'checked'}><span class="slider"></span></label>`;
+  const swOff = (id, key) => `<label class="toggle"><input type="checkbox" id="${id}" ${s[key] === '1' ? 'checked' : ''}><span class="slider"></span></label>`;
+  const sel = (id, val, opts) => `<select id="${id}">${opts.map(([v, l]) => `<option value="${v}" ${val === v ? 'selected' : ''}>${l}</option>`).join('')}</select>`;
+  const txt = (id, key, ph) => `<input type="text" id="${id}" value="${esc(s[key] || '')}" placeholder="${ph}">`;
+  const num = (id, key, ph, mn, mx) => `<input type="number" id="${id}" value="${esc(s[key] || '')}" placeholder="${ph}"${mn !== undefined ? ` min="${mn}"` : ''}${mx !== undefined ? ` max="${mx}"` : ''}>`;
+  const pw = (id, key, ph) => `<input type="password" id="${id}" value="${esc(s[key] || '')}" placeholder="${ph}">`;
+  const clr = (id, key) => `<input type="color" id="${id}" value="${esc(s[key] || '#8b5cf6')}">`;
+  const ta = (id, key, ph, rows) => `<textarea id="${id}" rows="${rows || 2}" placeholder="${ph}">${esc(s[key] || '')}</textarea>`;
+  const row = (label, desc, ctrl) => `<div class="settings-row"><div><div class="row-label">${label}</div>${desc ? `<div class="row-desc">${desc}</div>` : ''}</div><div class="row-right">${ctrl}</div></div>`;
 
-  const tgCard = isAdmin() ? `
-    <div class="card">
-      <div class="card-head"><h3>🤖 Telegram bot (ota-onalar uchun)</h3><span class="spacer"></span>${s.tg_enabled === '0' ? '<span class="badge gray">O\'chiq</span>' : '<span class="badge green">Yoqilgan</span>'}</div>
-      <p style="color:var(--muted);font-size:13px;margin-bottom:10px">Ota-onalar bot orqali bolalari davomatini va to\'lovlarini ko\'radi, to\'lov so\'rashi va chek olishi mumkin.</p>
-      <div class="field"><span>Bot token</span><input id="tg_token" value="${esc(s.tg_token || '')}" placeholder="@BotFather → /newbot → token"></div>
-      <div class="field"><span>Guruh ID</span><input id="tg_group" value="${esc(s.tg_group || '')}" placeholder="masalan: -1001234567890"></div>
-      <div class="field"><span>Holat</span>
-        <select id="tg_enabled"><option value="1" ${s.tg_enabled !== '0' ? 'selected' : ''}>Yoqilgan</option><option value="0" ${s.tg_enabled === '0' ? 'selected' : ''}>O\'chiq</option></select>
-      </div>
-      <div class="field"><span>Avtomatik qarz eslatmasi</span>
-        <select id="reminders_enabled"><option value="1" ${s.reminders_enabled !== '0' ? 'selected' : ''}>Yoqilgan (kuniga bir marta)</option><option value="0" ${s.reminders_enabled === '0' ? 'selected' : ''}>O\'chiq</option></select>
-      </div>
-      <div class="field"><span>Eslatma vaqti</span>
-        <select id="reminder_time"><option value="9" ${(s.reminder_time || '9') === '9' ? 'selected' : ''}>09:00</option><option value="10" ${(s.reminder_time || '9') === '10' ? 'selected' : ''}>10:00</option><option value="11" ${(s.reminder_time || '9') === '11' ? 'selected' : ''}>11:00</option><option value="15" ${(s.reminder_time || '9') === '15' ? 'selected' : ''}>15:00</option><option value="18" ${(s.reminder_time || '9') === '18' ? 'selected' : ''}>18:00</option></select>
-      </div>
-      <div class="modal-actions"><button class="btn btn-primary" id="saveTgBtn">Saqlash</button></div>
-    </div>` : '';
+  const tabs = [
+    { id: 'site', icon: '🏫', label: "Bog'cha ma'lumotlari", desc: "Muassasa nomi, manzil, aloqa", group: 'Asosiy' },
+    { id: 'biz', icon: '💼', label: 'Biznes', desc: "Narxlar va tashqi ko'rinish", group: 'Asosiy' },
+    { id: 'reception', icon: '🏢', label: 'Qabul', desc: "Kirish sahifasi matni", group: 'Asosiy' },
+    { id: 'login', icon: '🎨', label: "Login dizayni", desc: "Kirish sahifasining ko'rinishi", group: 'Asosiy' },
+    { id: 'tg', icon: '🤖', label: 'Telegram bot', desc: 'Bot token va eslatmalar', group: 'Aloqa' },
+    { id: 'sms', icon: '📱', label: 'SMS (Eskiz.uz)', desc: 'SMS eslatma yuborish', group: 'Aloqa' },
+    { id: 'notif', icon: '🔔', label: 'Bildirishnomalar', desc: 'Xabar kanallari', group: 'Aloqa' },
+    { id: 'auto', icon: '📊', label: 'Avtomatik hisobot', desc: 'Kunlik/haftalik hisobotlar', group: 'Tizim' },
+    { id: 'curriculum', icon: '📚', label: "O'quv dasturi", desc: 'Dars va tushlik vaqti', group: 'Tizim' },
+    { id: 'parents', icon: '👨‍👩‍👧', label: 'Ota-ona', desc: 'Ota-ona ruxsatlari', group: 'Tizim' },
+    { id: 'finance', icon: '💰', label: 'Moliya', desc: 'Chegirma va jarima qoidalari', group: 'Tizim' },
+    { id: 'dashboard', icon: '📈', label: 'Dashboard', desc: 'Asosiy sahifa bloklari', group: 'Tizim' },
+    { id: 'roles', icon: '🔐', label: 'Rollar', desc: 'Ruxsatlar', group: 'Xavfsizlik' },
+    { id: 'accounts', icon: '👤', label: 'Hisob', desc: 'Login va parolni o\u2018zgartirish', group: 'Xavfsizlik' },
+    { id: 'backup', icon: '💾', label: 'Backup / Restore', desc: 'Zaxira olish va tiklash', group: "Ma'lumotlar" },
+    { id: 'danger', icon: '⚠️', label: 'Xavfli hudud', desc: "Ma'lumotlarni tozalash", group: "Ma'lumotlar" }
+  ];
 
-  const dangerCard = isAdmin() ? `
-    <div class="card" style="border-color:var(--danger)">
-      <div class="card-head"><h3>⚠️ Xavfli hudud — ma'lumotlarni tozalash</h3><span class="spacer"></span><span class="badge red">Faqat administrator</span></div>
-      <p style="color:var(--muted);font-size:13px;margin-bottom:14px">Bu amallar ma'lumotlarni butunlay o'chiradi va qaytarib bo'lmaydi. Har bir amal parol bilan tasdiqlanadi. Foydalanuvchilar va sozlamalar saqlanib qoladi.</p>
-      <div class="reset-grid">
-        <button class="btn btn-outline" onclick="resetConfirm('attendance','Davomat yozuvlari')">🗑 Davomatni tozalash</button>
-        <button class="btn btn-outline" onclick="resetConfirm('payments','To\'lovlar')">🗑 To'lovlarni tozalash</button>
-        <button class="btn btn-outline" onclick="resetConfirm('expenses','Xarajatlar')">🗑 Xarajatlarni tozalash</button>
-        <button class="btn btn-outline" onclick="resetConfirm('children','Bolalar va ota-onalar')">🗑 Bolalarni tozalash</button>
-        <button class="btn btn-outline" onclick="resetConfirm('groups','Guruhlar va tarbiyachilar')">🗑 Guruhlarni tozalash</button>
-        <button class="btn btn-danger" onclick="resetConfirm('all','HAMMA ma\'lumotlar')">🔥 Hammasini tozalash</button>
+  const sections = {
+    site: `
+      <div class="sc-desc">Muassasa haqidagi ma'lumotlar cheklar, hisobotlar va saytda ko'rinadi</div>
+      <div class="form-grid">
+        <div class="form-group"><label>Muassasa nomi</label>${txt('s_name', 'site_name', 'Denov Kindergarden')}</div>
+        <div class="form-group"><label>Pul birligi</label>${txt('s_currency', 'currency', 'so\u2018m')}</div>
+        <div class="form-group"><label>Manzil</label>${txt('s_address', 'address', 'Denov shahri')}</div>
+        <div class="form-group"><label>Telefon</label>${txt('s_phone', 'phone', '+998 90 123 45 67')}</div>
+        <div class="form-group"><label>Email</label>${txt('s_email', 'email', 'info@denovkg.uz')}</div>
+        <div class="form-group"><label>Sayt URL</label>${txt('s_site_url', 'site_url', 'https://example.com')}</div>
       </div>
-    </div>` : '';
+      <div class="settings-save"><button class="btn btn-primary" id="saveSettingsBtn">💾 Saqlash</button></div>
+    `,
+    biz: `
+      <div class="sc-desc">Oylik to'lovlar va umumiy biznes parametrlari</div>
+      <div class="form-grid">
+        <div class="form-group"><label>Oylik to'lov (standart)</label>${num('s_fee_default', 'fee_default', '250000')}</div>
+        <div class="form-group"><label>3 yoshgacha to'lov</label>${num('s_fee_under3', 'fee_under3', '300000')}</div>
+        <div class="form-group"><label>2+ bola chegirmasi</label>${num('s_fee_sibling', 'fee_sibling', '200000')}</div>
+        <div class="form-group"><label>Ish vaqti</label>${txt('s_work_hours', 'work_hours', '08:00 - 18:00')}</div>
+      </div>
+      <div class="settings-divider"></div>
+      <div class="form-grid">
+        <div class="form-group"><label>Logo URL</label>${txt('s_logo_url', 'logo_url', 'https://example.com/logo.png')}</div>
+        <div class="form-group"><label>Asosiy rang</label>${clr('s_primary_color', 'primary_color')}</div>
+      </div>
+      <div class="settings-save"><button class="btn btn-primary" id="saveBizBtn">💾 Saqlash</button></div>
+    `,
+    reception: `
+      <div class="sc-desc">Bog'chaga kirish sahifasida ko'rsatiladigan ma'lumotlar</div>
+      <div class="form-grid single">
+        <div class="form-group"><label>Vizitka matni</label>${ta('s_reception_text', 'reception_text', "Bog'chamizga xush kelibsiz!", 3)}</div>
+      </div>
+      <div class="form-grid">
+        <div class="form-group"><label>Qabul kunlari</label>${txt('s_reception_days', 'reception_days', 'Dushanba - Juma')}</div>
+        <div class="form-group"><label>Qabul vaqti</label>${txt('s_reception_hours', 'reception_hours', '09:00 - 17:00')}</div>
+        <div class="form-group"><label>Telefon (qabul)</label>${txt('s_reception_phone', 'reception_phone', '+998 90 123 45 67')}</div>
+        <div class="form-group"><label>Karta rasm URL</label>${txt('s_reception_image', 'reception_image', 'https://example.com/image.jpg')}</div>
+      </div>
+      <div class="settings-save"><button class="btn btn-primary" id="saveReceptionBtn">💾 Saqlash</button></div>
+    `,
+    login: `
+      <div class="sc-desc">Tizimga kirish sahifasining ko'rinishi va ranglari</div>
+      <div class="form-grid">
+        <div class="form-group"><label>Salomlashuv matni</label>${txt('s_login_greeting', 'login_greeting', "Maktabgacha ta'lim tizimiga xush kelibsiz!")}</div>
+        <div class="form-group"><label>Tepa matni</label>${txt('s_login_top_text', 'login_top_text', 'Davlat bog\u2018chasi')}</div>
+        <div class="form-group"><label>Fon rangi</label>${clr('s_login_bg', 'login_bg')}</div>
+        <div class="form-group"><label>Asosiy rang</label>${clr('s_login_primary', 'login_primary')}</div>
+        <div class="form-group"><label>Logo URL</label>${txt('s_login_logo', 'login_logo', 'https://example.com/logo.png')}</div>
+        <div class="form-group"><label>Fon rasmi URL</label>${txt('s_login_bg_image', 'login_bg_image', 'https://example.com/bg.jpg')}</div>
+        <div class="form-group"><label>Pastki matn</label>${txt('s_login_bottom_text', 'login_bottom_text', '© 2026 Barcha huquqlar himoyalangan')}</div>
+      </div>
+      <div class="settings-save"><button class="btn btn-primary" id="saveLoginDesignBtn">💾 Saqlash</button></div>
+    `,
+    tg: `
+      <div class="sc-desc">Ota-onalar bot orqali bolalari davomatini va to'lovlarini ko'radi</div>
+      ${row('Telegram bot', 'Bot yoqilgan yoki o\u2018chiq', sw('tg_enabled', 'tg_enabled'))}
+      ${row('Avtomatik qarz eslatmasi', 'Kuniga bir marta qarzdorlarga eslatma beradi', sw('reminders_enabled', 'reminders_enabled'))}
+      <div class="form-grid" style="margin-top:14px">
+        <div class="form-group"><label>Bot token</label>${pw('tg_token', 'tg_token', '@BotFather → /newbot → token')}</div>
+        <div class="form-group"><label>Guruh ID</label>${txt('tg_group', 'tg_group', '-1001234567890')}</div>
+        <div class="form-group"><label>Eslatma vaqti</label>${sel('reminder_time', s.reminder_time || '9', [['9', '09:00'], ['10', '10:00'], ['11', '11:00'], ['15', '15:00'], ['18', '18:00']])}</div>
+      </div>
+      <div class="settings-save"><button class="btn btn-primary" id="saveTgBtn">💾 Saqlash</button></div>
+    `,
+sms: `
+      <div class="sc-desc">smsapi.uz orqali ota-onalarga SMS eslatma yuborish (1 SMS = 500 so'm)</div>
+      ${row('SMS tizimi', "Umumiy SMS yoqish/o'chirish", sw('sms_enabled', 'sms_enabled'))}
+      ${row("To'lov eslatmasi", 'Qarzdorlarga kun oldin SMS yuborish', sw('sms_pay_remind', 'sms_pay_remind'))}
+      ${row('Davomat eslatmasi', 'Kunlik davomat SMS', sw('sms_att_remind', 'sms_att_remind'))}
+      <div class="form-grid" style="margin-top:14px">
+<div class="form-group"><label>smsapi.uz API kalit</label>${pw('s_sms_api_key', 'sms_api_key', 'API kalit (smsapi.uz kabinetdan qilingan)')}</div>
+        <div class="form-group"><label>Yuboruvchi nomi</label>${txt('s_sms_sender', 'sms_sender', 'DenovKg')}</div>
+      </div>
+      <div class="form-grid single" style="margin-top:14px">
+        <div class="form-group"><label>To'lov eslatma shabloni</label>${ta('sms_pay_tpl', 'sms_payment_template', "Hurmatli {name}! Bolangiz {child} uchun {month} oy to'lovi qarzi: {sum} so'm.", 3)}</div>
+        <div class="form-group"><label>Davomat eslatma shabloni</label>${ta('sms_att_tpl', 'sms_attendance_template', 'Hurmatli {name}! Bolangiz {child} {date} kuni davomatda yo\u2018q.', 3)}</div>
+      </div>
+      <div class="settings-save"><button class="btn btn-primary" id="saveSmsBtn">💾 Saqlash</button></div>
+    `,
+    notif: `
+      <div class="sc-desc">Qaysi kanallar orqali xabarlar yuborilishi</div>
+      ${row('Telegram', 'Guruhga xabar yuborish', sw('notif_tg', 'notif_tg'))}
+      ${row('SMS', 'Eskiz.uz orqali SMS yuborish', swOff('notif_sms', 'notif_sms'))}
+      ${row('Browser push', 'Brauzer orqali eslatma', swOff('notif_push', 'notif_push'))}
+      ${row('Email', 'Email orqali xabar yuborish', swOff('notif_email', 'notif_email'))}
+      <div class="settings-divider"></div>
+      <div class="sc-desc">📧 SMTP sozlamalari</div>
+      <div class="form-grid">
+        <div class="form-group"><label>SMTP server</label>${txt('s_smtp_host', 'smtp_host', 'smtp.gmail.com')}</div>
+        <div class="form-group"><label>SMTP port</label>${txt('s_smtp_port', 'smtp_port', '587')}</div>
+        <div class="form-group"><label>SMTP login</label>${txt('s_smtp_user', 'smtp_user', 'email@gmail.com')}</div>
+        <div class="form-group"><label>SMTP parol</label>${pw('s_smtp_pass', 'smtp_pass', '***')}</div>
+      </div>
+      <div class="form-grid single" style="margin-top:14px">
+        <div class="form-group"><label>Kimlarga yuboriladi</label>${sel('s_notif_target', s.notif_target || 'all', [['all', 'Barcha ota-onalar'], ['debtors', 'Faqat qarzdorlar'], ['parents', 'Faqat ota-onalar']])}</div>
+      </div>
+      <div class="settings-save"><button class="btn btn-primary" id="saveNotifBtn">💾 Saqlash</button></div>
+    `,
+    auto: `
+      <div class="sc-desc">Admin va guruhga avtomatik hisobot yuborish</div>
+      ${row('Kunlik hisobot', 'Har kuni kechqurun hisobot yuborish', sw('auto_daily', 'auto_daily'))}
+      <div class="form-grid" style="margin-top:10px">
+        <div class="form-group"><label>Kunlik vaqt</label>${sel('s_auto_daily_time', s.auto_daily_time || '17', [['17', '17:00'], ['18', '18:00'], ['19', '19:00']])}</div>
+      </div>
+      <div class="settings-divider"></div>
+      ${row('Haftalik hisobot', 'Haftada bir marta yuborish', sw('auto_weekly', 'auto_weekly'))}
+      <div class="form-grid" style="margin-top:10px">
+        <div class="form-group"><label>Haftalik kun</label>${sel('s_auto_weekly_day', s.auto_weekly_day || '5', [['5', 'Juma'], ['6', 'Shanba'], ['0', 'Yakshanba']])}</div>
+      </div>
+      <div class="settings-divider"></div>
+      ${row('Oylik arxiv', 'Oy oxirida avtomatik arxivlash', sw('auto_archive', 'auto_archive'))}
+      <div class="settings-save"><button class="btn btn-primary" id="saveAutoReportBtn">💾 Saqlash</button></div>
+    `,
+    curriculum: `
+      <div class="sc-desc">Guruhlar uchun umumiy o'quv dasturi parametrlari</div>
+      <div class="form-grid">
+        <div class="form-group"><label>Dars boshlanish vaqti</label>${txt('s_class_start', 'class_start', '08:30')}</div>
+        <div class="form-group"><label>Dars tugash vaqti</label>${txt('s_class_end', 'class_end', '17:00')}</div>
+        <div class="form-group"><label>Tushlik vaqti</label>${txt('s_lunch_time', 'lunch_time', '12:00 - 13:00')}</div>
+        <div class="form-group"><label>Haftalik uy vazifa</label>${sel('s_homework', s.homework || '0', [['0', "Yo'q"], ['1', 'Bor']])}</div>
+        <div class="form-group"><label>Qo'shimcha faoliyatlar</label>${txt('s_activities', 'activities', 'Rasm, Musiqa, Sport')}</div>
+      </div>
+      <div class="settings-save"><button class="btn btn-primary" id="saveCurriculumBtn">💾 Saqlash</button></div>
+    `,
+    parents: `
+      <div class="sc-desc">Ota-onalar uchun umumiy parametrlar va ruxsatlar</div>
+      ${row("Profil tahrirlash", "Ota-ona o'z profilini tahrirlay oladimi", sw('parent_edit', 'parent_edit'))}
+      ${row("To'lov so'rash", 'Bot orqali to\u2018lov so\u2018rash', sw('parent_pay_request', 'parent_pay_request'))}
+      ${row('Admin bilan chat', 'O\u2018zaro xabar almashish', sw('parent_chat', 'parent_chat'))}
+      ${row("Eslatma qo'shish", 'Botga eslatma qo\u2018shish', sw('parent_reminder', 'parent_reminder'))}
+      ${row('Baho qo\u2018yish', 'O\u2018quvchilarni baholash', sw('parent_rating', 'parent_rating'))}
+      <div class="form-grid single" style="margin-top:14px">
+        <div class="form-group"><label>Maxsus xabar (botga kirganda)</label>${ta('s_parent_welcome', 'parent_welcome', 'Xush kelibsiz!', 2)}</div>
+      </div>
+      <div class="settings-save"><button class="btn btn-primary" id="saveParentBtn">💾 Saqlash</button></div>
+    `,
+    finance: `
+      <div class="sc-desc">Avtomatik narx hisob-kitobi va moliyaviy qoidalar</div>
+      <div class="form-grid">
+        <div class="form-group"><label>Chegirma (%)</label>${num('s_discount_pct', 'discount_pct', '0', 0, 100)}</div>
+        <div class="form-group"><label>Kechikish jarimasi (%)</label>${num('s_late_fee_pct', 'late_fee_pct', '0', 0, 50)}</div>
+        <div class="form-group"><label>Qaytarish muddati (kun)</label>${num('s_refund_days', 'refund_days', '7')}</div>
+<div class="form-group"><label>To'lov usullari</label>${txt('s_pay_methods', 'pay_methods', 'naqd,karta,otkazma')}</div>
+        <div class="form-group"><label>Valyuta</label>${sel('s_currency_type', s.currency_type || 'so\u2018m', [["so'm", "So'm"], ['USD', 'USD'], ['EUR', 'EUR']])}</div>
+        <div class="form-group"><label>Kassa boshlang'ich (naqd, so'm)</label>${num('s_cash_naqd', 'cash_naqd', '0')}</div>
+        <div class="form-group"><label>Bank boshlang'ich (so'm)</label>${num('s_cash_bank', 'cash_bank', '0')}</div>
+      </div>
+      <div class="settings-divider"></div>
+      ${row("Avto-to'lov", 'Oy boshida avtomatik to\u2018lov', sw('s_auto_payment', 'auto_payment'))}
+      <div class="settings-save"><button class="btn btn-primary" id="saveFinanceBtn">💾 Saqlash</button></div>
+    `,
+    dashboard: `
+      <div class="sc-desc">Asosiy sahifada ko'rinadigan bloklarni boshqarish</div>
+      ${row('Statistika kartochkalari', 'Bola, to\u2018lov, xarajat', sw('dash_stats', 'dash_stats'))}
+      ${row('Davomat grafigi', 'Bar chart', sw('dash_att_chart', 'dash_att_chart'))}
+      ${row('Guruhlar charti', 'Donut grafigi', sw('dash_groups_chart', 'dash_groups_chart'))}
+      ${row('6 oylik trend', 'Trend grafigi', sw('dash_trend', 'dash_trend'))}
+      ${row("Tug'ilgan kunlar", 'Yaqin kunlardagi tug\u2018ilgan kunlar', sw('dash_birthday', 'dash_birthday'))}
+      ${row("So'nggi faoliyat", 'Timeline', sw('dash_activity', 'dash_activity'))}
+      ${row('Tezkor amallar', 'Quick actions', sw('dash_quick', 'dash_quick'))}
+      <div class="settings-save"><button class="btn btn-primary" id="saveDashBtn">💾 Saqlash</button></div>
+    `,
+    roles: `
+      <div class="sc-desc">Har bir rol uchun qo'shimcha ruxsatlar</div>
+      <div class="sc-group-title">👨‍💼 Operator</div>
+      ${row("Davomat qo'yish", 'Operator davomat qo\u2018ya oladimi', sw('perm_op_att', 'perm_op_att'))}
+      ${row("To'lovlarni tasdiqlash", 'To\u2018lovni tasdiqlash/rad etish', sw('perm_op_pay', 'perm_op_pay'))}
+      ${row("Xarajat qo'shish", 'Xarajat yozishi mumkinmi', sw('perm_op_exp', 'perm_op_exp'))}
+      ${row("Hisobotlarni ko'rish", 'Hisobot sahifasi', sw('perm_op_rep', 'perm_op_rep'))}
+      <div class="settings-divider"></div>
+      <div class="sc-group-title">👩‍🏫 Tarbiyachi</div>
+      ${row("Davomat qo'yish", 'Tarbiyachi davomat qo\u2018ya oladimi', sw('perm_tch_att', 'perm_tch_att'))}
+      ${row('Rasm yuklash', 'Foto rasm yuklash', sw('perm_tch_photo', 'perm_tch_photo'))}
+      ${row("Menyu qo'shish", 'Kunlik menyu qo\u2018shish', sw('perm_tch_menu', 'perm_tch_menu'))}
+      <div class="settings-save"><button class="btn btn-primary" id="saveRolesBtn">💾 Saqlash</button></div>
+    `,
+    accounts: `
+      <div class="sc-desc">Login va parolni o'zgartirish</div>
+      <div class="form-grid">
+        <div class="form-group"><label>Joriy login</label><input type="text" value="${esc(state.user.username)}" disabled style="opacity:.6"></div>
+      </div>
+      <div class="settings-divider" style="margin:14px 0"></div>
+      <div class="form-grid">
+        <div class="form-group"><label>Eski parol</label><input type="password" id="pw_old" placeholder="••••••••"></div>
+        <div class="form-group"><label>Yangi parol</label><input type="password" id="pw_new" placeholder="••••••••"></div>
+      </div>
+      <div class="settings-save"><button class="btn btn-primary" id="changePwBtn">🔑 Parolni yangilash</button></div>
+      <div class="settings-divider" style="margin:20px 0"></div>
+      <div class="form-grid">
+        <div class="form-group"><label>Parol (tasdiqlash)</label><input type="password" id="lu_pass" placeholder="••••••••"></div>
+        <div class="form-group"><label>Yangi login</label><input type="text" id="lu_new" placeholder="yangi_kod"></div>
+      </div>
+      <div class="settings-save"><button class="btn btn-primary" id="changeLoginBtn">🔑 Loginni yangilash</button></div>
+    `,
+    backup: `
+      <div class="sc-desc">Ma'lumotlarni zaxiralab olish va qayta tiklash</div>
+      <div class="backup-grid">
+        <div class="backup-item" id="backupDbBtn" style="cursor:pointer">
+          <span class="bi-icon">📦</span>
+          <span class="bi-title">DB backup</span>
+          <span class="bi-desc">SQLite faylini yuklab oling</span>
+          <button class="btn btn-primary btn-sm">📥 .db yuklab olish</button>
+        </div>
+        <div class="backup-item" id="backupJsonBtn" style="cursor:pointer">
+          <span class="bi-icon">📋</span>
+          <span class="bi-title">JSON backup</span>
+          <span class="bi-desc">Barcha jadvallar JSON formatda</span>
+          <button class="btn btn-outline btn-sm">📥 JSON yuklab olish</button>
+        </div>
+      </div>
+      <div class="settings-divider"></div>
+      <div class="sc-group-title">📄 CSV eksport</div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a href="/api/export/children.csv" class="btn btn-outline btn-sm" download>👶 Bolalar</a>
+        <a href="/api/export/payments.csv" class="btn btn-outline btn-sm" download>💰 To'lovlar</a>
+        <a href="/api/export/expenses.csv" class="btn btn-outline btn-sm" download>💸 Xarajatlar</a>
+        <a href="/api/export/attendance.csv" class="btn btn-outline btn-sm" download>✅ Davomat</a>
+      </div>
+      <div class="settings-divider"></div>
+      <div class="sc-group-title">🔄 Qayta tiklash</div>
+      <div class="form-grid single">
+        <div class="form-group"><label>JSON faylni tanlang</label><input type="file" id="restoreFile" accept=".json,application/json" style="font-size:13px"></div>
+      </div>
+      <div class="settings-save"><button class="btn btn-danger" id="restoreDbBtn">⚠️ Tiklash (JSON dan)</button></div>
+    `,
+danger: `
+      <div class="settings-danger">
+        <div class="sc-desc" style="color:var(--danger)">Bu amallar ma'lumotlarni butunlay o'chiradi va qaytarib bo'lmaydi. Foydalanuvchilar va sozlamalar saqlanib qoladi.</div>
+        <div class="reset-grid">
+          <button class="btn btn-outline reset-action" data-what="attendance">🗑 Davomatni tozalash</button>
+          <button class="btn btn-outline reset-action" data-what="payments">🗑 To'lovlarni tozalash</button>
+          <button class="btn btn-outline reset-action" data-what="expenses">🗑 Xarajatlarni tozalash</button>
+          <button class="btn btn-outline reset-action" data-what="children">🗑 Bolalarni tozalash</button>
+          <button class="btn btn-outline reset-action" data-what="groups">🗑 Guruhlarni tozalash</button>
+          <button class="btn btn-danger reset-action" data-what="all">🔥 Hammasini tozalash</button>
+        </div>
+      </div>
+    `
+  };
+
+  // ---------- HTML ----------
+  const groups = ['Asosiy', 'Aloqa', 'Tizim', 'Xavfsizlik', "Ma'lumotlar"];
+  const cardsHtml = groups.map(g => {
+    const items = tabs.filter(t => t.group === g);
+    return `
+      <div class="set-group">
+        <div class="set-group-title">${g}</div>
+        ${items.map(t => `
+          <div class="settings-card${t.id === 'danger' ? ' danger-card' : ''}" data-card="${t.id}">
+            <div class="sc-head" data-toggle="${t.id}">
+              <span class="sc-icon">${t.icon}</span>
+              <div class="sc-tit">
+                <span class="sc-label">${t.label}</span>
+                <span class="sc-desc">${t.desc}</span>
+              </div>
+              <span class="sc-arrow">▾</span>
+            </div>
+            <div class="sc-body">${sections[t.id]}</div>
+          </div>`).join('')}
+      </div>`;
+  }).join('');
 
   $('#content').innerHTML = `
-    <div class="card-grid">
-      ${siteCard}
-      ${tgCard}
-      <div class="card">
-        <div class="card-head"><h3>Parolni o'zgartirish</h3></div>
-        <div class="field"><span>Eski parol</span><input id="pw_old" type="password"></div>
-        <div class="field"><span>Yangi parol</span><input id="pw_new" type="password"></div>
-        <div class="modal-actions">
-          <button class="btn btn-primary" id="changePwBtn">Parolni yangilash</button>
-        </div>
+    <div class="page-head">
+      <div>
+        <h2>⚙️ Sozlamalar</h2>
+        <p class="page-sub">Tizimni o'zingizga moslashtiring</p>
       </div>
-      <div class="card">
-        <div class="card-head"><h3>Login (kirish kodi) o'zgartirish</h3></div>
-        <p style="color:var(--muted);font-size:13px;margin-bottom:10px">Joriy login: <b>${esc(state.user.username)}</b></p>
-        <div class="field"><span>Parol (tasdiqlash)</span><input id="lu_pass" type="password"></div>
-        <div class="field"><span>Yangi login</span><input id="lu_new" type="text" placeholder="yangi_kod"></div>
-        <div class="modal-actions">
-          <button class="btn btn-primary" id="changeLoginBtn">Loginni yangilash</button>
-        </div>
-      </div>
-      ${dangerCard}
-    </div>`;
+    </div>
+    <div class="settings-cards">${cardsHtml}</div>
+  `;
 
-  if (isAdmin()) {
-    $('#saveSettingsBtn').addEventListener('click', async () => {
-      const body = {
-        site_name: $('#s_name').value.trim(),
-        currency: $('#s_currency').value.trim(),
-        address: $('#s_address').value.trim(),
-        phone: $('#s_phone').value.trim(),
-        email: $('#s_email').value.trim()
-      };
-      try {
+  // ---------- Accordion ----------
+  const allCards = $$('.settings-card');
+  allCards.forEach(c => {
+    const head = c.querySelector('.sc-head');
+    head.addEventListener('click', () => {
+      const isOpen = c.classList.contains('open');
+      allCards.forEach(x => x.classList.remove('open'));
+      if (!isOpen) c.classList.add('open');
+    });
+  });
+  const first = $$('.settings-card')[0];
+  if (first) first.classList.add('open');
+
+  // ---------- Save handlers ----------
+  const safe = (id) => { const el = $(id); return el ? el.value.trim() : ''; };
+  const sv = (id) => { const el = $(id.startsWith('#') ? id : '#' + id); return el && el.checked ? '1' : '0'; };
+  const save = (btnId, build, msg) => {
+    $(btnId)?.addEventListener('click', async () => {
+try {
+        const body = build();
         state.settings = await api('/api/settings', { method: 'PUT', body });
-        $('#sidebarSiteName').textContent = state.settings.site_name || 'Denov Kindergarden';
-        $('#loginSiteName').textContent = state.settings.site_name || 'Denov Kindergarden';
-        document.title = `${state.settings.site_name || 'Denov Kindergarden'} — Maktabgacha ta'lim tizimi`;
-        toast('Sozlamalar saqlangan');
+        toast(msg || 'Sozlamalar saqlandi');
       } catch (e) { toast(e.message, 'error'); }
     });
+  };
 
-    $('#saveTgBtn').addEventListener('click', async () => {
-      const body = {
-        tg_token: $('#tg_token').value.trim(),
-        tg_group: $('#tg_group').value.trim(),
-        tg_enabled: $('#tg_enabled').value,
-        reminders_enabled: $('#reminders_enabled').value,
-        reminder_time: $('#reminder_time').value
-      };
+  if (isAdmin()) {
+    save('#saveSettingsBtn', () => ({
+      site_name: safe('#s_name'), currency: safe('#s_currency'), address: safe('#s_address'),
+      phone: safe('#s_phone'), email: safe('#s_email'), site_url: safe('#s_site_url')
+    }), 'Bog\u2018cha sozlamalari saqlandi');
+    save('#saveBizBtn', () => ({
+      fee_default: safe('#s_fee_default'), fee_under3: safe('#s_fee_under3'),
+      fee_sibling: safe('#s_fee_sibling'), work_hours: safe('#s_work_hours'),
+      logo_url: safe('#s_logo_url'), primary_color: safe('#s_primary_color')
+    }), 'Biznes sozlamalari saqlandi');
+    save('#saveReceptionBtn', () => ({
+      reception_text: safe('#s_reception_text'), reception_days: safe('#s_reception_days'),
+      reception_hours: safe('#s_reception_hours'), reception_image: safe('#s_reception_image'),
+      reception_phone: safe('#s_reception_phone')
+    }), 'Qabul sozlamalari saqlandi');
+    save('#saveTgBtn', () => ({
+      tg_token: safe('#tg_token'), tg_group: safe('#tg_group'),
+      tg_enabled: sv('tg_enabled'), reminders_enabled: sv('reminders_enabled'),
+      reminder_time: safe('#reminder_time')
+    }), 'Telegram sozlamalari saqlandi');
+save('#saveSmsBtn', () => ({
+      sms_enabled: sv('sms_enabled'),
+      sms_api_key: safe('#s_sms_api_key'), sms_sender: safe('#s_sms_sender'),
+      sms_pay_remind: sv('sms_pay_remind'), sms_att_remind: sv('sms_att_remind'),
+      sms_payment_template: safe('#sms_pay_tpl'), sms_attendance_template: safe('#sms_att_tpl')
+    }), 'SMS sozlamalari saqlandi');
+    save('#saveCurriculumBtn', () => ({
+      class_start: safe('#s_class_start'), class_end: safe('#s_class_end'),
+      lunch_time: safe('#s_lunch_time'), homework: safe('#s_homework'),
+      activities: safe('#s_activities')
+    }), "O'quv dasturi saqlandi");
+    save('#saveLoginDesignBtn', () => ({
+      login_greeting: safe('#s_login_greeting'), login_bg: safe('#s_login_bg'),
+      login_primary: safe('#s_login_primary'), login_logo: safe('#s_login_logo'),
+      login_bg_image: safe('#s_login_bg_image'), login_top_text: safe('#s_login_top_text'),
+      login_bottom_text: safe('#s_login_bottom_text')
+    }), "Login dizayni saqlandi");
+    save('#saveAutoReportBtn', () => ({
+      auto_daily: sv('auto_daily'), auto_daily_time: safe('#s_auto_daily_time'),
+      auto_weekly: sv('auto_weekly'), auto_weekly_day: safe('#s_auto_weekly_day'),
+      auto_archive: sv('auto_archive')
+    }), 'Avtomatik hisobot saqlandi');
+    save('#saveParentBtn', () => ({
+      parent_edit: sv('parent_edit'), parent_pay_request: sv('parent_pay_request'),
+      parent_chat: sv('parent_chat'), parent_reminder: sv('parent_reminder'),
+      parent_rating: sv('parent_rating'), parent_welcome: safe('#s_parent_welcome')
+    }), "Ota-ona sozlamalari saqlandi");
+save('#saveFinanceBtn', () => ({
+      discount_pct: safe('#s_discount_pct'), late_fee_pct: safe('#s_late_fee_pct'),
+      refund_days: safe('#s_refund_days'), pay_methods: safe('#s_pay_methods'),
+      currency_type: safe('#s_currency_type'), auto_payment: sv('s_auto_payment'),
+      cash_naqd: safe('#s_cash_naqd'), cash_bank: safe('#s_cash_bank')
+    }), 'Moliyaviy qoidalar saqlandi');
+    save('#saveDashBtn', () => ({
+      dash_stats: sv('dash_stats'), dash_att_chart: sv('dash_att_chart'),
+      dash_groups_chart: sv('dash_groups_chart'), dash_trend: sv('dash_trend'),
+      dash_birthday: sv('dash_birthday'), dash_activity: sv('dash_activity'),
+      dash_quick: sv('dash_quick')
+    }), 'Dashboard sozlamalari saqlandi');
+    save('#saveNotifBtn', () => ({
+      notif_tg: sv('notif_tg'), notif_sms: sv('notif_sms'), notif_push: sv('notif_push'),
+      notif_email: sv('notif_email'), smtp_host: safe('#s_smtp_host'), smtp_port: safe('#s_smtp_port'),
+      smtp_user: safe('#s_smtp_user'), smtp_pass: safe('#s_smtp_pass'),
+      notif_target: safe('#s_notif_target')
+    }), 'Bildirishnomalar saqlandi');
+    save('#saveRolesBtn', () => ({
+      perm_op_att: sv('perm_op_att'), perm_op_pay: sv('perm_op_pay'),
+      perm_op_exp: sv('perm_op_exp'), perm_op_rep: sv('perm_op_rep'),
+      perm_tch_att: sv('perm_tch_att'), perm_tch_photo: sv('perm_tch_photo'),
+      perm_tch_menu: sv('perm_tch_menu')
+}), "Rollar va ruxsatlar saqlandi");
+
+    // ---------- Xavfli hudud (reset) handlers ----------
+    const RESET_LABELS = {
+      attendance: 'Davomat yozuvlari', payments: 'To\u2018lovlar', expenses: 'Xarajatlar',
+      children: 'Bolalar va ota-onalar', groups: 'Guruhlar va tarbiyachilar', all: 'HAMMA ma\u2018lumotlar'
+    };
+    $$('.reset-action', $('#content')).forEach(btn => btn.addEventListener('click', () => {
+      const what = btn.dataset.what;
+      const label = RESET_LABELS[what] || what;
+      window.resetConfirm(what, label);
+    }));
+
+    // ---------- Backup handlers ----------
+    $('#backupDbBtn')?.addEventListener('click', async () => {
       try {
-        state.settings = await api('/api/settings', { method: 'PUT', body });
-        toast('Telegram sozlamalari saqlangan');
+        const blob = await fetch('/api/export/backup.db').then(r => r.blob());
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = 'bogcha_backup_' + new Date().toISOString().slice(0, 10) + '.db';
+        a.click();
+        toast('DB backup yuklab olindi!');
       } catch (e) { toast(e.message, 'error'); }
+    });
+    $('#backupJsonBtn')?.addEventListener('click', async () => {
+      try {
+        const tables = ['users','groups','teachers','parents','children','attendance','payments','expenses','meals','notifications','parent_requests','announcements','ratings','chat_messages','settings','tg_links','schedules','audit_log','sms_log','bot_reminders','month_archives'];
+        const data = {};
+        for (const t of tables) { try { data[t] = await api('/api/table/' + t); } catch (e) { data[t] = []; } }
+        downloadFile('bogcha_backup_' + new Date().toISOString().slice(0, 10) + '.json', JSON.stringify(data, null, 2), 'application/json');
+        toast('JSON backup yuklab olindi!');
+      } catch (e) { toast(e.message, 'error'); }
+    });
+    $('#restoreDbBtn')?.addEventListener('click', async () => {
+      const file = $('#restoreFile')?.files[0];
+      if (!file) return toast('JSON faylni tanlang', 'error');
+      try {
+        const data = JSON.parse(await file.text());
+        const tables = Object.keys(data);
+        let restored = 0;
+        for (const t of tables) {
+          if (Array.isArray(data[t]) && data[t].length) {
+            try { await api('/api/table/' + t, { method: 'POST', body: { rows: data[t] } }); restored++; } catch (e) { }
+          }
+        }
+        toast(restored + ' ta jadval tiklandi!');
+      } catch (e) { toast('Fayl xato: ' + e.message, 'error'); }
     });
   }
 
-  $('#changePwBtn').addEventListener('click', async () => {
+  $('#changePwBtn')?.addEventListener('click', async () => {
     try {
-      await api('/api/change-password', {
-        method: 'POST',
-        body: { old_password: $('#pw_old').value, new_password: $('#pw_new').value }
-      });
-      toast('Parol yangilandi'); $('#pw_old').value = ''; $('#pw_new').value = '';
+      await api('/api/change-password', { method: 'POST', body: { old_password: $('#pw_old').value, new_password: $('#pw_new').value } });
+      toast('Parol yangilandi');
+      $('#pw_old').value = '';
+      $('#pw_new').value = '';
     } catch (e) { toast(e.message, 'error'); }
   });
-
-  $('#changeLoginBtn').addEventListener('click', async () => {
+  $('#changeLoginBtn')?.addEventListener('click', async () => {
     try {
-      const r = await api('/api/change-username', {
-        method: 'POST',
-        body: { password: $('#lu_pass').value, new_username: $('#lu_new').value }
-      });
-      state.user.username = r.username;
-      toast('Login yangilandi'); $('#lu_pass').value = ''; $('#lu_new').value = '';
+      await api('/api/change-login', { method: 'POST', body: { password: $('#lu_pass').value, new_login: $('#lu_new').value } });
+      toast('Login yangilandi. Qayta kiring.');
+      setTimeout(() => logout(), 1500);
     } catch (e) { toast(e.message, 'error'); }
   });
 }
@@ -1516,6 +2238,7 @@ async function renderExpenses() {
       <td><div class="cell-name">${esc(r.name)}</div><div class="cell-sub">${esc(r.notes || '')}</div></td>
       <td><span class="badge blue">${esc(r.category)}</span></td>
       <td class="money minus">${fmtMoney(r.amount)}</td>
+      <td><span class="badge gray">${r.method === 'naqd' ? '💵 Naqd' : r.method === 'karta' ? '💳 Karta' : r.method === 'click' ? '🟩 Click' : r.method === 'payme' ? '🔵 Payme' : r.method === 'bank' ? '🏦 Bank' : '🟣 Paynet'}</span></td>
       <td>${fmtDate(r.expense_date)}</td>
       <td><div class="row-actions">
         <button class="mini-btn" onclick="expForm(${r.id})">✏️</button>
@@ -1546,8 +2269,8 @@ async function renderExpenses() {
         </div>
       </div>
       <div class="table-wrap"><table>
-        <thead><tr><th>Xarajat</th><th>Kategoriya</th><th>Summa</th><th>Sana</th><th></th></tr></thead>
-        <tbody id="expTbody">${rows || '<tr><td colspan="5"><div class="empty-state"><span class="emoji">🧾</span>Bu oy uchun xarajat yo\'q</div></td></tr>'}</tbody>
+        <thead><tr><th>Xarajat</th><th>Kategoriya</th><th>Summa</th><th>Usul</th><th>Sana</th><th></th></tr></thead>
+        <tbody id="expTbody">${rows || '<tr><td colspan="6"><div class="empty-state"><span class="emoji">🧾</span>Bu oy uchun xarajat yo\'q</div></td></tr>'}</tbody>
       </table></div>
     </div>`;
 
@@ -1561,13 +2284,16 @@ async function renderExpenses() {
 async function expForm(id = null) {
   const rows = id ? (await api('/api/expenses?month=' + expState.month)).rows : [];
   const r = id ? rows.find(x => x.id === id) : null;
+  const defDate = (expState.month && expState.month !== monthStr()) ? expState.month + '-01' : todayStr();
   const catOpts = EXP_CATEGORIES.map(c => `<option ${r && r.category === c ? 'selected' : ''}>${c}</option>`).join('');
   openModal(id ? 'Xarajatni tahrirlash' : 'Yangi xarajat', `
     <div class="field"><span>Nomi *</span><input id="x_name" value="${esc(r?.name || '')}" placeholder="Misol: Oziq-ovqat mahsulotlari"></div>
     <div class="form-row">
       <div class="field"><span>Kategoriya</span><select id="x_cat">${catOpts}</select></div>
       <div class="field"><span>Summa (so'm) *</span><input id="x_amount" type="number" min="0" value="${r?.amount || ''}"></div>
-      <div class="field"><span>Sana</span><input id="x_date" type="date" value="${esc(r?.expense_date || todayStr())}"></div>
+      <div class="field"><span>Sana</span><input id="x_date" type="date" value="${esc(r?.expense_date || defDate)}"></div>
+      <div class="field"><span>To'lov usuli</span><select id="x_method">
+        ${['naqd', 'karta', 'click', 'payme', 'bank', 'paynet'].map(mm => `<option value="${mm}" ${(r?.method || 'naqd') === mm ? 'selected' : ''}>${mm === 'naqd' ? '💵 Naqd' : mm === 'karta' ? '💳 Karta' : mm === 'click' ? '🟩 Click' : mm === 'payme' ? '🔵 Payme' : mm === 'bank' ? '🏦 Bank' : '🟣 Paynet'}</option>`).join('')}</select></div>
       <div class="field"><span>Izoh</span><input id="x_notes" value="${esc(r?.notes || '')}"></div>
     </div>
     <div class="modal-actions">
@@ -1581,7 +2307,8 @@ async function expForm(id = null) {
       category: $('#x_cat').value,
       amount: Number($('#x_amount').value),
       expense_date: $('#x_date').value,
-      notes: $('#x_notes').value.trim()
+      notes: $('#x_notes').value.trim(),
+      method: ($('#x_method') && $('#x_method').value) || 'naqd'
     };
     if (!body.name || !body.amount) return toast('Nom va summani kiriting', 'error');
     try {
@@ -1603,14 +2330,18 @@ window.delExpense = (id) => confirmDelete('Bu xarajatni o\'chirasizmi?', async (
 let repState = { month: monthStr() };
 
 async function renderReports() {
-  const data = await api('/api/reports/monthly?month=' + repState.month);
   const m = repState.month;
+  const [data, catData, cashData] = await Promise.all([
+    api('/api/reports/monthly?month=' + m),
+    api('/api/reports/expense-categories?month=' + m).catch(() => ({ data: [], grandTotal: 0 })),
+    api('/api/reports/cashbook?month=' + m).catch(() => ({ entries: [], totalIncome: 0, totalExpense: 0, closingBalance: 0 }))
+  ]);
 
   const methodRows = data.byMethod.map(x => `
     <div class="legend-item"><span class="legend-dot" style="background:${x.method === 'naqd' ? '#10b981' : x.method === 'karta' ? '#6366f1' : '#f59e0b'}"></span>${x.method === 'naqd' ? 'Naqd' : x.method === 'karta' ? 'Karta' : 'Bank'}<b>${fmtMoney(x.total)}</b></div>
   `).join('');
 
-  const catColors = { 'Oziq-ovqat': '#f59e0b', 'Kommunal': '#3b82f6', 'Ish haqi': '#8b5cf6', 'Ta\'minot': '#10b981', 'Ta\'mirlash': '#ef4444', 'Transport': '#14b8a6', 'Boshqa': '#64748b' };
+  const catColors = { 'Oziq-ovqat': '#f59e0b', 'Kommunal': '#3b82f6', 'Ish haqi': '#8b5cf6', 'Ta\'minot': '#10b981', 'Ta\'mirlash': '#ef4444', 'Transport': '#14b8a6', 'Boshqa': '#64748b', 'Uy-joy': '#ec4899', 'Avtobus': '#06b6d4', 'Ofis': '#84cc16' };
   const catRows = data.byCategory.map(x => `
     <div class="legend-item"><span class="legend-dot" style="background:${catColors[x.category] || '#64748b'}"></span>${esc(x.category)}<b>${fmtMoney(x.total)}</b></div>
   `).join('');
@@ -1627,7 +2358,19 @@ async function renderReports() {
   const attPct = attTotal ? Math.round(data.attTotals.present / attTotal * 100) : 0;
 
   const debtRows = data.debts.filter(d => d.due > 0 || d.unpaidMonths >= 2).map(d => `
-    <tr><td><div class="cell-name">${esc(d.child_name)}</div></td><td>${esc(d.group_name) || '—'}</td><td class="money">${fmtMoney(d.fee)}</td><td class="money">${fmtMoney(d.paid)}</td><td class="money minus">${fmtMoney(d.due)}</td><td>${d.unpaidMonths >= 2 ? `<span class="badge red">${d.unpaidMonths} oy ⚠️</span>` : `<span class="badge gray">${d.unpaidMonths} oy</span>`}</td></tr>
+    <tr><td><div class="cell-name">${esc(d.child_name)}</div></td><td>${esc(d.group_name) || '—'}</td><td class="money">${fmtMoney(d.fee)}</td><td class="money">${fmtMoney(d.paid)}</td><td class="money minus">${fmtMoney(d.due)}</td><td>${d.unpaidMonths >= 2 ? `<span class="badge red">${d.unpaidMonths} oy</span>` : `<span class="badge gray">${d.unpaidMonths} oy</span>`}</td></tr>
+  `).join('');
+
+  const cashRows = cashData.entries.map((e, i) => `
+    <tr style="${e.type === 'income' ? 'border-left:3px solid var(--success)' : 'border-left:3px solid var(--danger)'}">
+      <td>${i + 1}</td>
+      <td>${fmtDate(e.date)}</td>
+      <td>${esc(e.desc)}</td>
+      <td><span class="badge ${e.type === 'income' ? 'green' : 'red'}">${e.type === 'income' ? 'Kirim' : 'Chiqim'}</span></td>
+      <td class="money ${e.type === 'income' ? 'plus' : ''}" style="${e.type === 'expense' ? 'color:var(--danger)' : ''}">${e.type === 'income' ? fmtMoney(e.amount) : '—'}</td>
+      <td class="money ${e.type === 'expense' ? 'minus' : ''}" style="${e.type === 'expense' ? 'color:var(--danger)' : ''}">${e.type === 'expense' ? fmtMoney(e.amount) : '—'}</td>
+      <td class="money" style="font-weight:700">${fmtMoney(e.balance)}</td>
+    </tr>
   `).join('');
 
   $('#content').innerHTML = `
@@ -1636,10 +2379,11 @@ async function renderReports() {
       <span class="badge purple">${monthName(m)} hisoboti</span>
       <span class="spacer" style="flex:1"></span>
       <a href="/api/export/report.xlsx?month=${m}" class="btn btn-primary">📊 Excel (.xlsx)</a>
+      <a href="/api/export/report.pdf?month=${m}" class="btn btn-outline" target="_blank">📄 PDF</a>
       <a href="/api/export/payments.csv?month=${m}" class="btn btn-outline">💳 To'lovlar</a>
       <a href="/api/export/expenses.csv?month=${m}" class="btn btn-outline">📤 Xarajatlar</a>
       <a href="/api/export/attendance.csv?month=${m}" class="btn btn-outline">✅ Davomat</a>
-      <button class="btn btn-outline" onclick="window.print()">🖨️ PDF / Chop etish</button>
+      <button class="btn btn-outline" onclick="window.print()">🖨️ Chop etish</button>
     </div>
 
     <div class="grid stats">
@@ -1659,6 +2403,41 @@ async function renderReports() {
         <div class="card-head"><h3>Xarajat kategoriyalari</h3></div>
         <div class="legend">${catRows || '<div class="empty-state">Ma\'lumot yo\'q</div>'}</div>
       </div>
+    </div>
+
+    <div class="card-grid">
+      <div class="card">
+        <div class="card-head"><h3>📊 Xarajat taqsimoti (Pie Chart)</h3><span class="badge purple">Jami: ${fmtMoney(catData.grandTotal)}</span></div>
+        <div style="padding:16px;display:flex;align-items:center;gap:20px;flex-wrap:wrap">
+          <canvas id="expensePieChart" width="280" height="280" style="max-width:280px"></canvas>
+          <div id="pieLegend" style="flex:1;min-width:200px"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>💰 Kassa kitobi — ${monthName(m)}</h3><span class="badge ${cashData.closingBalance >= 0 ? 'green' : 'red'}">Qoldiq: ${fmtMoney(cashData.closingBalance)}</span></div>
+        <div style="padding:12px;display:flex;gap:16px;flex-wrap:wrap">
+          <div style="flex:1;min-width:120px;padding:12px;background:var(--success-soft);border-radius:10px;text-align:center">
+            <div style="font-size:12px;color:var(--muted)">Jami kirim</div>
+            <div style="font-size:18px;font-weight:800;color:var(--success)">${fmtMoney(cashData.totalIncome)}</div>
+          </div>
+          <div style="flex:1;min-width:120px;padding:12px;background:var(--danger-soft);border-radius:10px;text-align:center">
+            <div style="font-size:12px;color:var(--muted)">Jami chiqim</div>
+            <div style="font-size:18px;font-weight:800;color:var(--danger)">${fmtMoney(cashData.totalExpense)}</div>
+          </div>
+          <div style="flex:1;min-width:120px;padding:12px;background:var(--primary-soft);border-radius:10px;text-align:center">
+            <div style="font-size:12px;color:var(--muted)">Kassa qoldig'i</div>
+            <div style="font-size:18px;font-weight:800;color:var(--primary)">${fmtMoney(cashData.closingBalance)}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-head"><h3>📒 Kassa kitobi — batafsil</h3><span class="spacer"></span><span class="badge gray">${cashData.entries.length} yozuv</span></div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>#</th><th>Sana</th><th>Tavsif</th><th>Tur</th><th>Kirim</th><th>Chiqim</th><th>Qoldiq</th></tr></thead>
+        <tbody>${cashRows || '<tr><td colspan="7"><div class="empty-state">Yozuvlar yo\'q</div></td></tr>'}</tbody>
+      </table></div>
     </div>
 
     <div class="card-grid">
@@ -1687,6 +2466,33 @@ async function renderReports() {
     </div>
   `;
 
+  // Pie chart (Chart.js)
+  if (typeof Chart !== 'undefined' && catData.data && catData.data.length) {
+    const pieColors = catData.data.map(x => catColors[x.category] || '#64748b');
+    const ctx = document.getElementById('expensePieChart');
+    if (ctx) {
+      new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: catData.data.map(x => x.category),
+          datasets: [{ data: catData.data.map(x => x.total), backgroundColor: pieColors, borderWidth: 2, borderColor: '#fff' }]
+        },
+        options: { responsive: false, plugins: { legend: { display: false } }, cutout: '55%' }
+      });
+    }
+    const legendHtml = catData.data.map((x, i) => `
+      <div style="display:flex;align-items:center;gap:8px;margin:6px 0">
+        <span style="width:14px;height:14px;border-radius:4px;background:${pieColors[i]};flex-shrink:0"></span>
+        <span style="flex:1;font-size:13px">${esc(x.category)}</span>
+        <span style="font-size:12px;color:var(--muted)">${x.count} ta</span>
+        <span style="font-size:12px;color:var(--muted)">${x.pct}%</span>
+        <span style="font-weight:700;font-size:13px">${fmtMoney(x.total)}</span>
+      </div>
+    `).join('');
+    const leg = document.getElementById('pieLegend');
+    if (leg) leg.innerHTML = legendHtml || '<div class="empty-state">Ma\'lumot yo\'q</div>';
+  }
+
   $('#repMonth').addEventListener('change', e => { repState.month = e.target.value; renderReports(); });
 }
 
@@ -1696,11 +2502,13 @@ let mealState = { date: todayStr() };
 
 async function renderMeals() {
   const data = await api('/api/meals?date=' + mealState.date);
+  const weeklyData = await api('/api/meals/weekly?start=' + data.week[0]);
+
   const chips = data.week.map(d => `<button class="chip ${d === mealState.date ? 'active' : ''}" onclick="mealDay('${d}')">${d === todayStr() ? 'Bugun' : fmtDate(d)}</button>`).join('');
   const typeMeta = {
-    nonushta: { label: '🍞 Nonushta', icon: '🌅' },
-    tushlik: { label: '🍲 Tushlik', icon: '☀️' },
-    choy: { label: '🍵 Choy / Kechki', icon: '🌆' }
+    nonushta: { label: 'Nonushta', icon: '🌅' },
+    tushlik: { label: 'Tushlik', icon: '�?�️' },
+    choy: { label: 'Choy / Kechki', icon: '🌆' }
   };
   const cards = ['nonushta', 'tushlik', 'choy'].map(tp => {
     const m = data.rows.find(r => r.meal_type === tp);
@@ -1713,12 +2521,293 @@ async function renderMeals() {
         </div>
       </div>`;
   }).join('');
+
+  const dayNames = ['Yak','Dush','Sesh','Chor','Pay','Jum','Shan'];
+  let weeklyHtml = '';
+  if (weeklyData.week) {
+    weeklyHtml = '<div class="card" style="margin-top:16px"><div class="card-head"><h3>📅 Haftalik menyu rejasii</h3></div><div style="display:grid;grid-template-columns:repeat(7,1fr);gap:8px">' +
+      weeklyData.week.map(day => {
+        const d = new Date(day.date);
+        const isToday = day.date === todayStr();
+        const mealsHtml = day.meals.length ? day.meals.map(m => `<div style="font-size:12px;padding:4px 0;border-bottom:1px solid var(--border)"><b>${m.title}</b>${m.items ? '<br><small style="color:var(--muted)">' + esc(m.items) + '</small>' : ''}</div>`).join('') : '<div style="font-size:12px;color:var(--muted);padding:4px 0">Yo\'q</div>';
+        return `<div style="background:${isToday ? 'var(--primary-soft)' : 'var(--card2)'};border:1.5px solid ${isToday ? 'var(--primary)' : 'var(--border)'};border-radius:10px;padding:10px;text-align:center"><div style="font-weight:700;font-size:13px;margin-bottom:6px;${isToday ? 'color:var(--primary)' : ''}">${dayNames[d.getDay()]}<br><small>${day.date.slice(5)}</small></div>${mealsHtml}</div>`;
+      }).join('') + '</div></div>';
+  }
+
   $('#content').innerHTML = `
     <div class="toolbar flex-wrap">${chips}</div>
-    <div class="card-grid meals-grid">${cards}</div>`;
+    <div class="card-grid meals-grid">${cards}</div>${weeklyHtml}`;
 }
 
 window.mealDay = (d) => { mealState.date = d; renderMeals(); };
+
+/* ================= KUN JURNALI ================= */
+
+const journalState = { date: jTodayStr(), group_id: '' };
+
+function jTodayStr() {
+  const d = new Date();
+  return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+}
+
+window.setJournalDate = (v) => { journalState.date = v; renderJournal(); };
+window.setJournalGroup = (v) => { journalState.group_id = v; renderJournal(); };
+
+async function renderJournal() {
+  const [groups, entries] = await Promise.all([
+    api('/api/groups').catch(() => []),
+    api('/api/journal?date=' + journalState.date + (journalState.group_id ? '&group_id=' + journalState.group_id : ''))
+  ]);
+  const canEdit = isAdmin() || isOperator();
+  const rows = entries.map(e => `
+    <div class="journal-item" data-id="${e.id}">
+      <div class="journal-title">
+        <div class="cell-name">${esc(e.title)}</div>
+        <div class="cell-sub">${fmtDate(e.journal_date)}${e.group_name ? ' • ' + esc(e.group_name) : ''} • ${esc(e.created_by || '')}</div>
+      </div>
+      ${e.activities ? `<div class="journal-act"><b>Faoliyatlar:</b> ${esc(e.activities)}</div>` : ''}
+      ${e.summary ? `<div class="journal-sum"><b>Xulosa:</b> ${esc(e.summary)}</div>` : ''}
+      ${canEdit ? `<div class="journal-actions"><button class="btn btn-outline btn-sm" onclick="editJournal(${e.id})">✏️</button><button class="btn btn-outline btn-sm" onclick="delJournal(${e.id})">🗑️</button></div>` : ''}
+    </div>`).join('');
+
+  $('#content').innerHTML = `
+    <div class="toolbar flex-wrap">
+      <input type="date" value="${journalState.date}" onchange="setJournalDate(this.value)">
+      <select onchange="setJournalGroup(this.value)">
+        <option value="">Barcha guruhlar</option>
+        ${groups.map(g => `<option value="${g.id}" ${String(journalState.group_id) === String(g.id) ? 'selected' : ''}>${esc(g.name)}</option>`).join('')}
+      </select>
+      ${canEdit ? `<button class="btn btn-primary" onclick="journalForm()">➕ Yangi yozuv</button>` : ''}
+    </div>
+    ${rows || '<div class="empty-state">Bu sana uchun yozuv yo\'q</div>'}
+  `;
+}
+
+window.journalForm = (id) => {
+  (async () => {
+    let cur = {};
+    if (id) {
+      const list = await api('/api/journal');
+      cur = list.find(x => x.id === id) || {};
+    }
+    const groups = await api('/api/groups').catch(() => []);
+    openModal(id ? 'Jurnalni tahrirlash' : 'Kunlik jurnal yozuvi', `
+      <div class="field"><span>Guruh</span><select id="j_group">
+        <option value="">Guruhsiz</option>
+        ${groups.map(g => `<option value="${g.id}" ${String(cur.group_id) === String(g.id) ? 'selected' : ''}>${esc(g.name)}</option>`).join('')}
+      </select></div>
+      <div class="field"><span>Sana</span><input type="date" id="j_date" value="${cur.journal_date || journalState.date}"></div>
+      <div class="field"><span>Sarlavha</span><input id="j_title" value="${esc(cur.title || '')}" placeholder="Masalan: O'zbek tili darsi"></div>
+      <div class="field"><span>Faoliyatlar</span><textarea id="j_act" rows="3" placeholder="Qanday mashg'ulotlar o'tdi?">${esc(cur.activities || '')}</textarea></div>
+      <div class="field"><span>Xulosa</span><textarea id="j_sum" rows="2" placeholder="Kun davomida nimalar qilindi?">${esc(cur.summary || '')}</textarea></div>
+      <div class="modal-actions">
+        <button class="btn btn-outline" onclick="closeModal()">Bekor</button>
+        <button class="btn btn-primary" id="saveJournalBtn">Saqlash</button>
+      </div>
+    `);
+    $('#saveJournalBtn').addEventListener('click', async () => {
+      const body = {
+        group_id: $('#j_group').value ? Number($('#j_group').value) : null,
+        journal_date: $('#j_date').value,
+        title: $('#j_title').value.trim(),
+        activities: $('#j_act').value.trim(),
+        summary: $('#j_sum').value.trim()
+      };
+      if (!body.journal_date || !body.title) return toast('Sana va sarlavha kiritilani shart', 'error');
+      try {
+        await api('/api/journal', { method: 'POST', body });
+        toast('Saqlangan'); closeModal(); renderJournal();
+      } catch (e) { toast(e.message, 'error'); }
+    });
+  })();
+};
+
+window.editJournal = (id) => journalForm(id);
+
+window.delJournal = async (id) => {
+  if (!confirm('Jurnal yozuvi o\'chirilsinmi?')) return;
+  try {
+    await api('/api/journal/' + id, { method: 'DELETE' });
+    toast('O\'chirildi'); renderJournal();
+  } catch (e) { toast(e.message, 'error'); }
+};
+
+/* ================= FOTOGALEREYA ================= */
+
+const galleryState = { group_id: '' };
+
+function galleryImg(pic) {
+  if (!pic) return '';
+  if (/^(https?:|data:|blob:)/.test(pic)) return esc(pic);
+  return '/uploads/' + esc(pic);
+}
+
+window.setGalleryGroup = (v) => { galleryState.group_id = v; renderGallery(); };
+window.delGallery = async (id) => {
+  if (!confirm('Rasm o\'chirilsinmi?')) return;
+  try {
+    await api('/api/gallery/' + id, { method: 'DELETE' });
+    toast('O\'chirildi'); renderGallery();
+  } catch (e) { toast(e.message, 'error'); }
+};
+
+async function renderGallery() {
+  const [groups, photos] = await Promise.all([
+    api('/api/groups').catch(() => []),
+    api('/api/gallery' + (galleryState.group_id ? '?group_id=' + galleryState.group_id : ''))
+  ]);
+  const canEdit = isAdmin() || isOperator();
+  const cards = photos.map(p => `
+    <div class="g-item">
+      <div class="g-img"><img src="${galleryImg(p.image)}" alt="${esc(p.title)}" onclick="lightbox('${galleryImg(p.image)}')"></div>
+      <div class="g-info">
+        <div class="cell-name">${esc(p.title || '')}</div>
+        ${p.group_name ? `<div class="cell-sub">${esc(p.group_name)}</div>` : ''}
+        <div class="cell-sub">${fmtDate(p.created_at)}</div>
+        ${canEdit ? `<button class="btn btn-outline btn-sm" onclick="delGallery(${p.id})">🗑️</button>` : ''}
+      </div>
+    </div>`).join('');
+
+  $('#content').innerHTML = `
+    <div class="toolbar flex-wrap">
+      <select onchange="setGalleryGroup(this.value)">
+        <option value="">Barcha rasmlar</option>
+        ${groups.map(g => `<option value="${g.id}" ${String(galleryState.group_id) === String(g.id) ? 'selected' : ''}>${esc(g.name)}</option>`).join('')}
+      </select>
+      ${canEdit ? '<label class="btn btn-primary" style="cursor:pointer">📷 Rasm qo\'shish<input type="file" id="g_file" accept="image/*" hidden></label>' : ''}
+    </div>
+    ${cards ? `<div class="g-grid">${cards}</div>` : '<div class="empty-state">Rasmlar yo\'q</div>'}
+  `;
+
+  if (canEdit) {
+    const inp = $('#g_file');
+    if (inp) inp.addEventListener('change', async () => {
+      const f = inp.files[0];
+      if (!f) return;
+      const fd = new FormData();
+      fd.append('file', f);
+      try {
+        const up = await api('/api/upload', { method: 'POST', body: fd, raw: true });
+        openModal('📷 Rasm qo\'shish', `
+          <div class="field"><span>Guruh</span><select id="g_group">
+            <option value="">Guruhsiz</option>
+            ${groups.map(g => `<option value="${g.id}">${esc(g.name)}</option>`).join('')}
+          </select></div>
+          <div class="field"><span>Sarlavha</span><input id="g_title" placeholder="Masalan: Yangi yil bayrami"></div>
+          <div class="modal-actions">
+            <button class="btn btn-outline" onclick="closeModal()">Bekor</button>
+            <button class="btn btn-primary" id="saveGalleryBtn">Saqlash</button>
+          </div>
+        `);
+        const fileName = up.filename;
+        $('#saveGalleryBtn').addEventListener('click', async () => {
+          const body = {
+            group_id: $('#g_group').value ? Number($('#g_group').value) : null,
+            title: $('#g_title').value.trim(),
+            image: fileName
+          };
+          try {
+            await api('/api/gallery', { method: 'POST', body });
+            toast('Saqlangan'); closeModal(); renderGallery();
+          } catch (e) { toast(e.message, 'error'); }
+        });
+      } catch (e) { toast(e.message, 'error'); }
+    });
+  }
+}
+
+function lightbox(src) {
+  const lb = document.createElement('div');
+  lb.className = 'lightbox';
+  lb.innerHTML = `<img src="${src}"><button class="lb-close" onclick="this.parentElement.remove()">✕</button>`;
+  lb.addEventListener('click', (e) => { if (e.target === lb) lb.remove(); });
+  document.body.appendChild(lb);
+}
+
+/* ================= LANDING ================= */
+
+async function renderLanding() {
+  const [courses, leads, site] = await Promise.all([
+    api('/api/courses').catch(() => []),
+    api('/api/landing/leads').catch(() => []),
+    api('/api/settings').catch(() => ({}))
+  ]);
+  const courseRows = courses.map(c => `
+    <tr>
+      <td><span style="font-size:20px">${c.icon || '🎨'}</span> <b>${esc(c.name)}</b></td>
+      <td class="cell-sub">${esc(c.description || '—')}</td>
+      <td class="money">${fmtMoney(c.price)}</td>
+      <td>${esc(c.duration || '')}</td>
+      <td class="actions-cell">
+        <button class="btn btn-outline btn-sm" onclick="delCourse(${c.id})">🗑️</button>
+      </td>
+    </tr>`).join('');
+  const leadRows = leads.map(l => `
+    <tr>
+      <td><div class="cell-name">${esc(l.parent_name)}</div><div class="cell-sub">${esc(l.child_name || '')}</div></td>
+      <td class="cell-name">${esc(l.phone)}</td>
+      <td class="cell-sub">${esc(l.message || '')}</td>
+      <td>${fmtDate(l.created_at)}</td>
+    </tr>`).join('');
+
+  $('#content').innerHTML = `
+    <div class="toolbar">
+      <a href="/landing" target="_blank" class="btn btn-primary">🌐 Taklif sahifasini ko'rish</a>
+      <button class="btn btn-outline" onclick="courseForm()">➕ Kurs qo'shish</button>
+      <span class="spacer" style="flex:1"></span>
+    </div>
+    <div class="card" style="margin-bottom:16px">
+      <div class="card-head"><h3>🎨 To'garaklar / Kurslar</h3></div>
+      <div class="table-wrap"><table class="data-table">
+        <thead><tr><th>Nomi</th><th>Tavsif</th><th>Narx</th><th>Davomiyligi</th><th></th></tr></thead>
+        <tbody>${courseRows || '<tr><td colspan="5"><div class="empty-state">Kurslar yo\'q</div></td></tr>'}</tbody>
+      </table></div>
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>📥 Taklif sahifasidan arizalar</h3><span class="badge purple">${leads.length} ta</span></div>
+      <div class="table-wrap"><table class="data-table">
+        <thead><tr><th>Ota-ona</th><th>Telefon</th><th>Xabar</th><th>Sana</th></tr></thead>
+        <tbody>${leadRows || '<tr><td colspan="4"><div class="empty-state">Arizalar yo\'q</div></td></tr>'}</tbody>
+      </table></div>
+    </div>
+  `;
+}
+
+window.courseForm = () => {
+  openModal('Kurs qo\'shish', `
+    <div class="field"><span>Nomi</span><input id="c_name" placeholder="Masalan: Rassomlik to'garagi"></div>
+    <div class="field"><span>Belgisi (imoji)</span><input id="c_icon" maxlength="4" placeholder="🎨"></div>
+    <div class="field"><span>Tavsif</span><textarea id="c_desc" rows="2"></textarea></div>
+    <div class="field"><span>Narx (so'm)</span><input id="c_price" type="number" placeholder="150000"></div>
+    <div class="field"><span>Davomiyligi</span><input id="c_dur" placeholder="2 oy"></div>
+    <div class="modal-actions">
+      <button class="btn btn-outline" onclick="closeModal()">Bekor</button>
+      <button class="btn btn-primary" id="saveCourseBtn">Saqlash</button>
+    </div>
+  `);
+  $('#saveCourseBtn').addEventListener('click', async () => {
+    const body = {
+      name: $('#c_name').value.trim(),
+      icon: $('#c_icon').value.trim() || '🎨',
+      description: $('#c_desc').value.trim(),
+      price: Number($('#c_price').value) || 0,
+      duration: $('#c_dur').value.trim()
+    };
+    if (!body.name) return toast('Nomi kiriting', 'error');
+    try {
+      await api('/api/courses', { method: 'POST', body });
+      toast('Qo\'shildi'); closeModal(); renderLanding();
+    } catch (e) { toast(e.message, 'error'); }
+  });
+};
+
+window.delCourse = async (id) => {
+  if (!confirm('Kurs o\'chirilsinmi?')) return;
+  try {
+    await api('/api/courses/' + id, { method: 'DELETE' });
+    toast('O\'chirildi'); renderLanding();
+  } catch (e) { toast(e.message, 'error'); }
+};
 
 function mealForm(id, date, type) {
   openModal(id ? 'Menyuni tahrirlash' : 'Menyu qo\'shish', `
@@ -1778,6 +2867,11 @@ async function renderNotify() {
     <tr><td>${fmtDate(l.created_at)}</td><td><div class="cell-name">${esc(l.parent_name)}</div></td><td>${esc(l.child_name)}</td><td><span class="badge ${l.type === 'payment' ? 'amber' : 'blue'}">${l.type === 'payment' ? 'Qarz' : 'Davomat'}</span></td><td class="n-msg">${esc(l.message)}</td></tr>`).join('');
 
   $('#content').innerHTML = `
+    <div class="card" style="margin-bottom:16px;background:var(--grad);color:#fff">
+      <div class="card-head"><h3>📨 SMS avtomatik eslatma</h3></div>
+      <p style="margin-bottom:12px;opacity:.9">Barcha qarzdor ota-onalarga SMS eslatma yuboriladi. Avtomatik ravishda qarz miqdori hisoblanadi.</p>
+      <button class="btn btn-primary" style="background:#fff;color:var(--primary)" onclick="sendSmsReminder()">📨 Barcha qarzdorlarga SMS yuborish</button>
+    </div>
     <div class="card-grid">
       ${listBlock('To\'lov qarzi', '💳', data.payment, 'payment', 'amber')}
       ${listBlock('Davomatsiz bolalar', '❌', data.attendance, 'attendance', 'blue')}
@@ -1802,7 +2896,16 @@ window.sendNotify = async (type) => {
   if (!recipients.length) return toast('Avval qabul qiluvchilarni belgilang', 'error');
   try {
     const r = await api('/api/notifications/send', { method: 'POST', body: { type, channel: 'manual', recipients, month: monthStr() } });
-    toast(`${r.count} ta xabar yuborildi (qo\'lda — SMS/Telegram orqali yuboring)`);
+    toast(`${r.count} ta xabar yuborildi${r.smsCount ? ' (' + r.smsCount + ' SMS)' : ''}`);
+    renderNotify();
+  } catch (e) { toast(e.message, 'error'); }
+};
+
+window.sendSmsReminder = async () => {
+  if (!confirm('Barcha qarzdor ota-onalarga SMS eslatma yuborilsinmi?')) return;
+  try {
+    const r = await api('/api/sms-reminder/send', { method: 'POST' });
+    toast(`${r.count || 0} ta SMS yuborildi (jami: ${r.total || 0} ta qarzdor)`, r.count > 0 ? 'success' : 'error');
     renderNotify();
   } catch (e) { toast(e.message, 'error'); }
 };
@@ -1836,19 +2939,32 @@ function announcementForm() {
     <div class="field"><span>Sarlavha *</span><input id="ann_title" placeholder="Misol: Ertaga ochiq dars kuni"></div>
     <div class="field"><span>Matn *</span><textarea id="ann_text" rows="5" placeholder="E'lon matnini yozing..."></textarea></div>
     <div class="field" style="margin-bottom:10px"><label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="ann_tg" checked> 📢 Telegram'ga ham yuborish</label></div>
+    <div class="field" style="margin-bottom:10px"><label style="display:flex;align-items:center;gap:8px;cursor:pointer"><input type="checkbox" id="ann_sms"> 📨 SMS orqali ham yuborish (barcha ota-onalarga)</label></div>
+    <div class="field" style="margin-bottom:10px;font-size:12px;color:var(--muted)" id="smsHint" hidden>🔔 SMS yuborish uchun Sms sahifasida (Sozlamalar → SMS) Eskiz.uz email va parolni kiriting.</div>
     <div class="modal-actions">
       <button class="btn btn-outline" onclick="closeModal()">Bekor</button>
       <button class="btn btn-primary" id="saveAnnBtn">Yuborish</button>
     </div>
   `);
+  $('#ann_sms').addEventListener('change', () => {
+    $('#smsHint').hidden = !$('#ann_sms').checked;
+  });
   $('#saveAnnBtn').addEventListener('click', async () => {
     const title = $('#ann_title').value.trim();
     const text = $('#ann_text').value.trim();
     if (!title || !text) return toast('Sarlavha va matnni kiriting', 'error');
+    const btn = $('#saveAnnBtn');
+    btn.disabled = true; btn.textContent = 'Yuborilmoqda...';
     try {
-      await api('/api/announcements', { method: 'POST', body: { title, text, send_tg: $('#ann_tg').checked } });
-      toast('E\'lon joylandi'); closeModal(); renderAnnouncements();
-    } catch (e) { toast(e.message, 'error'); }
+      const r = await api('/api/announcements', { method: 'POST', body: { title, text, send_tg: $('#ann_tg').checked, send_sms: $('#ann_sms').checked } });
+      closeModal();
+      const extra = r.smsSent != null ? ` (+${r.smsSent} SMS)` : '';
+      toast(`E'lon joylandi${extra}`); renderAnnouncements();
+    } catch (e) {
+      if (e.message.includes('SMS')) { $('#ann_sms').checked = false; $('#smsHint').hidden = true; toast(e.message, 'error'); closeModal(); }
+      else toast(e.message, 'error');
+      btn.disabled = false; btn.textContent = 'Yuborish';
+    }
   });
 }
 
@@ -2068,8 +3184,14 @@ async function renderParentDashboard() {
   const recent = d.recentPayments.map(p => `
     <tr><td><div class="cell-name">${esc(p.child_name)}</div></td><td class="money">${fmtMoney(p.amount)}</td><td>${pMonthName(p.month)}</td><td>${esc(p.method)}</td><td>${fmtDate(p.paid_date)}</td><td>${p.receipt_no ? '🧾 ' + esc(p.receipt_no) : ''}</td></tr>`).join('');
 
-  const notifs = d.notifications.map(n => `
-    <div class="notif-item"><div class="notif-head"><b>${n.type === 'payment' ? '💰 To\'lov' : '📋 Xabarnoma'}</b><span class="cell-sub">${fmtDate(n.created_at)}</span></div><div class="n-msg">${esc(n.message)}</div></div>`).join('');
+  const unreadNotifs = d.pnotifs.filter(n => !n.read);
+  const notifs = unreadNotifs.length === 0
+    ? '<div class="cell-sub" style="padding:12px;text-align:center">Yangi xabar yo\'q ✅</div>'
+    : unreadNotifs.map(n => `
+    <div class="notif-item notif-new" id="dpntf-${n.id}" style="cursor:pointer" onclick="parentNotifRead(${n.id})">
+      <div class="notif-head"><b>${n.type === 'to\'lov' ? '💰 To\'lov' : n.type === 'e\'lon' ? '📢 E\'lon' : '🔔 Xabar'}</b><span class="cell-sub">${fmtDateTime(n.created_at)}</span></div>
+      <div class="n-msg">${esc(n.message)}</div>
+    </div>`).join('');
 
   const anns = d.announcements || [];
   const annCard = anns.map(a => `
@@ -2105,7 +3227,7 @@ async function renderParentDashboard() {
         </table></div>
       </div>
       <div class="card">
-        <div class="card-head"><h3>🔔 Xabarlar</h3></div>
+        <div class="card-head"><h3>🔔 Xabarlar</h3>${d.unreadPnotifs > 0 ? `<span class="badge red">${d.unreadPnotifs} yangi</span>` : ''}<span class="spacer"></span><button class="btn btn-outline" onclick="go('p_notif')">Barchasi</button></div>
         ${notifs || '<div class="empty-state">Xabarlar yo\'q</div>'}
       </div>
     </div>
@@ -2125,6 +3247,127 @@ async function renderParentAnnouncements() {
   $('#content').innerHTML = `
     <div class="toolbar"><span class="badge purple">${(announcements || []).length} ta</span><span class="spacer"></span></div>
     ${list || '<div class="empty-state"><span class="emoji">📭</span>E\'lonlar yo\'q</div>'}`;
+}
+
+async function renderParentNotifications() {
+  const notifs = await api('/api/parent/notifs');
+  const unread = notifs.filter(n => !n.read).length;
+  const iconFor = (t) => t === 'to\'lov' ? '💰' : t === 'e\'lon' ? '📢' : t === 'davomat' ? '📅' : '🔔';
+  const list = (notifs || []).map(n => `
+    <div class="card notif-card ${n.read ? 'is-read' : 'is-unread'}" id="pntf-${n.id}" onclick="parentNotifRead(${n.id})">
+      <div class="card-head" style="cursor:pointer">
+        <span class="notif-ico">${iconFor(n.type)}</span>
+        <b style="font-size:15px">${esc(n.title || 'Xabar')}</b>
+        <span class="spacer"></span>
+        ${n.read ? '<span class="badge gray">O\'qilgan</span>' : '<span class="badge red">Yangi</span>'}
+        <span style="font-size:12px;color:var(--muted)">${fmtDateTime(n.created_at)}</span>
+      </div>
+      <p style="white-space:pre-wrap;margin-top:8px;margin-bottom:0;font-size:14px">${esc(n.message)}</p>
+    </div>`).join('');
+  $('#content').innerHTML = `
+    <div class="card">
+      <div class="toolbar">
+        <h3 style="margin:0">🔔 Xabarlarim</h3>
+        <span class="spacer" style="flex:1"></span>
+        <span class="badge purple">${notifs.length} ta</span>
+        ${unread > 0 ? `<button class="btn btn-outline" onclick="markAllParentNotifs()">Hammasini o'qildi</button>` : ''}
+      </div>
+      ${list || '<div class="empty-state"><span class="emoji">📭</span>Xabarlar yo\'q</div>'}
+    </div>`;
+}
+
+window.parentNotifRead = async (id) => {
+  const el = document.getElementById('pntf-' + id) || document.getElementById('dpntf-' + id);
+  try { await api('/api/parent/notifs/read', { method: 'POST', body: { id } }); } catch (e) {}
+  if (el) {
+    el.classList.add('notif-dismiss');
+    setTimeout(() => { el.remove(); refreshParentNotifBadge(); }, 450);
+    if (el.id.startsWith('dpntf')) {
+      const container = el.parentElement;
+      setTimeout(() => {
+        if (container && container.querySelectorAll('.notif-item').length <= 1) {
+          container.innerHTML = '<div class="cell-sub" style="padding:12px;text-align:center">Yangi xabar yo\'q ✅</div>';
+        }
+      }, 500);
+    }
+  }
+  refreshParentNotifBadge();
+};
+
+async function renderParentGallery() {
+  const d = await api('/api/parent/gallery');
+  const cards = (d || []).map(p => `
+    <div class="g-item">
+      <div class="g-img"><img src="${galleryImg(p.image)}" alt="${esc(p.title)}" onclick="lightbox('${galleryImg(p.image)}')"></div>
+      <div class="g-info">
+        <div class="cell-name">${esc(p.title || '')}</div>
+        ${p.group_name ? `<div class="cell-sub">${esc(p.group_name)}</div>` : ''}
+        <div class="cell-sub">${fmtDate(p.created_at)}</div>
+      </div>
+    </div>`).join('');
+  $('#content').innerHTML = `
+    <div class="card">
+      <div class="toolbar">
+        <h3 style="margin:0">📷 Farzandim galereyasi</h3>
+        <span class="spacer" style="flex:1"></span>
+        <span class="badge purple">${(d || []).length} ta rasm</span>
+      </div>
+      ${cards ? `<div class="g-grid">${cards}</div>` : '<div class="empty-state"><span class="emoji">📷</span>Hozircha rasmlar yo\'q</div>'}
+    </div>`;
+}
+
+async function renderParentJournal() {
+  const d = await api('/api/parent/journal');
+  const rows = (d && d.rows) || [];
+  const groups = (d && d.groups) || [];
+  const list = rows.map(j => `
+    <div class="card" style="margin-bottom:12px">
+      <div class="card-head">
+        <b>📅${fmtDate(j.journal_date)}</b>
+        <span class="spacer"></span>
+        ${j.group_name ? `<span class="badge purple">${esc(j.group_name)}</span>` : ''}
+      </div>
+      ${j.title ? `<div style="margin-top:8px"><b>${esc(j.title)}</b></div>` : ''}
+      ${j.activities ? `<div style="white-space:pre-wrap;margin-top:4px;font-size:14px">${esc(j.activities)}</div>` : ''}
+      ${j.summary ? `<div style="white-space:pre-wrap;margin-top:6px;font-size:13px;color:var(--muted)">${esc(j.summary)}</div>` : ''}
+    </div>`).join('');
+  $('#content').innerHTML = `
+    <div class="card">
+      <div class="toolbar">
+        <h3 style="margin:0">📔 Farzandimning kunlik hisoboti</h3>
+        <span class="spacer" style="flex:1"></span>
+        ${groups.map(g => `<span class="badge purple" style="margin-left:4px">${esc(g.full_name)}</span>`).join('')}
+      </div>
+      <div style="margin-top:6px;font-size:13px;color:var(--muted)">Tarbiyachi har kuni farzandingizning mashg'ulot va yutuqlarini shu yerga yozib boradi.</div>
+      ${list || '<div class="empty-state"><span class="emoji">📔</span>Hozircha kunlik hisobot yo\'q</div>'}
+    </div>`;
+}
+
+window.markAllParentNotifs = async () => {
+  try { await api('/api/parent/notifs/read', { method: 'POST', body: { all: true } }); } catch (e) {}
+  document.querySelectorAll('.notif-card.is-unread').forEach(el => {
+    el.classList.add('notif-dismiss');
+    setTimeout(() => { el.remove(); }, 450);
+  });
+  setTimeout(() => renderParentNotifications(), 460);
+};
+
+async function refreshParentNotifBadge() {
+  try {
+    const b = await api('/api/badges');
+    navBadges = { ...navBadges, ...b };
+    renderNav();
+  } catch (e) {}
+}
+
+function fmtDateTime(s) {
+  if (!s) return '';
+  const d = new Date(s.includes('T') ? s : s.replace(' ', 'T') + (s.length === 10 ? '' : 'Z'));
+  const dd = String(d.getDate()).padStart(2, '0');
+  const mo = String(d.getMonth() + 1).padStart(2, '0');
+  const hh = String(d.getHours()).padStart(2, '0');
+  const mi = String(d.getMinutes()).padStart(2, '0');
+  return dd + '.' + mo + ' ' + hh + ':' + mi;
 }
 
 async function renderParentChildren() {
@@ -2206,39 +3449,6 @@ async function renderParentPayments() {
   $('#pPayMonth').addEventListener('change', e => { state.ppayMonth = e.target.value; renderParentPayments(); });
 }
 
-async function renderParentPayRequest() {
-  const { children } = await api('/api/parent/me');
-  const active = children.filter(c => c.status === 'active');
-  const opts = active.map(c => `<option value="${c.id}" data-fee="${c.effective_fee || 0}">${esc(c.full_name)} ${c.group_name ? '· ' + esc(c.group_name) : ''} (${fmtMoney(c.effective_fee || 0)})</option>`).join('');
-  $('#content').innerHTML = `
-    <div class="card" style="max-width:520px">
-      <div class="card-head"><h3>💰 To\'lov so\'rashi</h3></div>
-      <p style="color:var(--muted);font-size:13px;margin-bottom:12px">So\'rov yuborganingizdan so\'ng administrator tasdiqlaydi va sizga chek (kvitansiya) beriladi.</p>
-      <div class="field"><span>Bola *</span><select id="pr_child">${opts || '<option value="">Faol bola yo\'q</option>'}</select></div>
-      <div class="field"><span>Summa (so\'m) *</span><input id="pr_amount" type="number" min="1" placeholder="Masalan: 250000"></div>
-      <div class="modal-actions">
-        <button class="btn btn-primary" id="prSendBtn">Yuborish</button>
-      </div>
-    </div>`;
-  const fillAmount = () => {
-    const sel = $('#pr_child');
-    const opt = sel.selectedOptions && sel.selectedOptions[0];
-    if (opt && opt.dataset.fee) $('#pr_amount').value = opt.dataset.fee;
-  };
-  $('#pr_child').addEventListener('change', fillAmount);
-  fillAmount();
-  $('#prSendBtn').addEventListener('click', async () => {
-    const child_id = $('#pr_child').value;
-    const amount = Number($('#pr_amount').value);
-    if (!child_id) return toast('Bolani tanlang', 'error');
-    if (!amount || amount <= 0) return toast('Summani kiriting', 'error');
-    try {
-      await api('/api/parent/payments/request', { method: 'POST', body: { child_id, amount } });
-      toast('So\'rov yuborildi ✅'); go('p_requests');
-    } catch (e) { toast(e.message, 'error'); }
-  });
-}
-
 async function renderParentRequests() {
   const rows = await api('/api/parent/requests');
   const list = rows.map(r => `
@@ -2255,7 +3465,7 @@ async function renderParentRequests() {
     </div>`).join('');
   $('#content').innerHTML = `
     <div class="card">
-      <div class="card-head"><h3>📨 Arizalarim</h3><span class="spacer"></span><button class="btn btn-primary" onclick="go('p_request')">${ICONS.plus}Yangi so\'rov</button></div>
+      <div class="card-head"><h3>📨 Arizalarim</h3><span class="spacer"></span></div>
       <div class="card-grid" style="grid-template-columns:1fr">
         ${list || '<div class="empty-state">Arizalar yo\'q</div>'}
       </div>
@@ -2268,6 +3478,816 @@ window.setReqStatus = async (id, status) => {
     toast('Holat yangilandi'); renderRequests();
   } catch (e) { toast(e.message, 'error'); }
 };
+
+/* ================= SCHEDULES ================= */
+
+async function renderSchedules() {
+  const [schedules, teachers] = await Promise.all([api('/api/schedules'), api('/api/teachers')]);
+  const DAYS = ['Yakshanba','Dushanba','Seshanba','Chorshanba','Payshanba','Juma','Shanba'];
+  let rows = '';
+  for (const s of schedules) {
+    rows += `<tr>
+      <td>${esc(s.teacher_name || '—')}</td>
+      <td>${DAYS[s.day_of_week] || s.day_of_week}</td>
+      <td>${esc(s.start_time)} — ${esc(s.end_time)}</td>
+      <td>${esc(s.subject || '—')}</td>
+      <td>
+        <button class="btn btn-sm btn-outline" onclick="editSchedule(${s.id})">✏️</button>
+        <button class="btn btn-sm btn-danger" onclick="deleteSchedule(${s.id})">🗑</button>
+      </td>
+    </tr>`;
+  }
+  const teacherOpts = teachers.map(t => `<option value="${t.id}">${esc(t.full_name)}</option>`).join('');
+  window.addSchedule = () => {
+    openModal('Yangi jadval', `
+      <label class="field"><span>Tarbiyachi</span><select id="schTeacher">${teacherOpts}</select></label>
+      <label class="field"><span>Kun</span><select id="schDay">${DAYS.map((d,i) => `<option value="${i}">${d}</option>`).join('')}</select></label>
+      <label class="field"><span>Boshlanish</span><input type="time" id="schStart" value="08:00"></label>
+      <label class="field"><span>Tugash</span><input type="time" id="schEnd" value="17:00"></label>
+      <label class="field"><span>Mavzu</span><input type="text" id="schSubject" placeholder="Majburiy emas"></label>
+      <button class="btn btn-primary btn-block" onclick="saveSchedule()">Saqlash</button>
+    `);
+  };
+  window.saveSchedule = async () => {
+    try {
+      await api('/api/schedules', { method: 'POST', body: {
+        teacher_id: $('#schTeacher').value, day_of_week: $('#schDay').value,
+        start_time: $('#schStart').value, end_time: $('#schEnd').value, subject: $('#schSubject').value
+      }});
+      closeModal(); toast('Jadval qo\'shildi'); renderSchedules();
+    } catch (e) { toast(e.message, 'error'); }
+  };
+  window.editSchedule = async (id) => {
+    const s = schedules.find(x => x.id === id);
+    if (!s) return;
+    openModal('Jadvalni tahrirlash', `
+      <label class="field"><span>Tarbiyachi</span><select id="schTeacher">${teacherOpts.map(o => o.replace('value="'+s.teacher_id+'"', 'value="'+s.teacher_id+'" selected'))}</select></label>
+      <label class="field"><span>Kun</span><select id="schDay">${DAYS.map((d,i) => `<option value="${i}" ${i===s.day_of_week?'selected':''}>${d}</option>`).join('')}</select></label>
+      <label class="field"><span>Boshlanish</span><input type="time" id="schStart" value="${s.start_time}"></label>
+      <label class="field"><span>Tugash</span><input type="time" id="schEnd" value="${s.end_time}"></label>
+      <label class="field"><span>Mavzu</span><input type="text" id="schSubject" value="${esc(s.subject || '')}"></label>
+      <button class="btn btn-primary btn-block" onclick="updateSchedule(${id})">Yangilash</button>
+    `);
+  };
+  window.updateSchedule = async (id) => {
+    try {
+      await api('/api/schedules/' + id, { method: 'PUT', body: {
+        teacher_id: $('#schTeacher').value, day_of_week: $('#schDay').value,
+        start_time: $('#schStart').value, end_time: $('#schEnd').value, subject: $('#schSubject').value
+      }});
+      closeModal(); toast('Jadval yangilandi'); renderSchedules();
+    } catch (e) { toast(e.message, 'error'); }
+  };
+  window.deleteSchedule = async (id) => {
+    if (!confirm('O\'chirmoqchimisiz?')) return;
+    try { await api('/api/schedules/' + id, { method: 'DELETE' }); toast('O\'chirildi'); renderSchedules(); } catch (e) { toast(e.message, 'error'); }
+  };
+  $('#content').innerHTML = `
+    <div class="card">
+      <div class="card-head"><h3>📅 Ish jadvali</h3><span class="spacer"></span><button class="btn btn-primary" onclick="addSchedule()">${ICONS.plus}Qo'shish</button></div>
+      <table class="table"><thead><tr><th>Tarbiyachi</th><th>Kun</th><th>Vaqt</th><th>Mavzu</th><th>Amallar</th></tr></thead>
+      <tbody>${rows || '<tr><td colspan="5" class="empty-state">Jadval yo\'q</td></tr>'}</tbody></table>
+    </div>`;
+}
+
+/* ================= SALARY ================= */
+
+async function renderSalary() {
+  const sm = state.salaryMonth || monthStr();
+  const d = await api('/api/reports/salary?month=' + sm);
+  let rows = '';
+  for (const t of d.teachers) {
+    rows += `<tr>
+      <td><b>${esc(t.full_name)}</b></td>
+      <td>${esc(t.position)}</td>
+      <td>${fmtMoney(t.base_salary)}</td>
+      <td>${t.present_days}/${t.total_days}</td>
+      <td>${fmtMoney(t.bonus)}</td>
+      <td style="color:var(--danger)">${t.deduction ? '-' + fmtMoney(t.deduction) : '—'}</td>
+      <td><b style="color:var(--primary)">${fmtMoney(t.net_salary)}</b></td>
+    </tr>`;
+  }
+  $('#content').innerHTML = `
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap">
+      <h2 style="margin:0">💰 Oylik ish haqi</h2>
+      <input type="month" id="salaryMonth" class="field" style="width:auto;margin:0" value="${sm}">
+    </div>
+    <div class="card">
+      <div class="card-head"><h3>💰 ${esc(d.month)}</h3></div>
+      <table class="table"><thead><tr><th>FIO</th><th>Lavozim</th><th>Oylik</th><th>Keldi/Jami</th><th>Bonus</th><th>Usishi</th><th>Yakuniy</th></tr></thead>
+      <tbody>${rows}</tbody></table>
+      <div style="padding:16px;text-align:right;font-size:18px"><b>Jami: ${fmtMoney(d.totalNet)}</b></div>
+    </div>`;
+  $('#salaryMonth').addEventListener('change', (e) => { state.salaryMonth = e.target.value; renderSalary(); });
+}
+
+/* ================= MONITORING ================= */
+
+let monitorTimer = null;
+async function renderMonitoring() {
+  if (monitorTimer) clearInterval(monitorTimer);
+  const render = async () => {
+    try {
+    const d = await api('/api/monitoring');
+    const attPct = d.totalChildren > 0 ? Math.round(d.todayPresent / d.totalChildren * 100) : 0;
+    const payRows = d.latestPayments.map(p => `<tr><td>${esc(p.child_name)}</td><td>${fmtMoney(p.amount)}</td><td>${esc(p.paid_date)}</td></tr>`).join('');
+    const auditRows = d.latestAudit.map(a => `<tr><td>${esc(a.username)}</td><td>${esc(a.action)}</td><td>${esc(a.entity)}</td><td>${esc(a.detail?.slice(0,50) || '')}</td></tr>`).join('');
+    $('#content').innerHTML = `
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-icon" style="background:var(--primary-light)">👶</div><div class="stat-info"><div class="stat-val">${d.totalChildren}</div><div class="stat-label">Jami bolalar</div></div></div>
+        <div class="stat-card"><div class="stat-icon" style="background:#dcfce7">✅</div><div class="stat-info"><div class="stat-val">${d.todayPresent}</div><div class="stat-label">Bugun keldi</div></div></div>
+        <div class="stat-card"><div class="stat-icon" style="background:#fef3c7">⏰</div><div class="stat-info"><div class="stat-val">${d.todayLate}</div><div class="stat-label">Kech keldi</div></div></div>
+        <div class="stat-card"><div class="stat-icon" style="background:#fecaca">❌</div><div class="stat-info"><div class="stat-val">${d.todayAbsent}</div><div class="stat-label">Kelmadi</div></div></div>
+        <div class="stat-card"><div class="stat-icon" style="background:#e0e7ff">👨‍🏫</div><div class="stat-info"><div class="stat-val">${d.totalTeachers}</div><div class="stat-label">Tarbiyachilar</div></div></div>
+        <div class="stat-card"><div class="stat-icon" style="background:#fce7f3">🌐</div><div class="stat-info"><div class="stat-val">${d.onlineUsers}</div><div class="stat-label">Online</div></div></div>
+        <div class="stat-card"><div class="stat-icon" style="background:#dcfce7">💰</div><div class="stat-info"><div class="stat-val">${fmtMoney(d.monthIncome)}</div><div class="stat-label">Oylik daromad</div></div></div>
+        <div class="stat-card"><div class="stat-icon" style="background:#fecaca">💸</div><div class="stat-info"><div class="stat-val">${fmtMoney(d.monthExpense)}</div><div class="stat-label">Oylik xarajat</div></div></div>
+      </div>
+      <div class="card-grid" style="grid-template-columns:1fr 1fr;margin-top:16px">
+        <div class="card">
+          <div class="card-head"><h3>💳 So'nggi to'lovlar</h3></div>
+          <table class="table"><thead><tr><th>Bola</th><th>Summa</th><th>Sana</th></tr></thead><tbody>${payRows || '<tr><td colspan="3" class="empty-state">Yo\'q</td></tr>'}</tbody></table>
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>📋 So'nggi amallar</h3></div>
+          <table class="table"><thead><tr><th>Foydalanuvchi</th><th>Amal</th><th>Ob'ekt</th><th>Tafsilot</th></tr></thead><tbody>${auditRows || '<tr><td colspan="4" class="empty-state">Yo\'q</td></tr>'}</tbody></table>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:10px;color:var(--muted);font-size:12px">⏱ Yangilanish: ${new Date(d.serverTime).toLocaleTimeString('uz-UZ')} | Davomat: <b>${attPct}%</b></div>`;
+    } catch (e) { console.error('Monitor error:', e); }
+  };
+  await render();
+  monitorTimer = setInterval(render, 30000);
+}
+
+/* ================= SMS ================= */
+
+async function renderSms() {
+  const [parents, log] = await Promise.all([api('/api/parents'), api('/api/sms/log')]);
+  const parentData = parents.map(p => ({ id: p.id, name: p.full_name, phone: p.phone || '' }));
+  const parentOpts = parentData.map(p => `<option value="${p.id}">${esc(p.name)} (${esc(p.phone)})</option>`).join('');
+  const logRows = log.map(l => `<tr><td>${esc(l.phone)}</td><td>${esc(l.message?.slice(0,60) || '')}</td><td><span class="badge badge-${l.status === 'xato' ? 'danger' : 'success'}">${esc(l.status)}</span></td><td>${esc(l.created_at)}</td></tr>`).join('');
+
+  window.smsSelectParent = () => {
+    const sel = $('#smsParent');
+    if (!sel) return;
+    const id = sel.value;
+    if (!id) { $('#smsPhone').value = ''; return; }
+    const p = parentData.find(x => String(x.id) === String(id));
+    if (p) $('#smsPhone').value = p.phone;
+  };
+
+  window.saveParentPhone = async () => {
+    const sel = $('#smsParent');
+    const id = sel ? sel.value : '';
+    const phone = $('#smsPhone').value.trim();
+    if (!id) return toast('Avval ota-onani tanlang', 'error');
+    if (!phone) return toast('Telefon raqamini kiriting', 'error');
+    const p = parentData.find(x => String(x.id) === String(id));
+    if (!p) return toast('Ota-ona topilmadi', 'error');
+    try {
+      await api('/api/parents/' + id, { method: 'PUT', body: { full_name: p.name, phone, email: '', address: '' } });
+      p.phone = phone;
+      const opt = sel.querySelector(`option[value="${id}"]`);
+      if (opt) opt.textContent = p.name + ' (' + phone + ')';
+      toast("Raqam saqlandi ✅");
+    } catch (e) { toast(e.message, 'error'); }
+  };
+
+  window.sendSms = async () => {
+    const phone = $('#smsPhone').value.trim();
+    const msg = $('#smsMsg').value.trim();
+    if (!phone || !msg) return toast('Telefon va xabar kiriting', 'error');
+    try {
+      await api('/api/sms/send', { method: 'POST', body: { phone, message: msg } });
+      toast('SMS yuborildi ✅'); renderSms();
+    } catch (e) { toast(e.message, 'error'); }
+  };
+
+  $('#content').innerHTML = `
+    <div class="card-grid" style="grid-template-columns:1.3fr 1fr">
+      <div class="card">
+        <div class="card-head"><h3>📤 SMS Yuborish</h3></div>
+        <label class="field"><span>Ota-ona</span>
+          <select id="smsParent" onchange="smsSelectParent()"><option value="">— Tanlang —</option>${parentOpts}</select>
+        </label>
+        <label class="field"><span>Telefon raqami</span>
+          <div style="display:flex;gap:8px;align-items:center">
+            <input type="tel" id="smsPhone" placeholder="+998901234567" style="flex:1">
+            <button class="btn btn-outline" onclick="saveParentPhone()" style="white-space:nowrap;font-size:12px">💾 Saqlash</button>
+          </div>
+          <div style="font-size:11px;color:var(--muted);margin-top:4px">Raqamni o'zgartirsangiz, "Saqlash" tugmasini bosing — ota-onaga yangilanadi</div>
+        </label>
+        <label class="field"><span>Xabar matni</span><textarea id="smsMsg" rows="5" placeholder="SMS xabar matnini kiriting..."></textarea></label>
+        <button class="btn btn-primary btn-block" onclick="sendSms()">📨 SMS Yuborish</button>
+      </div>
+      <div class="card">
+        <div class="card-head"><h3>📜 SMS Tarixi</h3></div>
+        <table class="table"><thead><tr><th>Telefon</th><th>Xabar</th><th>Holat</th><th>Sana</th></tr></thead>
+        <tbody>${logRows || '<tr><td colspan="4" class="empty-state">SMS yo\'q</td></tr>'}</tbody></table>
+      </div>
+    </div>`;
+}
+
+/* ================= BIZNES ================= */
+
+async function renderBusiness() {
+  const cm = monthStr();
+  let selectedMonth = cm;
+
+  async function loadReport(m) {
+    selectedMonth = m;
+    const d = await api('/api/business?month=' + m);
+    const C = '#6366f1', G = '#10b981', R = '#ef4444', Y = '#f59e0b', B = '#3b82f6', P = '#ec4899';
+
+    /* Oy tanlash */
+    const months = [];
+    const now = new Date();
+    for (let i = 11; i >= 0; i--) {
+      const dd = new Date(now.getFullYear(), now.getMonth() - i, 1);
+      months.push(dd.toISOString().slice(0, 7));
+    }
+
+    const monthOpts = months.map(m => `<option value="${m}" ${m === selectedMonth ? 'selected' : ''}>${monthName(m)}</option>`).join('');
+
+    /* METHOD */
+    const methodLabels = { karta: '💳 Karta', click: '🟩 Click', payme: '🔵 Payme', paynet: '🟣 Paynet', naqd: '💵 Naqd', bank: '🏦 Bank', telegram: '📱 Telegram' };
+    const methodHtml = d.methodStats.map(m => `<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)"><span>${methodLabels[m.method] || m.method}</span><b>${fmtMoney(m.total)} <small style="color:var(--muted)">(${m.cnt})</small></b></div>`).join('');
+
+    /* CATEGORY */
+    const catColors = ['#6366f1','#10b981','#f59e0b','#ec4899','#3b82f6','#ef4444','#8b5cf6','#14b8a6'];
+    const catHtml = d.expenseByCategory.map((c, i) => `
+      <div style="display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border)">
+        <div style="width:12px;height:12px;border-radius:3px;background:${catColors[i % catColors.length]};flex-shrink:0"></div>
+        <div style="flex:1"><div style="font-weight:600">${esc(c.category)}</div><small style="color:var(--muted)">${c.count} ta</small></div>
+        <div style="text-align:right"><b>${fmtMoney(c.total)}</b></div>
+      </div>
+    `).join('');
+
+    /* GROUPS */
+    const groupHtml = d.groupStats.map(g => `
+      <div style="padding:10px 0;border-bottom:1px solid var(--border)">
+        <div style="display:flex;justify-content:space-between;margin-bottom:4px"><b>${esc(g.name)}</b><span>${g.count} bola</span></div>
+        <div style="display:flex;gap:16px;font-size:13px;color:var(--muted)">
+          <span>To'lov: ${fmtMoney(g.fee)}</span>
+          <span>To'langan: <b style="color:var(--success)">${fmtMoney(g.paid)}</b></span>
+          <span>Qarz: <b style="color:var(--danger)">${fmtMoney(g.due)}</b></span>
+        </div>
+        <div style="background:var(--border);border-radius:6px;height:6px;margin-top:6px;overflow:hidden">
+          <div style="background:var(--success);height:100%;width:${g.rate}%;border-radius:6px"></div>
+        </div>
+      </div>
+    `).join('');
+
+    /* DEBTORS */
+    const debtHtml = d.debtors.length ? d.debtors.slice(0, 50).map(c => `
+      <tr>
+        <td><input type="checkbox" class="debt-chk" value="${c.id}" data-name="${esc(c.name)}" data-parent="${esc(c.parent_name || '')}" data-phone="${esc(c.parent_phone || '')}" data-due="${c.due}"></td>
+        <td><b>${esc(c.name)}</b></td><td>${esc(c.group)}</td>
+        <td>${esc(c.parent_name || '—')} ${c.parent_phone ? `<small style="color:var(--muted)">${esc(c.parent_phone)}</small>` : ''}</td>
+        <td>${fmtMoney(c.fee)}</td><td style="color:var(--success)">${fmtMoney(c.paid)}</td>
+        <td><b style="color:var(--danger)">${fmtMoney(c.due)}</b></td>
+      </tr>
+    `).join('') : `<tr><td colspan="7" style="text-align:center;padding:20px;color:var(--success)">✅ Qarzdorlar yo'q!</td></tr>`;
+
+    /* CASHBOOK */
+    const cashHtml = d.cashbook.map(e => `
+      <tr>
+        <td>${esc(e.date)}</td>
+        <td>${esc(e.desc)}</td>
+        <td style="color:${e.type === 'kirim' ? 'var(--success)' : 'var(--danger)'}">${e.type === 'kirim' ? '+' : '-'}${fmtMoney(e.amount)}</td>
+        <td><b>${fmtMoney(e.balance)}</b></td>
+      </tr>
+    `).join('') || `<tr><td colspan="4" class="empty-state">Ma'lumot yo'q</td></tr>`;
+
+    /* TEACHERS */
+    const teacherHtml = d.teachers.map(te => `
+      <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--border)">
+        <div><b>${esc(te.name)}</b><br><small style="color:var(--muted)">${esc(te.position)} • ${esc(te.group)}</small></div>
+        <b>${fmtMoney(te.salary)}</b>
+      </div>
+    `).join('');
+
+    $('#content').innerHTML = `
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap">
+        <h2 style="margin:0">📊 ${t('businessTitle')} — ${monthName(selectedMonth)}</h2>
+        <select id="bizMonth" class="field" style="width:auto;margin:0;padding:8px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--card);color:var(--text)">${monthOpts}</select>
+        <button class="btn btn-primary btn-sm" onclick="window._bizExport()">📥 Excel</button>
+        <button class="btn btn-primary btn-sm" style="background:#0ea5e9;border-color:#0ea5e9" onclick="renderYearlyReport()">📅 Yillik hisobot</button>
+        <button class="btn btn-outline btn-sm" onclick="window.print()">🖨️ ${t('print')}</button>
+      </div>
+
+      <!-- KARTOCHKALAR -->
+      <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))">
+        <div class="stat-card" style="border-left:4px solid ${G}"><div class="stat-icon" style="background:#dcfce7">👶</div><div class="stat-info"><div class="stat-val">${d.totalChildren}</div><div class="stat-label">Jami bolalar</div></div></div>
+        <div class="stat-card" style="border-left:4px solid ${C}"><div class="stat-icon" style="background:#eef2ff">💰</div><div class="stat-info"><div class="stat-val">${fmtMoney(d.totalFee)}</div><div class="stat-label">Kutilgan daromad</div></div></div>
+        <div class="stat-card" style="border-left:4px solid ${G}"><div class="stat-icon" style="background:#dcfce7">✅</div><div class="stat-info"><div class="stat-val">${fmtMoney(d.totalPaid)}</div><div class="stat-label">${t('totalIncome')}</div></div></div>
+        <div class="stat-card" style="border-left:4px solid ${R}"><div class="stat-icon" style="background:#fecaca">🚫</div><div class="stat-info"><div class="stat-val">${fmtMoney(d.totalDue)}</div><div class="stat-label">Qarz</div></div></div>
+        <div class="stat-card" style="border-left:4px solid ${Y}"><div class="stat-icon" style="background:#fef3c7">📊</div><div class="stat-info"><div class="stat-val">${d.collectionRate}%</div><div class="stat-label">${t('collectionRate')}</div></div></div>
+        <div class="stat-card" style="border-left:4px solid ${R}"><div class="stat-icon" style="background:#fecaca">💸</div><div class="stat-info"><div class="stat-val">${fmtMoney(d.totalExpense)}</div><div class="stat-label">${t('totalExpense')}</div></div></div>
+        <div class="stat-card" style="border-left:4px solid ${G}"><div class="stat-icon" style="background:#dcfce7">📈</div><div class="stat-info"><div class="stat-val">${fmtMoney(d.netProfit)}</div><div class="stat-label">${t('netProfit')}</div></div></div>
+        <div class="stat-card" style="border-left:4px solid ${P}"><div class="stat-icon" style="background:#fce7f3">🏢</div><div class="stat-info"><div class="stat-val">${fmtMoney(d.netAfterSalary)}</div><div class="stat-label">Ish haqidan keyin</div></div></div>
+      </div>
+
+      <!-- KASSA (NAQD / BANK) BALANSI -->
+      <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr));margin-top:16px">
+        <div class="stat-card" style="border-left:4px solid var(--success);background:#f0fdf4"><div class="stat-icon" style="background:#dcfce7">💵</div><div class="stat-info"><div class="stat-val">${fmtMoney(d.kassa ? d.kassa.naqd : 0)}</div><div class="stat-label">💰 Naqd kassa</div></div></div>
+        <div class="stat-card" style="border-left:4px solid var(--info);background:#eff6ff"><div class="stat-icon" style="background:#dbeafe">🏦</div><div class="stat-info"><div class="stat-val">${fmtMoney(d.kassa ? d.kassa.bank : 0)}</div><div class="stat-label">🏦 Bank hisobi</div></div></div>
+        <div class="stat-card" style="border-left:4px solid var(--success)"><div class="stat-icon" style="background:#dcfce7">⬇️</div><div class="stat-info"><div class="stat-val">${fmtMoney(d.kassa ? d.kassa.monthIn : 0)}</div><div class="stat-label">Bu oy kirim</div></div></div>
+        <div class="stat-card" style="border-left:4px solid var(--danger)"><div class="stat-icon" style="background:#fee2e2">⬆️</div><div class="stat-info"><div class="stat-val">${fmtMoney(d.kassa ? d.kassa.monthOut : 0)}</div><div class="stat-label">Bu oy chiqim</div></div></div>
+      </div>
+
+      <!-- TO'LOV STATUSI -->
+      <div class="stats-grid" style="grid-template-columns:repeat(3,1fr);margin-top:16px">
+        <div class="stat-card" style="text-align:center"><div style="font-size:28px;font-weight:800;color:var(--success)">${d.paidChildren}</div><div style="font-size:13px;color:var(--muted)">✅ To'liq to'langan</div></div>
+        <div class="stat-card" style="text-align:center"><div style="font-size:28px;font-weight:800;color:var(--warning)">${d.partialChildren}</div><div style="font-size:13px;color:var(--muted)">⚠️ Qisman to'langan</div></div>
+        <div class="stat-card" style="text-align:center"><div style="font-size:28px;font-weight:800;color:var(--danger)">${d.unpaidChildren}</div><div style="font-size:13px;color:var(--muted)">❌ To'lanmagan</div></div>
+      </div>
+
+      <!-- DAVOMAT -->
+      <div class="card" style="margin-top:16px">
+        <div class="card-head"><h3>📋 Davomat — ${d.attRate}%</h3></div>
+        <div class="stats-grid" style="grid-template-columns:repeat(3,1fr);padding:0 18px 18px">
+          <div style="text-align:center"><div style="font-size:24px;font-weight:800;color:var(--success)">${d.attStats.present}</div><div style="font-size:13px">✅ Keldi</div></div>
+          <div style="text-align:center"><div style="font-size:24px;font-weight:800;color:var(--warning)">${d.attStats.late}</div><div style="font-size:13px">⏰ Kechikdi</div></div>
+          <div style="text-align:center"><div style="font-size:24px;font-weight:800;color:var(--danger)">${d.attStats.absent}</div><div style="font-size:13px">❌ Kelmadi</div></div>
+        </div>
+      </div>
+
+      <!-- 2 USTUNLI: GURUHLAR + TO'LOV USULLARI -->
+      <div class="card-grid" style="grid-template-columns:1fr 1fr;margin-top:16px">
+        <div class="card">
+          <div class="card-head"><h3>🏫 Guruhlar bo'yicha</h3></div>
+          ${groupHtml}
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>💳 To'lov usullari</h3></div>
+          ${methodHtml || '<div style="padding:18px;text-align:center;color:var(--muted)">Ma\'lumot yo\'q</div>'}
+        </div>
+      </div>
+
+      <!-- 2 USTUNLI: XARAJAT + O'QITUVCHILAR -->
+      <div class="card-grid" style="grid-template-columns:1fr 1fr;margin-top:16px">
+        <div class="card">
+          <div class="card-head"><h3>💸 ${t('expenseCategories')} — ${fmtMoney(d.totalExpense)}</h3></div>
+          ${catHtml || '<div style="padding:18px;text-align:center;color:var(--muted)">Xarajat yo\'q</div>'}
+        </div>
+        <div class="card">
+          <div class="card-head"><h3>👨‍🏫 O'qituvchilar — ${fmtMoney(d.totalSalary)}</h3></div>
+          ${teacherHtml || '<div style="padding:18px;text-align:center;color:var(--muted)">Yo\'q</div>'}
+        </div>
+      </div>
+
+      <!-- QARZDORLAR -->
+      <div class="card" style="margin-top:16px">
+        <div class="card-head"><h3>📋 Qarzdorlar (${d.debtors.length} ta)</h3>
+          <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+            <button class="btn btn-outline btn-sm" onclick="debtSelectAll(this)">Barchasini tanlash</button>
+            <select id="debtChannel" class="field" style="width:auto;margin:0;padding:7px 12px;border-radius:8px;border:1.5px solid var(--border);background:var(--card);color:var(--text)">
+              <option value="telegram">📱 Telegram</option>
+              <option value="sms">📨 SMS</option>
+              <option value="both">🔔 Ikkalasi</option>
+            </select>
+            <button class="btn btn-primary btn-sm" onclick="debtSendRemind('${selectedMonth}')">✉️ Eslatma yuborish</button>
+          </div>
+        </div>
+        <table class="table"><thead><tr><th style="width:32px"><input type="checkbox" onclick="debtToggleAll(this)"></th><th>Bola</th><th>Guruh</th><th>Ota-ona</th><th>To'lov</th><th>To'langan</th><th>Qarz</th></tr></thead>
+        <tbody>${debtHtml}</tbody></table>
+      </div>
+
+      <!-- KASSA KITOBI -->
+      <div class="card" style="margin-top:16px">
+        <div class="card-head"><h3>📒 ${t('cashbook')} — ${monthName(selectedMonth)}</h3>
+          <div style="display:flex;gap:16px;font-size:13px">
+            <span>Kirim: <b style="color:var(--success)">${fmtMoney(d.totalPaid)}</b></span>
+            <span>Chiqim: <b style="color:var(--danger)">${fmtMoney(d.totalExpense)}</b></span>
+            <span>Balance: <b>${fmtMoney(d.cashbook.length ? d.cashbook[d.cashbook.length - 1].balance : 0)}</b></span>
+          </div>
+        </div>
+        <table class="table"><thead><tr><th>Sana</th><th>Tavsif</th><th>Summa</th><th>Balance</th></tr></thead>
+        <tbody>${cashHtml}</tbody></table>
+      </div>
+
+      <!-- TREND -->
+      <div class="card" style="margin-top:16px">
+        <div class="card-head"><h3>📈 12 oylik daromad/xarajat/foyda trendi</h3></div>
+        <canvas id="bizTrendChart" height="250"></canvas>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <div class="card-head"><h3>💳 To'lov usullari — taqsimot</h3></div>
+        <canvas id="bizMethodPie" height="200"></canvas>
+      </div>
+    `;
+
+    /* TREND CHART (12 oy) */
+    if (d.trend && d.trend.length && typeof Chart !== 'undefined') {
+      const ctx = document.getElementById('bizTrendChart');
+      if (ctx) {
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: d.trend.map(t => monthName(t.month)),
+            datasets: [
+              { label: 'Daromad', data: d.trend.map(t => t.income), borderColor: G, backgroundColor: G + '22', fill: true, tension: 0.4 },
+              { label: 'Xarajat', data: d.trend.map(t => t.expense), borderColor: R, backgroundColor: R + '22', fill: true, tension: 0.4 },
+              { label: 'Foyda', data: d.trend.map(t => t.profit), borderColor: C, backgroundColor: C + '22', fill: true, tension: 0.4 }
+            ]
+          },
+          options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { position: 'bottom' } },
+            scales: { y: { beginAtZero: true } }
+          }
+        });
+      }
+    }
+
+    /* METHOD PIE */
+    if (d.methodStats && d.methodStats.length && typeof Chart !== 'undefined') {
+      const mp = document.getElementById('bizMethodPie');
+      if (mp) {
+        const pal = ['#6366f1', '#10b981', '#f59e0b', '#ec4899', '#3b82f6', '#ef4444', '#14b8a6'];
+        new Chart(mp, {
+          type: 'doughnut',
+          data: {
+            labels: d.methodStats.map(m => methodLabels[m.method] || m.method),
+            datasets: [{ data: d.methodStats.map(m => m.total), backgroundColor: d.methodStats.map((_, i) => pal[i % pal.length]) }]
+          },
+          options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: {
+              legend: { position: 'bottom' },
+              tooltip: { callbacks: { label: ctx2 => ctx2.label + ': ' + fmtMoney(ctx2.parsed) } }
+            }
+          }
+        });
+      }
+    }
+  }
+
+  /* Month select listener */
+  $('#content').innerHTML = loading();
+  await loadReport(cm);
+
+  setTimeout(() => {
+    const sel = document.getElementById('bizMonth');
+    if (sel) sel.addEventListener('change', (e) => { loadReport(e.target.value); });
+  }, 100);
+}
+
+/* ================= ARXIVLAR ================= */
+
+async function renderArchives() {
+  const cm = monthStr();
+  const archives = await api('/api/archives');
+
+  async function viewArchive(month) {
+    const d = await api('/api/archives/' + month);
+    const snap = d.snapshot || {};
+    const debtors = snap.debtors || [];
+    const exps = snap.expenses || [];
+
+    const debtHtml = debtors.length ? debtors.map(c => `<tr><td><b>${esc(c.name)}</b></td><td>${esc(c.group)}</td><td>${fmtMoney(c.fee)}</td><td style="color:var(--success)">${fmtMoney(c.paid)}</td><td><b style="color:var(--danger)">${fmtMoney(c.due)}</b></td></tr>`).join('') : `<tr><td colspan="5" style="text-align:center;padding:16px;color:var(--success)">✅ Qarzdor yo'q</td></tr>`;
+
+    const expHtml = exps.length ? exps.map(e => `<tr><td>${esc(e.date)}</td><td><b>${esc(e.name)}</b></td><td>${esc(e.category)}</td><td style="color:var(--danger)">${fmtMoney(e.amount)}</td></tr>`).join('') : `<tr><td colspan="4" style="text-align:center;padding:16px;color:var(--muted)">Xarajat yo'q</td></tr>`;
+
+    return `
+      <div class="card" style="margin-top:16px;border:2px solid var(--primary)">
+        <div class="card-head"><h3>📊 ${monthName(month)} — To'liq arxiv</h3>
+          <button class="btn btn-outline btn-sm" onclick="renderArchives()">⬅️ Orqaga</button>
+        </div>
+        <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(150px,1fr))">
+          <div class="stat-card" style="border-left:4px solid var(--primary)"><div class="stat-val">${d.total_children}</div><div class="stat-label">Bolalar</div></div>
+          <div class="stat-card" style="border-left:4px solid var(--success)"><div class="stat-val">${fmtMoney(d.total_paid)}</div><div class="stat-label">Daromad</div></div>
+          <div class="stat-card" style="border-left:4px solid var(--danger)"><div class="stat-val">${fmtMoney(d.total_expense)}</div><div class="stat-label">Xarajat</div></div>
+          <div class="stat-card" style="border-left:4px solid #6366f1"><div class="stat-val">${fmtMoney(d.total_paid - d.total_expense)}</div><div class="stat-label">Foyda</div></div>
+          <div class="stat-card" style="border-left:4px solid var(--warning)"><div class="stat-val">${fmtMoney(d.total_debt)}</div><div class="stat-label">Qarz</div></div>
+          <div class="stat-card" style="border-left:4px solid var(--info)"><div class="stat-val">${d.collection_rate}%</div><div class="stat-label">Yig'im</div></div>
+          <div class="stat-card" style="border-left:4px solid #8b5cf6"><div class="stat-val">${d.att_rate}%</div><div class="stat-label">Davomat</div></div>
+          <div class="stat-card" style="border-left:4px solid #14b8a6"><div class="stat-val">${fmtMoney(d.total_salary)}</div><div class="stat-label">Ish haqi</div></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <div class="card-head"><h3>📋 Qarzdorlar (${debtors.length} ta)</h3></div>
+        <table class="table"><thead><tr><th>Bola</th><th>Guruh</th><th>To'lov</th><th>To'langan</th><th>Qarz</th></tr></thead>
+        <tbody>${debtHtml}</tbody></table>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <div class="card-head"><h3>💸 Xarajatlar (${exps.length} ta) — ${fmtMoney(d.total_expense)}</h3></div>
+        <table class="table"><thead><tr><th>Sana</th><th>Nomi</th><th>Kategoriya</th><th>Summa</th></tr></thead>
+        <tbody>${expHtml}</tbody></table>
+      </div>
+    `;
+  }
+
+  if (archives.length === 0) {
+    $('#content').innerHTML = `
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap">
+        <h2 style="margin:0">📦 ${t('archivesTitle')}</h2>
+        <button class="btn btn-primary btn-sm" onclick="archiveCurrentMonth()">📦 ${t('archiveThisMonth')}</button>
+      </div>
+      <div class="card" style="text-align:center;padding:48px;color:var(--muted)">
+        <div style="font-size:48px;margin-bottom:12px">📦</div>
+        <p>Hali arxiv yo'q. Joriy oy arxivini yarating yoki avtomatik arxivni kuting (har oy 1-kuni).</p>
+      </div>`;
+    return;
+  }
+
+  const rows = archives.map(a => {
+    const profit = a.total_paid - a.total_expense;
+    return `
+      <tr style="cursor:pointer" onclick="viewArchivedMonth('${a.month}')">
+        <td><b style="font-size:15px">📅 ${monthName(a.month)}</b></td>
+        <td>${a.total_children} bola</td>
+        <td style="color:var(--success)">${fmtMoney(a.total_paid)}</td>
+        <td style="color:var(--danger)">${fmtMoney(a.total_expense)}</td>
+        <td><b style="color:${profit >= 0 ? 'var(--success)' : 'var(--danger)'}">${fmtMoney(profit)}</b></td>
+        <td style="color:var(--warning)">${fmtMoney(a.total_debt)}</td>
+        <td>${a.collection_rate}%</td>
+        <td><small style="color:var(--muted)">${a.created_at || ''}</small></td>
+      </tr>`;
+  }).join('');
+
+  $('#content').innerHTML = `
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap">
+      <h2 style="margin:0">📦 ${t('archivesTitle')}</h2>
+      <button class="btn btn-primary btn-sm" onclick="archiveCurrentMonth()">📦 ${t('archiveThisMonth')}</button>
+    </div>
+    <div class="card">
+      <table class="table">
+        <thead><tr><th>Oy</th><th>Bolalar</th><th>Daromad</th><th>Xarajat</th><th>Foyda</th><th>Qarz</th><th>Yig'im</th><th>Arxivlangan</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+    </div>`;
+
+  window.viewArchivedMonth = async (m) => {
+    const detail = await viewArchive(m);
+    $('#content').innerHTML = `
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap">
+        <h2 style="margin:0">📦 ${t('archivesTitle')}</h2>
+        <button class="btn btn-outline btn-sm" onclick="renderArchives()">⬅️ Orqaga</button>
+      </div>${detail}`;
+  };
+}
+
+window._bizExport = async () => {
+  try {
+    const m = ($('#bizMonth') && $('#bizMonth').value) || monthStr();
+    const d = await api('/api/business?month=' + m);
+    let csv = 'Hisobot,Month\nJami bolalar,' + d.totalChildren + '\nKutilgan,' + d.totalFee + '\nTo\'langan,' + d.totalPaid + '\nQarz,' + d.totalDue + '\nXarajat,' + d.totalExpense + '\nFoyda,' + d.netProfit + '\n\nBola,Fee,Paid,Due\n';
+    if (d.byChild) d.byChild.forEach(c => { csv += `"${c.name}",${c.fee},${c.paid},${c.due}\n`; });
+    downloadFile('biznes_' + m + '.csv', csv, 'text/csv');
+    toast('Export tayyor!', 'success');
+  } catch (e) { toast(e.message, 'error'); }
+};
+
+window.debtToggleAll = (el) => {
+  $$('.debt-chk').forEach(c => c.checked = el.checked);
+};
+window.debtSelectAll = (btn) => {
+  const all = $$('.debt-chk');
+  all.forEach(c => c.checked = true);
+  btn.textContent = all.every(c => c.checked) ? 'Barchasi tanlandi ✓' : 'Barchasini tanlash';
+};
+window.debtSendRemind = async (month) => {
+  const ids = $$('.debt-chk').filter(c => c.checked).map(c => Number(c.value));
+  if (!ids.length) return toast('Bironta qarzdorni tanlang', 'error');
+  const channel = $('#debtChannel') ? $('#debtChannel').value : 'telegram';
+  if (!confirm(`Tanlangan ${ids.length} ta ota-onaga ${channel === 'telegram' ? 'Telegram' : channel === 'sms' ? 'SMS' : 'Telegram+SMS'} orqali eslatma yuboriladi. Davom etasizmi?`)) return;
+  try {
+    const r = await api('/api/reminders/send', { method: 'POST', body: { month, recipient_ids: ids, channel } });
+    toast(`${r.sent} ta eslatma yuborildi (TG:${r.tgSent}, SMS:${r.smsSent})`, 'success');
+  } catch (e) { toast(e.message, 'error'); }
+};
+
+window.renderYearlyReport = async () => {
+  $('#content').innerHTML = loading();
+  const thisYear = new Date().getFullYear();
+  let year = thisYear;
+  async function load() {
+    const d = await api('/api/business/yearly?year=' + year);
+    const G = '#10b981', R = '#ef4444', C = '#6366f1';
+    const rowsHtml = d.months.map(m => `
+      <tr>
+        <td><b>${monthName(m.month)}</b></td>
+        <td class="money plus">${fmtMoney(m.income)}</td>
+        <td class="money minus">${fmtMoney(m.expense)}</td>
+        <td><b style="color:${m.profit >= 0 ? 'var(--success)' : 'var(--danger)'}">${fmtMoney(m.profit)}</b></td>
+        <td style="color:var(--muted)">${fmtMoney(m.salary)}</td>
+        <td>${m.children}</td>
+      </tr>`).join('');
+
+    $('#content').innerHTML = `
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap">
+        <h2 style="margin:0">📅 Yillik hisobot — ${year} yil</h2>
+        <select id="yrYear" class="field" style="width:auto;margin:0;padding:8px 14px;border-radius:10px;border:1.5px solid var(--border);background:var(--card);color:var(--text)">
+          ${[thisYear, thisYear - 1, thisYear - 2].map(y => `<option value="${y}" ${y === year ? 'selected' : ''}>${y} yil</option>`).join('')}
+        </select>
+        <button class="btn btn-outline btn-sm" onclick="renderBusiness()">⬅️ Oylik hisobot</button>
+        <button class="btn btn-primary btn-sm" onclick="window._yearExport(${year})">📥 Excel</button>
+      </div>
+
+      <div class="stats-grid" style="grid-template-columns:repeat(auto-fit,minmax(170px,1fr))">
+        <div class="stat-card accent"><div class="stat-val">${fmtMoney(d.totals.totalIncome)}</div><div class="stat-label">💰 Yillik daromad</div></div>
+        <div class="stat-card accent"><div class="stat-val">${fmtMoney(d.totals.totalExpense)}</div><div class="stat-label">💸 Yillik xarajat</div></div>
+        <div class="stat-card accent"><div class="stat-val" style="color:${d.totals.totalProfit >= 0 ? 'var(--success)' : 'var(--danger)'}">${fmtMoney(d.totals.totalProfit)}</div><div class="stat-label">📈 Yillik foyda</div></div>
+        <div class="stat-card accent"><div class="stat-val">${fmtMoney(d.totals.avgMonthly)}</div><div class="stat-label">📊 O'rtacha oylik kirim</div></div>
+      </div>
+
+      <div class="card" style="margin-top:16px">
+        <div class="card-head"><h3>🗓 ${year} yil — oylar bo'yicha</h3></div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Oy</th><th>Daromad</th><th>Xarajat</th><th>Foyda</th><th>Ish haqi</th><th>Bolalar</th></tr></thead>
+          <tbody>${rowsHtml}</tbody>
+        </table></div>
+      </div>
+      <div class="card" style="margin-top:16px">
+        <div class="card-head"><h3>📈 ${year} yil — grafik</h3></div>
+        <canvas id="yearChart" height="250"></canvas>
+      </div>
+    `;
+
+    $('#yrYear').addEventListener('change', e => { year = Number(e.target.value); load(); });
+    if (typeof Chart !== 'undefined') {
+      const ctx = document.getElementById('yearChart');
+      if (ctx) new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: d.months.map(m => monthName(m.month)),
+          datasets: [
+            { label: 'Daromad', data: d.months.map(m => m.income), backgroundColor: G + 'cc' },
+            { label: 'Xarajat', data: d.months.map(m => m.expense), backgroundColor: R + 'cc' },
+            { label: 'Foyda', data: d.months.map(m => m.profit), backgroundColor: C + 'cc' }
+          ]
+        },
+        options: { responsive: true, plugins: { legend: { position: 'bottom' } }, scales: { y: { beginAtZero: true } } }
+      });
+    }
+  }
+  await load();
+};
+
+window._yearExport = async (year) => {
+  try {
+    const d = await api('/api/business/yearly?year=' + year);
+    let csv = `Yillik hisobot ${year}\nDaromad,${d.totals.totalIncome}\nXarajat,${d.totals.totalExpense}\nFoyda,${d.totals.totalProfit}\n\nOy,Daromad,Xarajat,Foyda\n`;
+    d.months.forEach(m => { csv += `${monthName(m.month)},${m.income},${m.expense},${m.profit}\n`; });
+    downloadFile('yillik_' + year + '.csv', csv, 'text/csv');
+    toast('Excel fayl tayyor!', 'success');
+  } catch (e) { toast(e.message, 'error'); }
+};
+
+window.archiveCurrentMonth = async () => {
+  const cm = monthStr();
+  try {
+    await api('/api/archives', { method: 'POST', body: { month: cm } });
+    toast(monthName(cm) + ' arxivlandi!', 'success');
+    renderArchives();
+  } catch (e) { toast(e.message, 'error'); }
+};
+
+/* ================= OPERATOR: KUNLIK HISOBOT ================= */
+async function renderOpDaily() {
+  const $c = $('#content');
+  $c.innerHTML = loading();
+  try {
+    const d = await api('/api/operator/daily-report');
+    const attRate = d.totalKids > 0 ? Math.round(d.presentToday / d.totalKids * 100) : 0;
+    $c.innerHTML = `
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+        <h2 style="margin:0">📊 ${t('opDailyReport')} — ${d.today}</h2>
+        <button class="btn btn-outline btn-sm" onclick="exportOpDaily()">📥 Export</button>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card"><div class="stat-value">${d.presentToday}/${d.totalKids}</div><div class="stat-label">👶 Davomat</div></div>
+        <div class="stat-card"><div class="stat-value">${attRate}%</div><div class="stat-label">📈 Davomat %</div></div>
+        <div class="stat-card"><div class="stat-value">${d.absentToday}</div><div class="stat-label">❌ Kelmagan</div></div>
+        <div class="stat-card"><div class="stat-value">${d.lateToday}</div><div class="stat-label">⏰ Kechikkan</div></div>
+      </div>
+      <div class="stats-grid" style="margin-top:8px">
+        <div class="stat-card accent"><div class="stat-value">${fmtMoney(d.tushgan)}</div><div class="stat-label">💰 Bugun tushgan</div></div>
+        <div class="stat-card accent"><div class="stat-value">${fmtMoney(d.monthIncome)}</div><div class="stat-label">📅 Oylik daromad (${tMonth(d.month)})</div></div>
+        <div class="stat-card accent"><div class="stat-value">${fmtMoney(d.monthExpense)}</div><div class="stat-label">💸 Oylik xarajat</div></div>
+      </div>
+      <div class="stats-grid" style="margin-top:8px">
+        <div class="stat-card"><div class="stat-value">${d.childCount}</div><div class="stat-label">👶 Bolalar</div></div>
+        <div class="stat-card"><div class="stat-value">${d.parentCount}</div><div class="stat-label">👨‍👩‍👧 Ota-onalar</div></div>
+        <div class="stat-card"><div class="stat-value">${d.teacherCount}</div><div class="stat-label">👩‍🏫 Tarbiyachilar</div></div>
+        <div class="stat-card"><div class="stat-value">${d.pendingRequests}</div><div class="stat-label">📋 Kutilayotgan arizalar</div></div>
+      </div>
+    `;
+  } catch (e) { $c.innerHTML = `<div class="empty-state">⚠️ ${e.message}</div>`; }
+}
+window.exportOpDaily = async () => {
+  try {
+    const rows = await api('/api/operator/daily-export');
+    if (!rows.length) return toast("Ma'lumot yo'q", "error");
+    const csv = "ID,Name,Group,Attendance,Paid\n" + rows.map(r => `${r.id},"${r.name}","${r.group}","${r.attendance}",${r.paid}`).join("\n");
+    downloadFile("hisobot_" + new Date().toISOString().slice(0,10) + ".csv", csv, "text/csv");
+    toast("Export tayyor!");
+  } catch (e) { toast(e.message, "error"); }
+};
+
+/* ================= OPERATOR: QARZDORLAR ================= */
+async function renderOpDebtors() {
+  const $c = $('#content');
+  $c.innerHTML = loading();
+  try {
+    const d = await api('/api/operator/debtors');
+    let html = `
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+        <h2 style="margin:0">💳 ${t('opDebtors')} — ${tMonth(d.month)}</h2>
+        <button class="btn btn-outline btn-sm" onclick="exportDebtors()">📥 Export</button>
+      </div>
+    `;
+    if (!d.debtors.length) {
+      html += `<div class="empty-state"><span class="emoji">🎉</span><br>${t('noDebtors')}</div>`;
+    } else {
+      html += `
+        <div class="stats-grid" style="margin-bottom:16px">
+          <div class="stat-card accent"><div class="stat-value">${d.debtors.length}</div><div class="stat-label">👤 Qarzdorlar</div></div>
+          <div class="stat-card accent"><div class="stat-value">${fmtMoney(d.totalDebt)}</div><div class="stat-label">💰 Jami qarz</div></div>
+        </div>
+        <div class="table-wrap"><table class="data-table">
+          <thead><tr><th>#</th><th>Bola</th><th>Guruh</th><th>Ota-ona</th><th>To'lov</th><th>To'langan</th><th>Qarz</th><th>Oylar</th></tr></thead>
+          <tbody>${d.debtors.map((r, i) => `
+            <tr>
+              <td>${i + 1}</td>
+              <td><b>${esc(r.full_name)}</b></td>
+              <td>${esc(r.group_name)}</td>
+              <td>${esc(r.parent_name)}</td>
+              <td>${fmtMoney(r.fee)}</td>
+              <td style="color:var(--success,#16a34a)">${fmtMoney(r.paid)}</td>
+              <td style="color:var(--danger,#dc2626);font-weight:700">${fmtMoney(r.due)}</td>
+              <td>${r.unpaidN >= 2 ? '<span class="badge badge-red">' + r.unpaidN + ' oy ⚠️</span>' : r.unpaidN + ' oy'}</td>
+            </tr>
+          `).join('')}</tbody>
+        </table></div>
+      `;
+    }
+    $c.innerHTML = html;
+  } catch (e) { $c.innerHTML = `<div class="empty-state">⚠️ ${e.message}</div>`; }
+}
+window.exportDebtors = async () => {
+  try {
+    const d = await api('/api/operator/debtors');
+    if (!d.debtors.length) return toast("Qarzdorlar yo'q", "error");
+    const csv = "ID,Name,Group,Parent,Fee,Paid,Due,Months\n" + d.debtors.map(r => `${r.id},"${r.full_name}","${r.group_name}","${r.parent_name}",${r.fee},${r.paid},${r.due},${r.unpaidN}`).join("\n");
+    downloadFile("qarzdorlar_" + d.month + ".csv", csv, "text/csv");
+    toast("Export tayyor!");
+  } catch (e) { toast(e.message, "error"); }
+};
+
+/* ================= OPERATOR: AVTOMATIK OGOHLANTIRISH ================= */
+async function renderOpReminders() {
+  const $c = $('#content');
+  $c.innerHTML = loading();
+  try {
+    const reminders = await api('/api/operator/reminders');
+    let html = `
+      <h2 style="margin:0 0 16px 0">🔔 ${t('opReminders')}</h2>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px">
+        <div class="card" style="padding:16px">
+          <div style="font-weight:600;margin-bottom:6px">🚨 ${t('autoDebtWarn')}</div>
+          <div style="font-size:13px;color:var(--text-secondary,#888);margin-bottom:12px">${t('autoDebtDesc')}</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="badge badge-green" style="font-size:12px">✅ Faol</span>
+            <span style="font-size:12px;color:var(--text-secondary,#888)">Har oy avtomatik</span>
+          </div>
+        </div>
+        <div class="card" style="padding:16px">
+          <div style="font-weight:600;margin-bottom:6px">📅 ${t('autoPayRemind')}</div>
+          <div style="font-size:13px;color:var(--text-secondary,#888);margin-bottom:12px">${t('autoPayDesc')}</div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <span class="badge badge-green" style="font-size:12px">✅ Faol</span>
+            <span style="font-size:12px;color:var(--text-secondary,#888)">Har oy 25-da</span>
+          </div>
+        </div>
+      </div>
+    `;
+    if (reminders.length) {
+      html += `<h3 style="margin-bottom:12px">📨 Yuborilgan eslatmalar</h3>`;
+      html += `<div class="table-wrap"><table class="data-table">
+        <thead><tr><th>#</th><th>Ota-ona</th><th>Turi</th><th>Matn</th><th>Sana</th><th>Holat</th></tr></thead>
+        <tbody>${reminders.map((r, i) => `
+          <tr>
+            <td>${i + 1}</td>
+            <td>${esc(r.parent_name)}</td>
+            <td><span class="badge ${r.remind_type === 'payment' ? 'badge-blue' : r.remind_type === 'birthday' ? 'badge-green' : 'badge-gray'}">${r.remind_type === 'payment' ? "To'lov" : r.remind_type === 'birthday' ? "Tug'ilgan kun" : 'Boshqa'}</span></td>
+            <td>${esc(r.remind_text || '—')}</td>
+            <td>${r.remind_date || '—'}</td>
+            <td>${r.sent ? '<span class="badge badge-green">✅ Yuborilgan</span>' : '<span class="badge badge-yellow">⏳ Kutilmoqda</span>'}</td>
+          </tr>
+        `).join('')}</tbody>
+      </table></div>`;
+    } else {
+      html += `<div class="empty-state"><span class="emoji">📭</span><br>Hozircha eslatmalar yo'q</div>`;
+    }
+    $c.innerHTML = html;
+  } catch (e) { $c.innerHTML = `<div class="empty-state">⚠️ ${e.message}</div>`; }
+}
 
 /* ================= ROUTER ================= */
 
@@ -2283,23 +4303,39 @@ const RENDER = {
   meals: renderMeals,
   reports: renderReports,
   birthdays: renderBirthdays,
+  schedules: renderSchedules,
+  salary: renderSalary,
+  monitoring: renderMonitoring,
+  business: renderBusiness,
+  archives: renderArchives,
   notify: renderNotify,
+  sms: renderSms,
   eklon: renderAnnouncements,
   requests: renderRequests,
+  journal: renderJournal,
+  gallery: renderGallery,
   backup: renderBackup,
   audit: renderAudit,
   users: renderUsers,
   settings: renderSettings,
+  landing: renderLanding,
   t_dashboard: renderTeacherDashboard,
   t_attendance: renderAttendance,
   t_children: renderTeacherChildren,
+  t_journal: renderJournal,
+  t_gallery: renderGallery,
   p_dashboard: renderParentDashboard,
   p_children: renderParentChildren,
   p_attendance: renderParentAttendance,
   p_payments: renderParentPayments,
+  p_notif: renderParentNotifications,
   p_ann: renderParentAnnouncements,
-  p_request: renderParentPayRequest,
-  p_requests: renderParentRequests
+  p_requests: renderParentRequests,
+  p_gallery: renderParentGallery,
+  p_journal: renderParentJournal,
+  op_daily: renderOpDaily,
+  op_debtors: renderOpDebtors,
+  op_reminders: renderOpReminders
 };
 
 window.go = go;
@@ -2309,7 +4345,7 @@ window.go = go;
 function applyTheme() {
   const t = localStorage.getItem('bogcha-theme') || 'light';
   document.documentElement.setAttribute('data-theme', t);
-  $('#themeToggle').textContent = t === 'dark' ? '☀️' : '🌙';
+  $('#themeToggle').textContent = t === 'dark' ? '�?�️' : '🌙';
 }
 
 async function init() {
@@ -2399,20 +4435,29 @@ async function init() {
 
   $('#loginForm').addEventListener('submit', async (e) => {
     e.preventDefault();
+    const username = $('#loginUser').value.trim();
+    const password = $('#loginPass').value;
+    if (!username || !password) {
+      $('#loginError').textContent = 'Login va parolni kiriting';
+      return;
+    }
     $('#loginBtn').disabled = true;
+    $('#loginBtn').textContent = '⏳ Kirish...';
     $('#loginError').textContent = '';
     try {
       const { user } = await api('/api/login', {
         method: 'POST',
-        body: { username: $('#loginUser').value.trim(), password: $('#loginPass').value }
+        body: { username, password }
       });
       state.user = user;
       $('#loginUser').value = ''; $('#loginPass').value = '';
       await startApp();
     } catch (err) {
       $('#loginError').textContent = err.message;
+      $('#loginError').style.animation = 'pop .3s ease';
     } finally {
       $('#loginBtn').disabled = false;
+      $('#loginBtn').textContent = 'Kirish';
     }
   });
 
@@ -2428,8 +4473,15 @@ async function init() {
     applyTheme();
   });
 
+  $('#topbarBell').addEventListener('click', async () => {
+    if (!isAdmin() && !isOperator()) return;
+    await toggleBellPanel();
+  });
+
   $('#logoutBtn').addEventListener('click', async () => {
     await fetch('/api/logout', { method: 'POST' });
+    state.page = null;
+    localStorage.removeItem('bogcha-page');
     showLogin();
   });
 
@@ -2437,23 +4489,35 @@ async function init() {
     $('#sidebar').classList.add('open');
     $('#sidebarOverlay').classList.add('show');
   });
-  $('#sidebarClose').addEventListener('click', () => {
-    $('#sidebar').classList.remove('open');
-    $('#sidebarOverlay').classList.remove('show');
+  $('#sidebarClose').addEventListener('click', closeSidebar);
+  $('#sidebarOverlay').addEventListener('click', closeSidebar);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      if (_bellOpen) { closeBellPanel(); return; }
+      if (!$('#modalOverlay').classList.contains('hidden')) closeModal();
+      else if ($('#sidebar').classList.contains('open')) closeSidebar();
+    }
   });
-  $('#sidebarOverlay').addEventListener('click', () => {
-    $('#sidebar').classList.remove('open');
-    $('#sidebarOverlay').classList.remove('show');
-  });
+  let touchStartX = 0;
+  document.addEventListener('touchstart', (e) => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', (e) => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (dx > 80 && touchStartX < 40 && !$('#sidebar').classList.contains('open')) {
+      $('#sidebar').classList.add('open');
+      $('#sidebarOverlay').classList.add('show');
+    }
+  }, { passive: true });
   $('#modalOverlay').addEventListener('click', (e) => {
     if (e.target === $('#modalOverlay')) closeModal();
   });
   $('#modalClose').addEventListener('click', closeModal);
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
 
   const ok = await loadSession();
   if (ok) await startApp();
-  else showLogin();
+  else {
+    try { state.settings = await api('/api/settings'); applyLoginDesign(state.settings); } catch(e) {}
+    showLogin();
+  }
 }
 
 async function startApp() {
@@ -2462,14 +4526,24 @@ async function startApp() {
   $('#meAvatar').textContent = initials(fullName);
   $('#meAvatar').style.background = avatarColor(fullName);
   $('#meName').textContent = fullName;
-  $('#meRole').textContent = state.user.role === 'admin' ? 'Administrator' : state.user.role === 'teacher' ? 'Tarbiyachi' : state.user.role === 'parent' ? 'Ota-ona' : 'Operator';
+  $('#meRole').textContent = t(state.user.role === 'admin' ? 'admin' : state.user.role === 'teacher' ? 'teacherRole' : state.user.role === 'parent' ? 'parentRole' : 'operatorRole');
   $('#sidebarSiteName').textContent = state.settings.site_name || 'Denov Kindergarden';
   $('#loginSiteName').textContent = state.settings.site_name || 'Denov Kindergarden';
-  document.title = `${state.settings.site_name || 'Denov Kindergarden'} — Maktabgacha ta'lim tizimi`;
-  $('#todayChip').textContent = new Date().toLocaleDateString('uz-UZ', { day: 'numeric', month: 'long' });
+  document.title = `${state.settings.site_name || 'Denov Kindergarden'}`;
+  $('#todayChip').textContent = fmtTodayShort() + ', ' + new Date().getFullYear();
+  $('#logoutBtn').textContent = t('logout');
+  $('#installBtn').textContent = '📲 ' + t('install');
   showApp();
   renderNav();
-  go('dashboard');
+  go(localStorage.getItem('bogcha-page') || 'dashboard');
+  setInterval(async () => { await fetchBadges(); renderNav(); if (_bellOpen) renderBellPanel(); }, 30000);
 }
 
 init();
+
+window.onerror = function(msg, src, line, col, err) {
+  console.error('Global xato:', msg, src, line);
+};
+window.addEventListener('unhandledrejection', function(e) {
+  console.error('Unhandled promise:', e.reason);
+});
