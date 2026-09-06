@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Denov Kindergarden — Bola bog'cha</title>
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root { --p: #6366f1; --p-soft: #eef0ff; --ink: #111827; --muted: #6b7280; --bg: #f8fafc; }
@@ -67,6 +68,17 @@
   .how .step { background: #fff; border-radius: 14px; padding: 20px; text-align: center; border: 1px solid #eef2f7; }
   .how .step b { color: var(--p); font-size: 22px; display: block; margin-bottom: 6px; }
 
+  .quick { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 60; }
+  .quick a { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font-size: 24px; color: #fff; box-shadow: 0 6px 18px rgba(0,0,0,.18); text-decoration: none; transition: transform .15s; }
+  .quick a:hover { transform: scale(1.1); }
+  .quick .tgm { background: #229ED9; }
+  .quick .wsp { background: #25D366; }
+  .qr-row { display: flex; gap: 20px; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 30px; }
+  .qr-box { background: #fff; border: 1px solid #eef2f7; border-radius: 16px; padding: 18px; text-align: center; box-shadow: 0 6px 20px rgba(15,23,42,.06); }
+  .qr-box canvas { border-radius: 8px; }
+  .qr-box b { display: block; margin-top: 10px; font-size: 14px; }
+  .qr-box span { font-size: 12.5px; color: var(--muted); }
+
   footer.bottom { border-top: 1px solid #eef2f7; padding: 26px 0; text-align: center; color: var(--muted); font-size: 13.5px; background: #fff; }
   @media (max-width: 640px) { .hero { padding-top: 110px; } section { padding: 44px 0; } }
 </style>
@@ -79,6 +91,7 @@
       <a href="#about" class="hide-sm">Kurslar</a>
       <a href="#gallery" class="hide-sm">Galereya</a>
       <a href="#contact" class="btn">Ariza qoldiring</a>
+      <a href="/login" class="hide-sm" style="font-weight:600;opacity:.75">Kirish</a>
     </div>
   </div>
 </header>
@@ -90,12 +103,17 @@
     <div class="cta">
       <a href="#contact" class="btn btn-primary">Ariza qoldirish</a>
       <a href="#courses" class="btn btn-ghost">Kurslar bilan tanishing</a>
+      <a href="/apk/Denov-Kindergarden.apk" class="btn" style="background:#16a34a;color:#fff">📱 Ilovani yuklab olish</a>
     </div>
     <div class="stats">
       <div class="stat"><b><span id="sGroups">0</span></b><span>guruhlar</span></div>
       <div class="stat"><b><span id="sChildren">0</span></b><span>bolalar</span></div>
       <div class="stat"><b><span id="sTeachers">0</span></b><span>tarbiyachilar</span></div>
       <div class="stat"><b><span id="sCourses">0</span></b><span>to'garaklar</span></div>
+    </div>
+    <div class="qr-row">
+      <div class="qr-box"><div id="qrSite"></div><b>Saytimizga o'tish</b><span>Telefon kamerasi bilan skanerlang</span></div>
+      <div class="qr-box"><div id="qrApk"></div><b>Ilovani o'rnatish</b><span>Android qurilma bilan skanerlang</span></div>
     </div>
   </div>
 
@@ -139,6 +157,10 @@
       <p style="margin-top:20px;font-size:14px;opacity:.9" id="contactInfo"></p>
     </div>
   </section>
+<div class="quick">
+  <a class="tgm" href="#" id="quickTg" target="_blank" title="Telegram">✈️</a>
+  <a class="wsp" href="#" id="quickWs" target="_blank" title="WhatsApp">💬</a>
+</div>
 </main>
 
 <footer class="bottom">
@@ -162,6 +184,20 @@
     q('#sChildren').textContent = st.children || 0;
     q('#sTeachers').textContent = st.teachers || 0;
     q('#sCourses').textContent = (DATA.courses || []).length;
+
+    // Telegram / WhatsApp tez aloqa
+    const tg = s.tg_user || s.tg_group || '';
+    const ph = String(s.phone || '').replace(/[^0-9]/g, '');
+    const tgHref = tg && /^https?:/.test(tg) ? tg : (tg ? ('https://t.me/' + String(tg).replace(/^@/, '') + (s.tg_deep ? '?start=' + s.tg_deep : '')) : ('https://t.me/' + (DATA.bot_username || '')));
+    const wsHref = ph ? ('https://wa.me/' + ph) : '#';
+    q('#quickTg').href = tgHref || '#';
+    q('#quickWs').href = wsHref;
+  };
+
+  const makeQR = (id, text, size) => {
+    const el = q(id);
+    if (!el || !text) return;
+    try { QRCode.toCanvas(el, text, { width: size, margin: 1 }); } catch (e) {}
   };
 
   const renderCourses = () => {
@@ -214,6 +250,8 @@
     } catch (e) {}
     applySite(); renderCourses(); renderGallery();
     q('#yr').textContent = new Date().getFullYear();
+    makeQR('qrSite', location.origin, 120);
+    makeQR('qrApk', location.origin + '/apk/Denov-Kindergarden.apk', 120);
   })();
 </script>
 </body>

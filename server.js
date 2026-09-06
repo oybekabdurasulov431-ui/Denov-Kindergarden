@@ -117,6 +117,14 @@ app.get('/apk/:file', (req, res) => {
   res.download(full, file);
 });
 
+/* ===== Ommaviy landing sahifa (bosh sahifa) ===== */
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'landing.html'));
+});
+app.get('/login', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
 app.use(express.static('public', {
   etag: true,
   lastModified: true,
@@ -2513,7 +2521,11 @@ app.get('/api/landing/data', (req, res) => {
       email: s('email'),
       work_hours: s('work_hours'),
       login_top_text: s('login_top_text'),
-      logo_url: s('logo_url')
+      logo_url: s('logo_url'),
+      tg_user: s('tg_user'),
+      tg_group: s('tg_group'),
+      tg_deep: s('tg_deep'),
+      bot_username: s('bot_username') || ''
     },
     stats,
     courses: db.prepare('SELECT * FROM courses ORDER BY sort, id').all(),

@@ -1,8 +1,9 @@
 /* Denov Kindergarden PWA service worker */
-const CACHE = 'bogcham-v14';
+const CACHE = 'bogcham-v15';
 const APP_SHELL = [
   '/',
   '/index.html',
+  '/login',
   '/style.css?v=20260904a',
   '/app.js?v=20260904d',
   '/manifest.json',
@@ -13,7 +14,7 @@ const APP_SHELL = [
 
 /* Yangi dastur fayllari (JS/CSS/HTML) har doim tarmoqdan olinadi */
 const NETWORK_FIRST = (u) => {
-  return /\.(js|css)(\?v=.*)?$/.test(u) || u === '/' || u === '/index.html' || u === '/landing' || u === '/landing.html';
+  return /\.(js|css)(\?v=.*)?$/.test(u) || u === '/' || u === '/index.html' || u === '/login' || u === '/landing' || u === '/landing.html';
 };
 
 self.addEventListener('install', e => {
@@ -42,10 +43,10 @@ self.addEventListener('fetch', e => {
       fetch(e.request)
         .then(r => {
           const copy = r.clone();
-          caches.open(CACHE).then(c => c.put('/', copy));
+          caches.open(CACHE).then(c => c.put(e.request, copy));
           return r;
         })
-        .catch(() => caches.match('/'))
+        .catch(() => caches.match(e.request).then(m => m || caches.match('/')))
     );
     return;
   }
