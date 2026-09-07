@@ -1,9 +1,9 @@
 {
-"id": "/login",
+"id": "/",
   "name": "Denov Kindergarden",
   "short_name": "Denov KG",
-  "description": "Denov Kindergarden — maktabgacha ta'lim boshqaruv tizimi",
-  "start_url": "/login",
+  "description": "Denov Kindergarden - maktabgacha ta'lim boshqaruv tizimi",
+  "start_url": "/",
   "scope": "/",
   "display": "standalone",
   "orientation": "portrait",

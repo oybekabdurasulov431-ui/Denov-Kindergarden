@@ -3,8 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Denov Kindergarden — Bola bog'cha</title>
-<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<title>Denov Kindergarden тАФ Bola bog'cha</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   :root { --p: #6366f1; --p-soft: #eef0ff; --ink: #111827; --muted: #6b7280; --bg: #f8fafc; }
@@ -68,17 +67,6 @@
   .how .step { background: #fff; border-radius: 14px; padding: 20px; text-align: center; border: 1px solid #eef2f7; }
   .how .step b { color: var(--p); font-size: 22px; display: block; margin-bottom: 6px; }
 
-  .quick { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 60; }
-  .quick a { width: 52px; height: 52px; border-radius: 50%; display: grid; place-items: center; font-size: 24px; color: #fff; box-shadow: 0 6px 18px rgba(0,0,0,.18); text-decoration: none; transition: transform .15s; }
-  .quick a:hover { transform: scale(1.1); }
-  .quick .tgm { background: #229ED9; }
-  .quick .wsp { background: #25D366; }
-  .qr-row { display: flex; gap: 20px; justify-content: center; align-items: center; flex-wrap: wrap; margin-top: 30px; }
-  .qr-box { background: #fff; border: 1px solid #eef2f7; border-radius: 16px; padding: 18px; text-align: center; box-shadow: 0 6px 20px rgba(15,23,42,.06); }
-  .qr-box canvas { border-radius: 8px; }
-  .qr-box b { display: block; margin-top: 10px; font-size: 14px; }
-  .qr-box span { font-size: 12.5px; color: var(--muted); }
-
   footer.bottom { border-top: 1px solid #eef2f7; padding: 26px 0; text-align: center; color: var(--muted); font-size: 13.5px; background: #fff; }
   @media (max-width: 640px) { .hero { padding-top: 110px; } section { padding: 44px 0; } }
 </style>
@@ -86,12 +74,11 @@
 <body>
 <header class="top">
   <div class="wrap nav">
-    <div class="logo"><span class="dot">🌈</span><span id="siteName">Denov Kindergarden</span></div>
+    <div class="logo"><span class="dot">ЁЯМИ</span><span id="siteName">Denov Kindergarden</span></div>
     <div>
       <a href="#about" class="hide-sm">Kurslar</a>
       <a href="#gallery" class="hide-sm">Galereya</a>
       <a href="#contact" class="btn">Ariza qoldiring</a>
-      <a href="/login" class="hide-sm" style="font-weight:600;opacity:.75">Kirish</a>
     </div>
   </div>
 </header>
@@ -99,11 +86,10 @@
 <main>
   <div class="hero wrap">
     <h1>Bolangiz uchun eng yaxshi <span class="grad">bog'cha davrini</span> boshlang</h1>
-    <p id="heroText">Denov Kindergarden — malakali tarbiyachilar, xavfsiz muhit va har tomonlama rivojlantiruvchi dasturlar. Har bir bolaga alohida e'tibor.</p>
+    <p id="heroText">Denov Kindergarden тАФ malakali tarbiyachilar, xavfsiz muhit va har tomonlama rivojlantiruvchi dasturlar. Har bir bolaga alohida e'tibor.</p>
     <div class="cta">
       <a href="#contact" class="btn btn-primary">Ariza qoldirish</a>
       <a href="#courses" class="btn btn-ghost">Kurslar bilan tanishing</a>
-      <a href="/apk/Denov-Kindergarden.apk" class="btn" style="background:#16a34a;color:#fff">📱 Ilovani yuklab olish</a>
     </div>
     <div class="stats">
       <div class="stat"><b><span id="sGroups">0</span></b><span>guruhlar</span></div>
@@ -111,22 +97,18 @@
       <div class="stat"><b><span id="sTeachers">0</span></b><span>tarbiyachilar</span></div>
       <div class="stat"><b><span id="sCourses">0</span></b><span>to'garaklar</span></div>
     </div>
-    <div class="qr-row">
-      <div class="qr-box"><div id="qrSite"></div><b>Saytimizga o'tish</b><span>Telefon kamerasi bilan skanerlang</span></div>
-      <div class="qr-box"><div id="qrApk"></div><b>Ilovani o'rnatish</b><span>Android qurilma bilan skanerlang</span></div>
-    </div>
   </div>
 
   <section id="about" class="wrap">
     <h2>Nima uchun biz?</h2>
     <p class="sub">Farzandingizning birinchi qadamlari ishonchli qo'llarda</p>
     <div class="feats">
-      <div class="feat"><div class="ic">🛡️</div><h3>Xavfsiz muhit</h3><p>24/7 videokuzatuv, ikki qavatli kirish nazorati va malakali xodimlar.</p></div>
-      <div class="feat"><div class="ic">👩‍🏫</div><h3>Malakali tarbiyachilar</h3><p>Har bir guruhda shaxsiy tarbiyachi va yordamchi pedagoglar.</p></div>
-      <div class="feat"><div class="ic">🥗</div><h3>Sog'lom taomlanish</h3><p>Kuniga 3 mahal muvozanatli va ekologik toza taomlar.</p></div>
-      <div class="feat"><div class="ic">📱</div><h3>Ota-ona nazorati</h3><p>Maxsus ilova orqali bolangizning davomati va faoliyatini kuzating.</p></div>
-      <div class="feat"><div class="ic">🎨</div><h3>Ijodiy darslar</h3><p>Rasm, musiqa, raqs va rivojlantiruvchi o'yinlar.</p></div>
-      <div class="feat"><div class="ic">🧠</div><h3>Maktabga tayyorlash</h3><p>O'qish, yozish va mantiqiy fikrlash asoslari.</p></div>
+      <div class="feat"><div class="ic">ЁЯЫбя╕П</div><h3>Xavfsiz muhit</h3><p>24/7 videokuzatuv, ikki qavatli kirish nazorati va malakali xodimlar.</p></div>
+      <div class="feat"><div class="ic">ЁЯСйтАНЁЯПл</div><h3>Malakali tarbiyachilar</h3><p>Har bir guruhda shaxsiy tarbiyachi va yordamchi pedagoglar.</p></div>
+      <div class="feat"><div class="ic">ЁЯеЧ</div><h3>Sog'lom taomlanish</h3><p>Kuniga 3 mahal muvozanatli va ekologik toza taomlar.</p></div>
+      <div class="feat"><div class="ic">ЁЯУ▒</div><h3>Ota-ona nazorati</h3><p>Maxsus ilova orqali bolangizning davomati va faoliyatini kuzating.</p></div>
+      <div class="feat"><div class="ic">ЁЯОи</div><h3>Ijodiy darslar</h3><p>Rasm, musiqa, raqs va rivojlantiruvchi o'yinlar.</p></div>
+      <div class="feat"><div class="ic">ЁЯза</div><h3>Maktabga tayyorlash</h3><p>O'qish, yozish va mantiqiy fikrlash asoslari.</p></div>
     </div>
   </section>
 
@@ -145,7 +127,7 @@
   <section id="contact" class="wrap">
     <div class="contact-card">
       <h2>Qabul telefoniga murojaat qiling</h2>
-      <p class="sub">Yoki formani to'ldiring — siz bilan tez orada bog'lanamiz</p>
+      <p class="sub">Yoki formani to'ldiring тАФ siz bilan tez orada bog'lanamiz</p>
       <div class="form">
         <input id="f_parent" type="text" placeholder="Ota-onaning ismi *" required>
         <input id="f_phone" type="tel" placeholder="Telefon raqami *" required>
@@ -157,14 +139,10 @@
       <p style="margin-top:20px;font-size:14px;opacity:.9" id="contactInfo"></p>
     </div>
   </section>
-<div class="quick">
-  <a class="tgm" href="#" id="quickTg" target="_blank" title="Telegram">✈️</a>
-  <a class="wsp" href="#" id="quickWs" target="_blank" title="WhatsApp">💬</a>
-</div>
 </main>
 
 <footer class="bottom">
-  <div class="wrap">© <span id="yr"></span> <span id="siteNameF">Denov Kindergarden</span> — Barcha huquqlar himoyalangan</div>
+  <div class="wrap">┬й <span id="yr"></span> <span id="siteNameF">Denov Kindergarden</span> тАФ Barcha huquqlar himoyalangan</div>
 </footer>
 
 <script>
@@ -175,7 +153,7 @@
     const s = DATA.site || {};
     if (s.name) { q('#siteName').textContent = s.name; q('#siteNameF').textContent = s.name; }
     if (s.work_hours || s.address || s.phone) {
-      q('#contactInfo').textContent = [s.address, s.phone, s.email, s.work_hours].filter(Boolean).join(' &nbsp;•&nbsp; ');
+      q('#contactInfo').textContent = [s.address, s.phone, s.email, s.work_hours].filter(Boolean).join(' &nbsp;тАв&nbsp; ');
       q('#contactInfo').style.display = 'block';
     }
     if (s.login_top_text) q('#heroText').textContent = s.login_top_text;
@@ -184,20 +162,6 @@
     q('#sChildren').textContent = st.children || 0;
     q('#sTeachers').textContent = st.teachers || 0;
     q('#sCourses').textContent = (DATA.courses || []).length;
-
-    // Telegram / WhatsApp tez aloqa
-    const tg = s.tg_user || s.tg_group || '';
-    const ph = String(s.phone || '').replace(/[^0-9]/g, '');
-    const tgHref = tg && /^https?:/.test(tg) ? tg : (tg ? ('https://t.me/' + String(tg).replace(/^@/, '') + (s.tg_deep ? '?start=' + s.tg_deep : '')) : ('https://t.me/' + (DATA.bot_username || '')));
-    const wsHref = ph ? ('https://wa.me/' + ph) : '#';
-    q('#quickTg').href = tgHref || '#';
-    q('#quickWs').href = wsHref;
-  };
-
-  const makeQR = (id, text, size) => {
-    const el = q(id);
-    if (!el || !text) return;
-    try { QRCode.toCanvas(el, text, { width: size, margin: 1 }); } catch (e) {}
   };
 
   const renderCourses = () => {
@@ -205,7 +169,7 @@
     if (!DATA.courses.length) { b.innerHTML = '<p class="sub">Kurslar vaqti tez orada</p>'; return; }
     b.innerHTML = DATA.courses.map(c => `
       <div class="course">
-        <div class="ci">${c.icon || '🎨'}</div>
+        <div class="ci">${c.icon || 'ЁЯОи'}</div>
         <h3>${esc(c.name)}</h3>
         <p>${esc(c.description || '')}</p>
         <div class="price">${fmt(c.price)} so'm${c.duration ? ' <span class="dur">/ ' + esc(c.duration) + '</span>' : ''}</div>
@@ -236,7 +200,7 @@
       const r = await fetch('/api/landing/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
       if (!r.ok) throw new Error('Xatolik');
       q('#f_parent').value = q('#f_phone').value = q('#f_child').value = q('#f_msg').value = '';
-      q('#f_msgbox').textContent = '✅ Arizangiz qabul qilindi! Tez orada bog\'lanamiz.';
+      q('#f_msgbox').textContent = 'тЬЕ Arizangiz qabul qilindi! Tez orada bog\'lanamiz.';
       q('#f_msgbox').className = 'msg ok';
     } catch (e) {
       q('#f_msgbox').textContent = 'Yuborishda xatolik. Telefon orqali bog\'laning.';
@@ -250,8 +214,6 @@
     } catch (e) {}
     applySite(); renderCourses(); renderGallery();
     q('#yr').textContent = new Date().getFullYear();
-    makeQR('qrSite', location.origin, 120);
-    makeQR('qrApk', location.origin + '/apk/Denov-Kindergarden.apk', 120);
   })();
 </script>
 </body>
